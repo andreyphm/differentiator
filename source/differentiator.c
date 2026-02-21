@@ -6,17 +6,28 @@
 #include "differentiator.h"
 #include "font.h"
 
-#define CR      copy_node(node->right)
-#define CL      copy_node(node->left)
-#define DR      dif(node->right)
-#define DL      dif(node->left)
-#define DCR     dif(copy_node(node->right))
-#define DCL     dif(copy_node(node->left))
+#define CR              copy_node(node->right)
+#define CL              copy_node(node->left)
+#define DR              dif(node->right)
+#define DL              dif(node->left)
+#define DCR             dif(copy_node(node->right))
+#define DCL             dif(copy_node(node->left))
+
+#define RIGHT_IS_NUMBER     node->right->value->type == NUM
+#define LEFT_IS_NUMBER      node->left->value->type == NUM
+#define RIGHT_VALUE         node->right->value.data_t.number
+#define LEFT_VALUE          node->left->value.data_t.number
 
 #define ADD_(left_node, right_node) create_node(OP, ADD, left_node, right_node)
 #define SUB_(left_node, right_node) create_node(OP, SUB, left_node, right_node)
 #define MUL_(left_node, right_node) create_node(OP, MUL, left_node, right_node)
 #define DIV_(left_node, right_node) create_node(OP, DIV, left_node, right_node)
+#define POW_(left_node, right_node) create_node(OP, POW, left_node, right_node)
+#define EXP_(left_node)             create_node(OP, EXP, left_node, nullptr)
+#define LN_(left_node)              create_node(OP, LN,  left_node, nullptr)
+#define SIN_(left_node)             create_node(OP, SIN, left_node, nullptr)
+#define COS_(left_node)             create_node(OP, COS, left_node, nullptr)
+#define NUM_(value)                 create_node(NUM, value, nullptr, nullptr)
 
 node_t* dif(node_t* node)
 {
@@ -24,16 +35,7 @@ node_t* dif(node_t* node)
 
     switch(node->value->type)
     {
-        case OP:
-            switch(node->value->data_t.op)
-            {
-                case ADD: return dif_add(node);
-                case SUB: return dif_sub(node);
-                case MUL: return dif_mul(node);
-                case DIV: return dif_div(node);
-                default:
-                    return nullptr;
-            }
+        case OP: return operators_array[(int)node->value->data_t.op].dif(node);
         case NUM: return dif_num(node);
         case VAR: return dif_var(node);
         default:
@@ -45,14 +47,14 @@ node_t* dif_var(node_t* node)
 {
     assert(node);
     destroy_node(node);
-    return create_node(NUM, 1, nullptr, nullptr);
+    return NUM_(1);
 }
 
 node_t* dif_num(node_t* node)
 {
     assert(node);
     destroy_node(node);
-    return create_node(NUM, 0, nullptr, nullptr);
+    return NUM_(0);
 }
 
 node_t* dif_add(node_t* node)
@@ -76,7 +78,48 @@ node_t* dif_mul(node_t* node)
 node_t* dif_div(node_t* node)
 {
     assert(node);
-    return DIV_(SUB_(MUL_(DL, CR), MUL_(CL, DR)), MUL_(CR, CR));
+    return DIV_(SUB_(MUL_(DCL, CR), MUL_(CL, DCR)), MUL_(CR, CR));
+}
+
+node_t* dif_ln(node_t* node)
+{
+    assert(node);
+    return DIV_(DL, CL);
+}
+
+node_t* dif_cos(node_t* node)
+{
+    assert(node);
+    return MUL_(MUL_(SIN_(CL), NUM_(-1)), DL);
+}
+
+node_t* dif_sin(node_t* node)
+{
+    assert(node);
+    return MUL_(COS_(CL), DL);
+}
+
+node_t* dif_exp(node_t* node)
+{
+    assert(node);
+    return MUL_(EXP_(CL), DL);
+}
+
+node_t* dif_pow(node_t* node)
+{
+    assert(node);
+
+    if (node->left->value->type == NUM && node->right->value->type == NUM)
+        return NUM_(0);
+
+    else if (node->left->value->type != NUM && node->right->value->type == NUM)
+        return MUL_(MUL_(POW_(CL, NUM_(node->right->value->data_t.number - 1)), CR), DCL);
+
+    else if (node->left->value->type == NUM && node->right->value->type != NUM)
+        return MUL_(EXP_(MUL_(CR, LN_(CL))), MUL_(DCR, LN_(CL)));
+
+    else
+        return MUL_(EXP_(MUL_(CR, LN_(CL))), ADD_(MUL_(CR, MUL_(DIV_(NUM_(1), CL), DCL)), MUL_(LN_(CL), DCR)));
 }
 
 node_t* copy_node(node_t* node)
@@ -109,8 +152,15 @@ node_t* copy_node(node_t* node)
             break;
     }
 
-    new_node->left = CL;
-    new_node->right = CR;
+    if (node->left)
+        new_node->left = CL;
+    else
+        new_node->left = nullptr;
+
+    if (node->right)
+        new_node->right = CR;
+    else
+        new_node->right = nullptr;
 
     return new_node;
 }
@@ -159,3 +209,34 @@ void destroy_node(node_t* node)
     free(node);
 }
 
+// node_t* simplify_node(node_t* node)
+// {
+//     bool simplifications = false;
+//
+//     switch(node->value->type)
+//     {
+//         case OP:
+//             if (LEFT_IS_NUMBER && RIGHT_IS_NUMBER)
+//             {
+//                 simplifications = true;
+//                 return NUM_(RIGHT_VALUE + LEFT_VALUE);
+//             }
+//             break;
+//
+// //         case VAR:
+// //             node->value->data_t.variable = (char) data;
+// //             break;
+// //
+// //         case NUM:
+// //             node->value->data_t.number = data;
+// //             break;
+//
+//         default:
+//             break;
+//     }
+//
+//     simplify_node(node->left);
+//     simplify_node(node->right);
+//
+//     return node;
+// }
