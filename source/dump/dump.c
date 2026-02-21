@@ -1,0 +1,110 @@
+#include <assert.h>
+#include <stdlib.h>
+
+#include "differentiator.h"
+#include "font.h"
+
+void tree_dump(node_t* const node, const char* const png_file_name)
+{
+    if (!node)
+    {
+        printf(MAKE_BOLD_RED("Tree is empty, nothing to dump\n"));
+        return;
+    }
+    assert(png_file_name);
+
+    FILE* txt_file = fopen("source/dump/dump.txt", "w");
+    assert(txt_file);
+
+    fprintf(txt_file, "digraph G {\n");
+    fprintf(txt_file, "    rankdir=TB;\n");
+    fprintf(txt_file, "    node [shape=record, fontname=\"Arial\"];\n");
+    fprintf(txt_file, "    edge [color=\"black\", fontname=\"Arial\", fontsize=10];\n\n");
+
+    struct stack_element
+    {
+        node_t* node;
+        int index;
+    };
+
+    struct stack_element* stack = (stack_element*) calloc(1000, sizeof(stack_element));
+    assert(stack);
+
+    int stack_size = 0;
+    int node_index = 0;
+
+    stack[stack_size].node = node;
+    stack[stack_size].index = node_index++;
+    stack_size++;
+
+    while (stack_size > 0)
+    {
+        stack_size--;
+        node_t* current = stack[stack_size].node;
+        int current_index = stack[stack_size].index;
+
+        fprintf(txt_file, "    n%d [label=\"{ <type> type = %s | ", current_index, enum_to_string(current->value->type));
+        switch(current->value->type)
+        {
+            case OP:
+                fprintf(txt_file, "<val> val = %s | ", operators_array[current->value->data_t.op].name);
+                break;
+            case VAR:
+                fprintf(txt_file, "<val> val = %c | ", current->value->data_t.variable);
+                break;
+            case NUM:
+                fprintf(txt_file, "<val> val = %lg | ", current->value->data_t.number);
+            default:
+                break;
+        }
+        fprintf(txt_file, "{ <L> %p | <R> %p } }\", style=filled, fillcolor=\"#ffffffff\"];\n", current->left, current->right);
+
+        if (current->left)
+        {
+            int left_index = node_index++;
+
+            fprintf(txt_file,"    n%d:L -> n%d [color=\"black\", constraint=true];\n", current_index, left_index);
+            if (stack_size < 1000)
+            {
+                stack[stack_size].node = current->left;
+                stack[stack_size].index = left_index;
+                stack_size++;
+            }
+        }
+
+        if (current->right)
+        {
+            int right_index = node_index++;
+
+            fprintf(txt_file, "    n%d:R -> n%d [color=\"black\", constraint=true];\n", current_index, right_index);
+            if (stack_size < 1000)
+            {
+                stack[stack_size].node = current->right;
+                stack[stack_size].index = right_index;
+                stack_size++;
+            }
+        }
+    }
+    fprintf(txt_file, "}\n");
+    fclose(txt_file);
+    free(stack);
+
+    char command[100];
+    sprintf(command, "dot -Tpng source/dump/dump.txt -o %s", png_file_name);
+    system(command);
+    }
+
+const char* enum_to_string(type_data type)
+{
+    switch (type)
+    {
+        case OP:
+            return "OP";
+        case VAR:
+            return "VAR";
+        case NUM:
+            return "NUM";
+        default:
+            return nullptr;
+    }
+}
