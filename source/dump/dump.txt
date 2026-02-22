@@ -3,5 +3,25 @@ digraph G {
     node [shape=record, fontname="Arial"];
     edge [color="black", fontname="Arial", fontsize=10];
 
-    n0 [label="{ <type> type = NUM | <val> val = 0 | { <L> (nil) | <R> (nil) } }", style=filled, fillcolor="#ffffffff"];
+    n0 [label="{ <type> type = OP | <val> val = ADD | { <L> 0x6030000002b0 | <R> 0x6030000001c0 } }", style=filled, fillcolor="#ffffffff"];
+    n0:L -> n1 [color="black", constraint=true];
+    n0:R -> n2 [color="black", constraint=true];
+    n2 [label="{ <type> type = OP | <val> val = MUL | { <L> 0x603000000130 | <R> 0x603000000100 } }", style=filled, fillcolor="#ffffffff"];
+    n2:L -> n3 [color="black", constraint=true];
+    n2:R -> n4 [color="black", constraint=true];
+    n4 [label="{ <type> type = NUM | <val> val = 1 | { <L> (nil) | <R> (nil) } }", style=filled, fillcolor="#ffffffff"];
+    n3 [label="{ <type> type = OP | <val> val = ADD | { <L> 0x603000000160 | <R> 0x603000000190 } }", style=filled, fillcolor="#ffffffff"];
+    n3:L -> n5 [color="black", constraint=true];
+    n3:R -> n6 [color="black", constraint=true];
+    n6 [label="{ <type> type = NUM | <val> val = 31 | { <L> (nil) | <R> (nil) } }", style=filled, fillcolor="#ffffffff"];
+    n5 [label="{ <type> type = NUM | <val> val = 35 | { <L> (nil) | <R> (nil) } }", style=filled, fillcolor="#ffffffff"];
+    n1 [label="{ <type> type = OP | <val> val = MUL | { <L> 0x603000000280 | <R> 0x6030000001f0 } }", style=filled, fillcolor="#ffffffff"];
+    n1:L -> n7 [color="black", constraint=true];
+    n1:R -> n8 [color="black", constraint=true];
+    n8 [label="{ <type> type = VAR | <val> val = x | { <L> (nil) | <R> (nil) } }", style=filled, fillcolor="#ffffffff"];
+    n7 [label="{ <type> type = OP | <val> val = ADD | { <L> 0x603000000250 | <R> 0x603000000220 } }", style=filled, fillcolor="#ffffffff"];
+    n7:L -> n9 [color="black", constraint=true];
+    n7:R -> n10 [color="black", constraint=true];
+    n10 [label="{ <type> type = NUM | <val> val = 0 | { <L> (nil) | <R> (nil) } }", style=filled, fillcolor="#ffffffff"];
+    n9 [label="{ <type> type = NUM | <val> val = 0 | { <L> (nil) | <R> (nil) } }", style=filled, fillcolor="#ffffffff"];
 }

@@ -50,7 +50,7 @@ void tree_dump(node_t* const node, const char* const png_file_name)
                 fprintf(txt_file, "<val> val = %s | ", operators_array[current->value->data_t.op].name);
                 break;
             case VAR:
-                fprintf(txt_file, "<val> val = %c | ", current->value->data_t.variable);
+                fprintf(txt_file, "<val> val = %s | ", current->value->data_t.variable);
                 break;
             case NUM:
                 fprintf(txt_file, "<val> val = %lg | ", current->value->data_t.number);

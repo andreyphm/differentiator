@@ -11,8 +11,6 @@
 #define CL              copy_node(node->left)
 #define DR              dif(node->right)
 #define DL              dif(node->left)
-#define DCR             dif(copy_node(node->right))
-#define DCL             dif(copy_node(node->left))
 
 #define RIGHT_IS_NUMBER     node->right->value->type == NUM
 #define LEFT_IS_NUMBER      node->left->value->type == NUM
@@ -36,27 +34,25 @@ node_t* dif(node_t* node)
 node_t* dif_var(node_t* node)
 {
     assert(node);
-    destroy_node(node);
     return NUM_(1);
 }
 
 node_t* dif_num(node_t* node)
 {
     assert(node);
-    destroy_node(node);
     return NUM_(0);
 }
 
 node_t* dif_add(node_t* node)
 {
     assert(node);
-    return ADD_(DCL, DCR);
+    return ADD_(DL, DR);
 }
 
 node_t* dif_sub(node_t* node)
 {
     assert(node);
-    return SUB_(DCL, DCR);
+    return SUB_(DL, DR);
 }
 
 node_t* dif_mul(node_t* node)
@@ -68,7 +64,7 @@ node_t* dif_mul(node_t* node)
 node_t* dif_div(node_t* node)
 {
     assert(node);
-    return DIV_(SUB_(MUL_(DCL, CR), MUL_(CL, DCR)), MUL_(CR, CR));
+    return DIV_(SUB_(MUL_(DL, CR), MUL_(CL, DR)), MUL_(CR, CR));
 }
 
 node_t* dif_ln(node_t* node)
@@ -103,13 +99,13 @@ node_t* dif_pow(node_t* node)
         return NUM_(0);
 
     else if (node->left->value->type != NUM && node->right->value->type == NUM)
-        return MUL_(MUL_(POW_(CL, NUM_(node->right->value->data_t.number - 1)), CR), DCL);
+        return MUL_(MUL_(POW_(CL, NUM_(node->right->value->data_t.number - 1)), CR), DL);
 
     else if (node->left->value->type == NUM && node->right->value->type != NUM)
-        return MUL_(EXP_(MUL_(CR, LN_(CL))), MUL_(DCR, LN_(CL)));
+        return MUL_(EXP_(MUL_(CR, LN_(CL))), MUL_(DR, LN_(CL)));
 
     else
-        return MUL_(EXP_(MUL_(CR, LN_(CL))), ADD_(MUL_(CR, MUL_(DIV_(NUM_(1), CL), DCL)), MUL_(LN_(CL), DCR)));
+        return MUL_(EXP_(MUL_(CR, LN_(CL))), ADD_(MUL_(CR, MUL_(DIV_(NUM_(1), CL), DL)), MUL_(LN_(CL), DR)));
 }
 
 node_t* copy_node(node_t* node)
@@ -131,7 +127,8 @@ node_t* copy_node(node_t* node)
             break;
 
         case VAR:
-            new_node->value->data_t.variable = node->value->data_t.variable;
+            new_node->value->data_t.variable = strdup(node->value->data_t.variable);
+            assert(new_node->value->data_t.variable);
             break;
 
         case NUM:
@@ -155,7 +152,7 @@ node_t* copy_node(node_t* node)
     return new_node;
 }
 
-node_t* create_node(const type_data type, double data, node_t* left, node_t* right)
+node_t* create_node(const type_data type, data_union data, node_t* left, node_t* right)
 {
     node_t* node = (node_t*) calloc(1, sizeof(node_t));
     assert(node);
@@ -167,15 +164,16 @@ node_t* create_node(const type_data type, double data, node_t* left, node_t* rig
     switch(type)
     {
         case OP:
-            node->value->data_t.op = (operator_code) data;
+            node->value->data_t.op = data.op;
             break;
 
         case VAR:
-            node->value->data_t.variable = (char) data;
+            node->value->data_t.variable = strdup(data.variable);
+            assert(node->value->data_t.variable);
             break;
 
         case NUM:
-            node->value->data_t.number = data;
+            node->value->data_t.number = data.number;
             break;
 
         default:
@@ -195,7 +193,14 @@ void destroy_node(node_t* node)
     destroy_node(node->left);
     destroy_node(node->right);
 
-    free(node->value);
+    if (node->value)
+    {
+        if (node->value->type == VAR)
+            free((void*)node->value->data_t.variable);
+
+        free(node->value);
+    }
+
     free(node);
 }
 

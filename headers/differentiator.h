@@ -28,7 +28,7 @@ typedef enum type_data
 typedef union
 {
     double number;
-    char variable;
+    const char* variable;
     operator_code op;
 } data_union;
 
@@ -54,7 +54,7 @@ typedef struct operator_t
     bool is_one_arg;
 } operator_t;
 
-node_t* create_node(const type_data type, double data, node_t* left, node_t* right);
+node_t* create_node(const type_data type, data_union data, node_t* left, node_t* right);
 void destroy_node(node_t* node);
 
 const char* enum_to_string(type_data type);
