@@ -92,6 +92,8 @@ void tree_dump(node_t* const node, const char* const png_file_name)
     char command[100];
     sprintf(command, "dot -Tpng source/dump/dump.txt -o %s", png_file_name);
     system(command);
+
+    printf(MAKE_BOLD_GREEN("Tree visualization saved to %s\n"), "source/dump/differentiator_tree.png");
     }
 
 const char* enum_to_string(type_data type)

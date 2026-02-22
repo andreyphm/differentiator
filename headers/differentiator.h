@@ -5,15 +5,6 @@
 #include <stdbool.h>
 #include <assert.h>
 
-enum program_status_data
-{
-    FILE_TO_TREE        = 1,
-    TREE_TO_TXT_FILE    = 2,
-    TREE_TO_PNG_FILE    = 3,
-    PROGRAM_QUIT        = 4,
-    PROGRAM_START_AGAIN = 5
-};
-
 typedef enum operator_codes_data
 {
     ADD = 0,
