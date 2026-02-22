@@ -5,6 +5,9 @@
 #include <stdbool.h>
 #include <assert.h>
 
+#define FIRST_FUNC_NUM 4
+#define LAST_FUNC_NUM  7
+
 typedef enum operator_codes_data
 {
     ADD = 0,
@@ -50,6 +53,7 @@ typedef struct operator_t
     operator_code code;
     const char* name;
     const char* design;
+    size_t strlen;
     node_t* (*dif) (node_t* node);
     bool is_one_arg;
 } operator_t;
@@ -77,15 +81,15 @@ node_t* dif_pow(node_t* node);
 
 const operator_t operators_array[] =
 {
-    {ADD, "ADD", "+",   dif_add, false},
-    {SUB, "SUB", "-",   dif_sub, false},
-    {MUL, "MUL", "*",   dif_mul, false},
-    {DIV, "DIV", "/",   dif_div, false},
-    {LN,  "LN" , "ln",  dif_ln , true },
-    {COS, "COS", "cos", dif_cos, true },
-    {SIN, "SIN", "sin", dif_sin, true },
-    {EXP, "EXP", "e",   dif_exp, true },
-    {POW, "POW", "^",   dif_pow, false}
+    {ADD, "ADD", "+",   1, dif_add, false},
+    {SUB, "SUB", "-",   1, dif_sub, false},
+    {MUL, "MUL", "*",   1, dif_mul, false},
+    {DIV, "DIV", "/",   1, dif_div, false},
+    {LN,  "LN" , "ln",  2, dif_ln , true },
+    {COS, "COS", "cos", 3, dif_cos, true },
+    {SIN, "SIN", "sin", 3, dif_sin, true },
+    {EXP, "EXP", "exp", 3, dif_exp, true },
+    {POW, "POW", "^",   1, dif_pow, false}
 };
 
 #endif //DIFFERENTIATOR_H
