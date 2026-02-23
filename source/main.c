@@ -21,6 +21,13 @@ int main()
             case DIF_TREE_TO_PNG_FILE:
             {
                 node_t* dif_node = dif(node);
+
+                for (bool simplifications = true; simplifications;)
+                {
+                    simplifications = false;
+                    dif_node = simplify_node(dif_node, &simplifications);
+                }
+
                 tree_dump(dif_node, "source/dump/differentiator_tree.png");
 
                 destroy_node(dif_node);

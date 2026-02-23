@@ -13,4 +13,15 @@
 #define NUM_(value)                 create_node(NUM, (data_union){.number = (value)}, nullptr, nullptr)
 #define VAR_(value)                 create_node(VAR, (data_union){.variable = (value)}, nullptr, nullptr)
 
+#define CR                  copy_node(node->right)
+#define CL                  copy_node(node->left)
+#define DR                  dif(node->right)
+#define DL                  dif(node->left)
+
+#define RIGHT_IS_NUMBER     node->right->value->type == NUM
+#define LEFT_IS_NUMBER      node->left->value->type == NUM
+#define RIGHT_VALUE         node->right->value->data_t.number
+#define LEFT_VALUE          node->left->value->data_t.number
+#define OPERATION           node->value->data_t.op
+
 #endif // OPERATIONS_MACROS_H

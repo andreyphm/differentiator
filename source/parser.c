@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 #include "parser.h"
-#include "operations_macros.h"
+#include "macros.h"
 
 node_t* GetG(char** current_character_ptr)
 {

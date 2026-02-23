@@ -5,8 +5,9 @@
 #include <stdbool.h>
 #include <assert.h>
 
-#define FIRST_FUNC_NUM 4
-#define LAST_FUNC_NUM  7
+const double NUMBER_CLOSE_TO_ZERO  = 10e-12;
+const size_t FIRST_FUNC_NUM  = 4;
+const size_t LAST_FUNC_NUM   = 7;
 
 typedef enum operator_codes_data
 {
@@ -65,6 +66,8 @@ const char* enum_to_string(type_data type);
 void tree_dump(node_t* const node, const char* const png_file_name);
 
 node_t* copy_node(node_t* node);
+node_t* simplify_node(node_t* node, bool* simplifications_ptr);
+bool is_close_to_zero (double number_being_checked);
 
 node_t* dif(node_t* node);
 node_t* dif_num(node_t* node);

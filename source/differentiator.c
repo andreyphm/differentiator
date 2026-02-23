@@ -2,10 +2,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <math.h>
 
 #include "differentiator.h"
 #include "font.h"
-#include "operations_macros.h"
+#include "macros.h"
 
 #define CR              copy_node(node->right)
 #define CL              copy_node(node->left)
@@ -14,8 +15,9 @@
 
 #define RIGHT_IS_NUMBER     node->right->value->type == NUM
 #define LEFT_IS_NUMBER      node->left->value->type == NUM
-#define RIGHT_VALUE         node->right->value.data_t.number
-#define LEFT_VALUE          node->left->value.data_t.number
+#define RIGHT_VALUE         node->right->value->data_t.number
+#define LEFT_VALUE          node->left->value->data_t.number
+#define OPERATION           node->value->data_t.op
 
 node_t* dif(node_t* node)
 {
@@ -64,7 +66,7 @@ node_t* dif_mul(node_t* node)
 node_t* dif_div(node_t* node)
 {
     assert(node);
-    return DIV_(SUB_(MUL_(DL, CR), MUL_(CL, DR)), MUL_(CR, CR));
+    return DIV_(SUB_(MUL_(DL, CR), MUL_(CL, DR)), POW_(CR, NUM_(2)));
 }
 
 node_t* dif_ln(node_t* node)
@@ -203,35 +205,3 @@ void destroy_node(node_t* node)
 
     free(node);
 }
-
-// node_t* simplify_node(node_t* node)
-// {
-//     bool simplifications = false;
-//
-//     switch(node->value->type)
-//     {
-//         case OP:
-//             if (LEFT_IS_NUMBER && RIGHT_IS_NUMBER)
-//             {
-//                 simplifications = true;
-//                 return NUM_(RIGHT_VALUE + LEFT_VALUE);
-//             }
-//             break;
-//
-// //         case VAR:
-// //             node->value->data_t.variable = (char) data;
-// //             break;
-// //
-// //         case NUM:
-// //             node->value->data_t.number = data;
-// //             break;
-//
-//         default:
-//             break;
-//     }
-//
-//     simplify_node(node->left);
-//     simplify_node(node->right);
-//
-//     return node;
-// }
