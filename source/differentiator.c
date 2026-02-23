@@ -54,7 +54,10 @@ node_t* dif_add(node_t* node)
 node_t* dif_sub(node_t* node)
 {
     assert(node);
-    return SUB_(DL, DR);
+    if (node->left)
+        return SUB_(DL, DR);
+    else
+        return MUL_(NUM_(-1), DR);
 }
 
 node_t* dif_mul(node_t* node)

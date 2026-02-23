@@ -68,6 +68,7 @@ void tree_dump(node_t* const node, const char* const png_file_name);
 node_t* copy_node(node_t* node);
 node_t* simplify_node(node_t* node, bool* simplifications_ptr);
 bool is_close_to_zero (double number_being_checked);
+double remove_minus_before_zero (double number_being_checked);
 
 node_t* dif(node_t* node);
 node_t* dif_num(node_t* node);
