@@ -1,6 +1,8 @@
 #ifndef INPUT_H
 #define INPUT_H
 
+const int CORRECT_NUMBER_OF_FILES = 3;
+
 enum program_status_data
 {
     FROM_FILE_TO_TREE        = 1,
@@ -10,6 +12,7 @@ enum program_status_data
     PROGRAM_START_AGAIN      = 5
 };
 
+void bad_argc_message(const char* argv[]);
 program_status_data action_request();
 program_status_data request_re_entry();
 void clear_input_buffer();

@@ -3,4 +3,5 @@ FLAGS_LINUX := -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggressi
 FLAGS := $(FLAGS_LINUX)
 
 all:
-	g++ $(FLAGS) source/differentiator.c source/dump/dump.c source/main.c source/input.c source/parser.c source/simplifier.c -Iheaders -o build/differentiator.out
+	g++ $(FLAGS) source/differentiator.c source/dump/dump.c source/main.c source/input.c source/parser.c source/simplifier.c source/tokenization.c -Iheaders -o build/differentiator.out
+# 	g++ $(FLAGS) source/tokenization.c source/testmain.c -Iheaders -o build/tokenization.out

@@ -6,8 +6,9 @@
 #include <assert.h>
 
 const double NUMBER_CLOSE_TO_ZERO  = 10e-12;
-const size_t FIRST_FUNC_NUM  = 4;
-const size_t LAST_FUNC_NUM   = 7;
+const size_t LAST_CHAR_OP_NUM = 4;
+const size_t FIRST_FUNC_NUM   = 5;
+const size_t LAST_FUNC_NUM    = 8;
 
 typedef enum operator_codes_data
 {
@@ -15,19 +16,26 @@ typedef enum operator_codes_data
     SUB = 1,
     MUL = 2,
     DIV = 3,
-    LN  = 4,
-    COS = 5,
-    SIN = 6,
-    EXP = 7,
-    POW = 8
+    POW = 4,
+    LN  = 5,
+    COS = 6,
+    SIN = 7,
+    EXP = 8
 } operator_code;
 
 typedef enum type_data
 {
-    OP  = 1,
-    VAR = 2,
-    NUM = 3
+    OP   = 1,
+    VAR  = 2,
+    NUM  = 3,
+    SPEC = 4
 } type_data;
+
+typedef enum error_code
+{
+    NO_ERROR = 0,
+    SYNTAX_ERROR = 1
+} error_code;
 
 typedef union
 {
@@ -89,11 +97,11 @@ const operator_t operators_array[] =
     {SUB, "SUB", "-",   1, dif_sub, false},
     {MUL, "MUL", "*",   1, dif_mul, false},
     {DIV, "DIV", "/",   1, dif_div, false},
+    {POW, "POW", "^",   1, dif_pow, false},
     {LN,  "LN" , "ln",  2, dif_ln , true },
     {COS, "COS", "cos", 3, dif_cos, true },
     {SIN, "SIN", "sin", 3, dif_sin, true },
-    {EXP, "EXP", "exp", 3, dif_exp, true },
-    {POW, "POW", "^",   1, dif_pow, false}
+    {EXP, "EXP", "exp", 3, dif_exp, true }
 };
 
 #endif //DIFFERENTIATOR_H

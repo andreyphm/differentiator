@@ -54,6 +54,7 @@ void tree_dump(node_t* const node, const char* const png_file_name)
                 break;
             case NUM:
                 fprintf(txt_file, "<val> val = %lg | ", current->value->data_t.number);
+            case SPEC:
             default:
                 break;
         }
@@ -106,6 +107,8 @@ const char* enum_to_string(type_data type)
             return "VAR";
         case NUM:
             return "NUM";
+        case SPEC:
+            return "SPEC";
         default:
             return nullptr;
     }

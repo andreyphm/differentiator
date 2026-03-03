@@ -8,17 +8,6 @@
 #include "font.h"
 #include "macros.h"
 
-#define CR              copy_node(node->right)
-#define CL              copy_node(node->left)
-#define DR              dif(node->right)
-#define DL              dif(node->left)
-
-#define RIGHT_IS_NUMBER     node->right->value->type == NUM
-#define LEFT_IS_NUMBER      node->left->value->type == NUM
-#define RIGHT_VALUE         node->right->value->data_t.number
-#define LEFT_VALUE          node->left->value->data_t.number
-#define OPERATION           node->value->data_t.op
-
 node_t* dif(node_t* node)
 {
     if (!node) return nullptr;
@@ -28,6 +17,7 @@ node_t* dif(node_t* node)
         case OP: return operators_array[(int)node->value->data_t.op].dif(node);
         case NUM: return dif_num(node);
         case VAR: return dif_var(node);
+        case SPEC:
         default:
             return nullptr;
     }
@@ -140,6 +130,7 @@ node_t* copy_node(node_t* node)
             new_node->value->data_t.number = node->value->data_t.number;
             break;
 
+        case SPEC:
         default:
             break;
     }
@@ -181,6 +172,7 @@ node_t* create_node(const type_data type, data_union data, node_t* left, node_t*
             node->value->data_t.number = data.number;
             break;
 
+        case SPEC:
         default:
             break;
     }

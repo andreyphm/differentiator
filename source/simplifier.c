@@ -121,6 +121,7 @@ node_t* simplify_node(node_t* node, bool* simplifications_ptr)
             }
         case VAR:
         case NUM:
+        case SPEC:
         default:
             break;
     }
