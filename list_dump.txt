@@ -2,21 +2,48 @@ digraph structs
 {
 rankdir = LR;
 graph[bgcolor="#e0e0e9ff"];
-node_1 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ! | ADDRESS = 0x603000000010 |
-{next = 0x603000000040 | prev = (nil)}" ];
-node_2 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = VAR | VAR_NUM = 0 | ADDRESS = 0x603000000040 |
-{next = 0x603000000070 | prev = 0x603000000010}" ];
-node_3 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = ADD | ADDRESS = 0x603000000070 |
+node_1 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ( | ADDRESS = 0x603000000070 |
 {next = 0x6030000000a0 | prev = 0x603000000040}" ];
-node_4 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = NUM | VALUE = 1 | ADDRESS = 0x6030000000a0 |
+node_2 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = COS | ADDRESS = 0x6030000000a0 |
 {next = 0x6030000000d0 | prev = 0x603000000070}" ];
-node_5 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = $ | ADDRESS = 0x6030000000d0 |
-{next = (nil) | prev = 0x6030000000a0}" ];
+node_3 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ( | ADDRESS = 0x6030000000d0 |
+{next = 0x603000000100 | prev = 0x6030000000a0}" ];
+node_4 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = VAR | VAR_NUM = 0 (x) | ADDRESS = 0x603000000100 |
+{next = 0x603000000130 | prev = 0x6030000000d0}" ];
+node_5 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ) | ADDRESS = 0x603000000130 |
+{next = 0x603000000160 | prev = 0x603000000100}" ];
+node_6 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = ADD | ADDRESS = 0x603000000160 |
+{next = 0x603000000190 | prev = 0x603000000130}" ];
+node_7 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = SIN | ADDRESS = 0x603000000190 |
+{next = 0x6030000001c0 | prev = 0x603000000160}" ];
+node_8 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ( | ADDRESS = 0x6030000001c0 |
+{next = 0x6030000001f0 | prev = 0x603000000190}" ];
+node_9 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = VAR | VAR_NUM = 1 (y) | ADDRESS = 0x6030000001f0 |
+{next = 0x603000000220 | prev = 0x6030000001c0}" ];
+node_10 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ) | ADDRESS = 0x603000000220 |
+{next = 0x603000000250 | prev = 0x6030000001f0}" ];
+node_11 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ) | ADDRESS = 0x603000000250 |
+{next = 0x603000000280 | prev = 0x603000000220}" ];
+node_12 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = POW | ADDRESS = 0x603000000280 |
+{next = 0x6030000002b0 | prev = 0x603000000250}" ];
+node_13 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = VAR | VAR_NUM = 2 (z) | ADDRESS = 0x6030000002b0 |
+{next = 0x6030000002e0 | prev = 0x603000000280}" ];
+node_14 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = $ | ADDRESS = 0x6030000002e0 |
+{next = (nil) | prev = 0x6030000002b0}" ];
 {
 edge[color = "#149b5aff", weight = 1000];
 node_1 -> node_2
 node_2 -> node_3
 node_3 -> node_4
 node_4 -> node_5
+node_5 -> node_6
+node_6 -> node_7
+node_7 -> node_8
+node_8 -> node_9
+node_9 -> node_10
+node_10 -> node_11
+node_11 -> node_12
+node_12 -> node_13
+node_13 -> node_14
 }
 }

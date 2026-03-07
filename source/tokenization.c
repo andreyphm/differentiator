@@ -22,6 +22,7 @@ error_code tokenization(const char* buffer, variable_t* variables)
             try_bracket(&buffer, &list)  ||
             try_variable(&buffer, &list, variables))
         {
+            printf("TUT\n");
             continue;
         }
 
@@ -34,15 +35,13 @@ error_code tokenization(const char* buffer, variable_t* variables)
 
     list_push_back(SPEC, (token_union){.spec_symbol = '$'}, &list);
 
-    list_dump(&list, "list_dump.txt", "list_dump.png");
+    token_t* new_head = list.head->next;
+    free(list.head);
+    list.head = new_head;
+    
+    list_dump(&list, "list_dump.txt", "list_dump.png", variables);
 
-    for (list.current = list.head; list.current != list.tail; )
-    {
-        list.current = list.current->next;
-        free(list.current->prev);
-    }
-
-    free(list.tail);
+    list_destroy(&list, variables);
 
     return NO_ERROR;
 }
@@ -127,6 +126,7 @@ bool try_bracket(const char** buffer, list_t* const list)
     if (**buffer == '(' || **buffer == ')')
     {
         list_push_back(SPEC, (token_union){.spec_symbol = **buffer}, list);
+        (*buffer)++;
         return true;
     }
 
@@ -229,7 +229,7 @@ token_t* create_token(const type_data type, token_union data, list_t* const list
     return token;
 }
 
-void list_dump(list_t* const list, const char* const txt_file_name, const char* const png_file_name)
+void list_dump(list_t* const list, const char* const txt_file_name, const char* const png_file_name, const variable_t* const variables)
 {
     assert(list);
     assert(txt_file_name);
@@ -249,7 +249,7 @@ void list_dump(list_t* const list, const char* const txt_file_name, const char* 
                 fprintf(txt_file, "TYPE = OP | OP_CODE = %s | ", operators_array[list->current->data_t.op].name);
                 break;
             case VAR:
-                fprintf(txt_file, "TYPE = VAR | VAR_NUM = %d | ", list->current->data_t.var_number);
+                fprintf(txt_file, "TYPE = VAR | VAR_NUM = %d (%s) | ", list->current->data_t.var_number, variables[list->current->data_t.var_number].name);
                 break;
             case NUM:
                 fprintf(txt_file, "TYPE = NUM | VALUE = %lg | ", list->current->data_t.number);
@@ -273,7 +273,7 @@ void list_dump(list_t* const list, const char* const txt_file_name, const char* 
             fprintf(txt_file, "TYPE = OP | OP_CODE = %s | ", operators_array[list->current->data_t.op].name);
             break;
         case VAR:
-            fprintf(txt_file, "TYPE = VAR | VAR_NUM = %d (%s) | ", list->current->data_t.var_number);
+            fprintf(txt_file, "TYPE = VAR | VAR_NUM = %d (%s) | ", list->current->data_t.var_number, variables[list->current->data_t.var_number].name);
             break;
         case NUM:
             fprintf(txt_file, "TYPE = NUM | VALUE = %lg | ", list->current->data_t.number);
@@ -301,4 +301,17 @@ void list_dump(list_t* const list, const char* const txt_file_name, const char* 
     sprintf(command, "dot %s -T png -o %s", txt_file_name, png_file_name);
 
     system(command);
+}
+
+void list_destroy(list_t* list, variable_t* variables)
+{
+    for (list->current = list->head; list->current != list->tail; )
+    {
+        list->current = list->current->next;
+        if (list->current->prev->type == VAR)
+            free((void*)variables[list->current->prev->data_t.var_number].name);
+        free(list->current->prev);
+    }
+
+    free(list->tail);
 }
