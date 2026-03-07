@@ -40,7 +40,7 @@ typedef enum error_code
 typedef union
 {
     double number;
-    const char* variable;
+    int var_number;
     operator_code op;
 } data_union;
 
@@ -67,11 +67,19 @@ typedef struct operator_t
     bool is_one_arg;
 } operator_t;
 
+typedef struct variable_t
+{
+    int number;
+    char* name;
+    size_t length;
+} variable_t;
+
 node_t* create_node(const type_data type, data_union data, node_t* left, node_t* right);
 void destroy_node(node_t* node);
 
 const char* enum_to_string(type_data type);
-void tree_dump(node_t* const node, const char* const png_file_name);
+void tree_dump(node_t* const node, const char* const png_file_name, const variable_t* const variables);
+void variables_destroy(variable_t* variables_ptr);
 
 node_t* copy_node(node_t* node);
 node_t* simplify_node(node_t* node, bool* simplifications_ptr);

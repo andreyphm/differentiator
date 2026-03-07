@@ -2,17 +2,16 @@
 #define PARSER_H
 
 #include <stdio.h>
-#include <differentiator.h>
+#include "differentiator.h"
+#include "tokenization.h"
 
-node_t* GetG(char** current_character_ptr);
-node_t* GetN(char** current_character_ptr);
-node_t* GetP(char** current_character_ptr);
-node_t* GetE(char** current_character_ptr);
-node_t* GetT(char** current_character_ptr);
-node_t* GetV(char** current_character_ptr);
-node_t* GetS(char** current_character_ptr);
-node_t* GetF(char** current_character_ptr, const char* string);
-
-bool is_func_name(const char* string);
+node_t* GetG(token_t** token);
+node_t* GetP(token_t** token);
+node_t* GetE(token_t** token);
+node_t* GetT(token_t** token);
+node_t* GetS(token_t** token);
+node_t* GetF(token_t** token);
+node_t* GetN(token_t** token);
+node_t* GetV(token_t** token);
 
 #endif // PARSER_H

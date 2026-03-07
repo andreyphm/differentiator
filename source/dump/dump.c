@@ -1,10 +1,11 @@
 #include <assert.h>
 #include <stdlib.h>
 
+#include "parser.h"
 #include "differentiator.h"
 #include "font.h"
 
-void tree_dump(node_t* const node, const char* const png_file_name)
+void tree_dump(node_t* const node, const char* const png_file_name, const variable_t* const variables)
 {
     if (!node)
     {
@@ -47,10 +48,10 @@ void tree_dump(node_t* const node, const char* const png_file_name)
         switch(current->value->type)
         {
             case OP:
-                fprintf(txt_file, "<val> val = %s | ", operators_array[current->value->data_t.op].name);
+                fprintf(txt_file, "<val> code = %s | ", operators_array[current->value->data_t.op].name);
                 break;
             case VAR:
-                fprintf(txt_file, "<val> val = %s | ", current->value->data_t.variable);
+                fprintf(txt_file, "<val> num = %d (%s) | ", current->value->data_t.var_number, variables[current->value->data_t.var_number].name);
                 break;
             case NUM:
                 fprintf(txt_file, "<val> val = %lg | ", current->value->data_t.number);

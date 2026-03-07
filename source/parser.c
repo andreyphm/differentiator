@@ -5,23 +5,32 @@
 #include "parser.h"
 #include "macros.h"
 
-node_t* GetG(char** current_character_ptr)
+#define TOKEN_IS_OP                 (*token)->type == OP
+#define TOKEN_IS_SPEC               (*token)->type == SPEC
+#define TOKEN_IS_NUM                (*token)->type == NUM
+#define TOKEN_IS_VAR                (*token)->type == VAR
+#define TOKEN_SPEC_SYMBOL           (*token)->data_t.spec_symbol
+#define TOKEN_OP_CODE               (*token)->data_t.op
+#define TOKEN_NUM_VALUE             (*token)->data_t.number
+#define TOKEN_VAR_NUMBER            (*token)->data_t.var_number
+
+node_t* GetG(token_t** token)
 {
-    node_t* value = GetE(current_character_ptr);
+    node_t* value = GetE(token);
     return value;
 }
 
-node_t* GetE(char** current_character_ptr)
+node_t* GetE(token_t** token)
 {
-    node_t* value = GetT(current_character_ptr);
-    while (**current_character_ptr == '+' || **current_character_ptr == '-')
+    node_t* value = GetT(token);
+    while (TOKEN_IS_OP && (TOKEN_OP_CODE == ADD || TOKEN_OP_CODE == SUB))
     {
-        int op = **current_character_ptr;
-        (*current_character_ptr)++;
+        operator_code op = TOKEN_OP_CODE;
+        *token = (*token)->next;
 
-        node_t* value_2 = GetT(current_character_ptr);
+        node_t* value_2 = GetT(token);
 
-        if (op == '+')
+        if (op == ADD)
             value = ADD_(value, value_2);
         else
             value = SUB_(value, value_2);
@@ -30,17 +39,17 @@ node_t* GetE(char** current_character_ptr)
     return value;
 }
 
-node_t* GetT(char** current_character_ptr)
+node_t* GetT(token_t** token)
 {
-    node_t* value = GetS(current_character_ptr);
-    while (**current_character_ptr == '*' || **current_character_ptr == '/')
+    node_t* value = GetS(token);
+    while (TOKEN_IS_OP && (TOKEN_OP_CODE == MUL || TOKEN_OP_CODE == DIV))
     {
-        int op = **current_character_ptr;
-        (*current_character_ptr)++;
+        operator_code op = TOKEN_OP_CODE;
+        *token = (*token)->next;
 
-        node_t* value_2 = GetS(current_character_ptr);
+        node_t* value_2 = GetS(token);
 
-        if (op == '*')
+        if (op == MUL)
             value = MUL_(value, value_2);
         else
             value = DIV_(value, value_2);
@@ -49,70 +58,14 @@ node_t* GetT(char** current_character_ptr)
     return value;
 }
 
-node_t* GetP(char** current_character_ptr)
+node_t* GetS(token_t** token)
 {
-    if (**current_character_ptr == '(')
+    node_t* value = GetP(token);
+    while (TOKEN_IS_OP && TOKEN_OP_CODE == POW)
     {
-        (*current_character_ptr)++;
-        node_t* value = GetE(current_character_ptr);
-        (*current_character_ptr)++;
-        return value;
-    }
+        *token = (*token)->next;
 
-    else if ('0' <= **current_character_ptr && **current_character_ptr <= '9')
-        return GetN(current_character_ptr);
-
-    else if (('a' <= **current_character_ptr && **current_character_ptr <= 'z') || **current_character_ptr == '_')
-        return GetV(current_character_ptr);
-
-    else return nullptr;
-}
-
-node_t* GetN(char** current_character_ptr)
-{
-    int value = 0;
-    while ('0' <= **current_character_ptr && **current_character_ptr <= '9')
-    {
-        value = value * 10 + (**current_character_ptr - '0');
-        (*current_character_ptr)++;
-    }
-
-    return NUM_(value);
-}
-
-node_t* GetV(char** current_character_ptr)
-{
-    char buffer[20] = {};
-    size_t i = 1;
-    buffer[0] = **current_character_ptr;
-    (*current_character_ptr)++;
-
-    while (('a' <= **current_character_ptr && **current_character_ptr <= 'z')
-            || ('0' <= **current_character_ptr && **current_character_ptr <= '9')
-            || **current_character_ptr == '_')
-    {
-        buffer[i] = **current_character_ptr;
-        (*current_character_ptr)++;
-        i++;
-    }
-
-    buffer[i+1] = '\0';
-    const char* variable_str = buffer;
-
-    if (is_func_name(variable_str))
-        return GetF(current_character_ptr, variable_str);
-
-    return VAR_(variable_str);
-}
-
-node_t* GetS(char** current_character_ptr)
-{
-    node_t* value = GetP(current_character_ptr);
-    while (**current_character_ptr == '^')
-    {
-        (*current_character_ptr)++;
-
-        node_t* value_2 = GetP(current_character_ptr);
+        node_t* value_2 = GetP(token);
 
         value = POW_(value, value_2);
     }
@@ -120,38 +73,72 @@ node_t* GetS(char** current_character_ptr)
     return value;
 }
 
-node_t* GetF(char** current_character_ptr, const char* string)
+node_t* GetP(token_t** token)
 {
-    for (size_t op_enum = FIRST_FUNC_NUM; op_enum <= LAST_FUNC_NUM; op_enum++)
+    if (TOKEN_IS_SPEC && TOKEN_SPEC_SYMBOL == '(')
     {
-        if (!strncmp(string, operators_array[op_enum].design, operators_array[op_enum].strlen))
-        {
-            if (**current_character_ptr == '(')
-            {
-                (*current_character_ptr)++;
-                node_t* value = GetE(current_character_ptr);
-                (*current_character_ptr)++;
-
-                switch(op_enum)
-                {
-                    case LN:  return LN_(value);
-                    case COS: return COS_(value);
-                    case SIN: return SIN_(value);
-                    case EXP: return EXP_(value);
-                    default: return nullptr;
-                }
-            }
-        }
+        *token = (*token)->next;
+        node_t* value = GetE(token);
+        *token = (*token)->next;
+        return value;
     }
-    return nullptr;
+
+    else if (TOKEN_IS_NUM)
+        return GetN(token);
+
+    else if (TOKEN_IS_VAR)
+        return GetV(token);
+
+    else if (TOKEN_IS_OP && TOKEN_OP_CODE <= LAST_FUNC_NUM && TOKEN_OP_CODE >= FIRST_FUNC_NUM)
+        return GetF(token);
+
+    else return nullptr;
 }
 
-bool is_func_name(const char* string)
+node_t* GetN(token_t** token)
 {
-    for (size_t i = FIRST_FUNC_NUM; i <= LAST_FUNC_NUM; i++)
+    node_t* value = NUM_(TOKEN_NUM_VALUE);
+    *token = (*token)->next;
+
+    return value;
+}
+
+node_t* GetV(token_t** token)
+{
+    node_t* value = VAR_(TOKEN_VAR_NUMBER);
+    *token = (*token)->next;
+
+    return value;
+}
+
+node_t* GetF(token_t** token)
+{
+    operator_code code = TOKEN_OP_CODE;
+    *token = (*token)->next;
+
+    if (TOKEN_IS_SPEC && TOKEN_SPEC_SYMBOL == '(')
     {
-        if (!strncmp(string, operators_array[i].design, operators_array[i].strlen))
-            return true;
+        *token = (*token)->next;
+        node_t* value = GetE(token);
+        if (!(TOKEN_IS_SPEC && TOKEN_SPEC_SYMBOL == ')'))
+            return nullptr;
+
+        *token = (*token)->next;
+
+        switch(code)
+        {
+            case LN:  return LN_(value);
+            case COS: return COS_(value);
+            case SIN: return SIN_(value);
+            case EXP: return EXP_(value);
+            case ADD:
+            case SUB:
+            case MUL:
+            case DIV:
+            case POW:
+            default: return nullptr;
+        }
     }
-    return false;
+
+    return nullptr;
 }

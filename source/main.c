@@ -37,6 +37,7 @@ int main(int argc, const char* argv[])
 
     program_status_data program_status = FROM_FILE_TO_TREE;
     node_t* node = nullptr;
+    variable_t* variables_ptr = nullptr;
 
     while (program_status != PROGRAM_QUIT)
     {
@@ -56,33 +57,43 @@ int main(int argc, const char* argv[])
                     dif_node = simplify_node(dif_node, &simplifications);
                 }
 
-                tree_dump(dif_node, "source/dump/differentiator_tree.png");
+                tree_dump(dif_node, "source/dump/differentiator_tree.png", variables_ptr);
 
                 destroy_node(dif_node);
             }
                 break;
             case FROM_FILE_TO_TREE:
             {
-                variable_t variables[MAX_NUMBER_OF_VARS] = {};
+                if (variables_ptr) free(variables_ptr);
+                variable_t* variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
                 char* buffer = read_file_to_buffer(input_file);
                 char* original_ptr = buffer;
 
-                // if (node) destroy_node(node);
-                // node = GetG(&buffer);
-                tokenization(buffer, variables);
+                list_t list = {nullptr, nullptr, nullptr};
+                list.head = create_token(SPEC, (token_union){.spec_symbol = '!'}, &list);
+                list.tail = list.head;
+                tokenization(buffer, variables, &list);
+
+                if (node) destroy_node(node);
+                token_t* current = list.head;
+                node = GetG(&current);
 
                 free(original_ptr);
                 fclose(input_file);
+                list_destroy(&list);
+                variables_ptr = variables;
                 printf(MAKE_BOLD_GREEN("Successfully\n"));
                 break;
             }
             case FROM_CONSOLE_TO_TREE:
             {
                 printf(MAKE_BOLD("Please, write the expression in console\n"));
-                char* expression_str = nullptr;
+                if (variables_ptr) free(variables_ptr);
+                variable_t* variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
+                char* buffer = nullptr;
                 size_t length = 0;
 
-                ssize_t num_of_characters = getline(&expression_str, &length, stdin);
+                ssize_t num_of_characters = getline(&buffer, &length, stdin);
 
                 if (num_of_characters == -1)
                 {
@@ -90,13 +101,20 @@ int main(int argc, const char* argv[])
                     break;
                 }
 
-                expression_str[num_of_characters - 1] = '$';
-                char* original_ptr = expression_str;
+                buffer[num_of_characters - 1] = '$';
+                char* original_ptr = buffer;
+
+                list_t list = {nullptr, nullptr, nullptr};
+                list.head = create_token(SPEC, (token_union){.spec_symbol = '!'}, &list);
+                list.tail = list.head;
+                tokenization(buffer, variables, &list);
 
                 if (node) destroy_node(node);
-                node = GetG(&expression_str);
+                node = GetG(&list.head);
 
                 free(original_ptr);
+                list_destroy(&list);
+                variables_ptr = variables;
                 printf(MAKE_BOLD_GREEN("Successfully\n"));
             }
             default:
@@ -104,6 +122,7 @@ int main(int argc, const char* argv[])
         }
     }
 
+    if (variables_ptr) variables_destroy(variables_ptr);
     destroy_node(node);
     printf(MAKE_BOLD("Program completed. COMMIT GITHUB\n"));
 }
@@ -113,4 +132,12 @@ void bad_argc_message(const char* argv[])
     printf(MAKE_BOLD("You haven't entered the input and output files or you entered them incorrectly.\nDefault files will be used:"
                                 "input.txt for input and output.txt for output.\nIf you want to select your files, please, "
                                 "use: %s input_file output_file.\n\n"), argv[0]);
+}
+
+void variables_destroy(variable_t* variables_ptr)
+{
+    for (size_t i = 0; i < MAX_NUMBER_OF_VARS; i++)
+            free((void*)variables_ptr[i].name);
+
+    free(variables_ptr);
 }

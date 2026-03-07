@@ -11,7 +11,7 @@
 #define SIN_(left_node)             create_node(OP,  (data_union){.op = SIN}, left_node, nullptr)
 #define COS_(left_node)             create_node(OP,  (data_union){.op = COS}, left_node, nullptr)
 #define NUM_(value)                 create_node(NUM, (data_union){.number = (value)}, nullptr, nullptr)
-#define VAR_(value)                 create_node(VAR, (data_union){.variable = (value)}, nullptr, nullptr)
+#define VAR_(value)                 create_node(VAR, (data_union){.var_number = (value)}, nullptr, nullptr)
 
 #define CR                  copy_node(node->right)
 #define CL                  copy_node(node->left)

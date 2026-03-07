@@ -122,8 +122,7 @@ node_t* copy_node(node_t* node)
             break;
 
         case VAR:
-            new_node->value->data_t.variable = strdup(node->value->data_t.variable);
-            assert(new_node->value->data_t.variable);
+            new_node->value->data_t.var_number = node->value->data_t.var_number;
             break;
 
         case NUM:
@@ -164,8 +163,7 @@ node_t* create_node(const type_data type, data_union data, node_t* left, node_t*
             break;
 
         case VAR:
-            node->value->data_t.variable = strdup(data.variable);
-            assert(node->value->data_t.variable);
+            node->value->data_t.var_number = data.var_number;
             break;
 
         case NUM:
@@ -191,12 +189,7 @@ void destroy_node(node_t* node)
     destroy_node(node->right);
 
     if (node->value)
-    {
-        if (node->value->type == VAR)
-            free((void*)node->value->data_t.variable);
-
         free(node->value);
-    }
 
     free(node);
 }

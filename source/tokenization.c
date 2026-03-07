@@ -5,24 +5,18 @@
 #include "tokenization.h"
 #include "font.h"
 
-error_code tokenization(const char* buffer, variable_t* variables)
+error_code tokenization(const char* buffer, variable_t* variables, list_t* const list)
 {
-    list_t list = {nullptr, nullptr, nullptr};
-
-    list.head = create_token(SPEC, (token_union){.spec_symbol = '!'}, &list);
-    list.tail = list.head;
-
     while (*buffer != '$')
     {
         skip_spaces(&buffer);
 
-        if (try_digit(&buffer, &list)    ||
-            try_char_op(&buffer, &list)  ||
-            try_function(&buffer, &list) ||
-            try_bracket(&buffer, &list)  ||
-            try_variable(&buffer, &list, variables))
+        if (try_digit(&buffer, list)    ||
+            try_char_op(&buffer, list)  ||
+            try_function(&buffer, list) ||
+            try_bracket(&buffer, list)  ||
+            try_variable(&buffer, list, variables))
         {
-            printf("TUT\n");
             continue;
         }
 
@@ -33,15 +27,13 @@ error_code tokenization(const char* buffer, variable_t* variables)
         // }
     }
 
-    list_push_back(SPEC, (token_union){.spec_symbol = '$'}, &list);
+    list_push_back(SPEC, (token_union){.spec_symbol = '$'}, list);
 
-    token_t* new_head = list.head->next;
-    free(list.head);
-    list.head = new_head;
-    
-    list_dump(&list, "list_dump.txt", "list_dump.png", variables);
+    token_t* new_head = list->head->next;
+    free(list->head);
+    list->head = new_head;
 
-    list_destroy(&list, variables);
+    list_dump(list, "list_dump.txt", "list_dump.png", variables);
 
     return NO_ERROR;
 }
@@ -303,15 +295,14 @@ void list_dump(list_t* const list, const char* const txt_file_name, const char* 
     system(command);
 }
 
-void list_destroy(list_t* list, variable_t* variables)
+void list_destroy(list_t* list)
 {
-    for (list->current = list->head; list->current != list->tail; )
-    {
-        list->current = list->current->next;
-        if (list->current->prev->type == VAR)
-            free((void*)variables[list->current->prev->data_t.var_number].name);
-        free(list->current->prev);
-    }
+    token_t* current = list->head;
 
-    free(list->tail);
+    while (current)
+    {
+        token_t* next = current->next;
+        free(current);
+        current = next;
+    }
 }
