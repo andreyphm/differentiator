@@ -39,6 +39,9 @@ int main(int argc, const char* argv[])
     program_status_data program_status = FROM_FILE_TO_TREE;
     node_t* node = nullptr;
     variable_t* variables_ptr = nullptr;
+    variable_t* variables = nullptr;
+    char* buffer = nullptr;
+    char* original_ptr = nullptr;
 
     while (program_status != PROGRAM_QUIT)
     {
@@ -64,65 +67,39 @@ int main(int argc, const char* argv[])
             }
                 break;
             case FROM_FILE_TO_TREE:
-            {
-                if (variables_ptr) variables_destroy(&variables_ptr);
-                variable_t* variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
-
-                rewind(input_file);
-                char* buffer = read_file_to_buffer(input_file);
-                size_t buffer_len = strlen(buffer);
-                buffer[buffer_len] = '$';
-                char* original_ptr = buffer;
-
-                list_t list = {nullptr, nullptr, nullptr};
-                list.head = create_token(SPEC, (token_union){.spec_symbol = '!'}, &list);
-                list.tail = list.head;
-
-                error_code error = tokenization(buffer, variables, &list);
-                if (error)
-                {
-                    free(original_ptr);
-                    list_destroy(&list);
-                    variables_ptr = variables;
-                    program_status = request_re_entry();
-                    break;
-                }
-
-                if (node) destroy_node(node);
-                token_t* current = list.head;
-                node = GetG(&current);
-
-                free(original_ptr);
-                list_destroy(&list);
-                variables_ptr = variables;
-                if (!node)
-                {
-                    program_status = request_re_entry();
-                    break;
-                }
-                printf(MAKE_BOLD_GREEN("Successfully\n"));
-                break;
-            }
             case FROM_CONSOLE_TO_TREE:
             {
-                printf(MAKE_BOLD("Please, write the expression in console\n"));
-
-                if (variables_ptr) variables_destroy(&variables_ptr);
-                variable_t* variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
-
-                char* buffer = nullptr;
-                size_t length = 0;
-
-                ssize_t num_of_characters = getline(&buffer, &length, stdin);
-
-                if (num_of_characters == -1)
+                if (program_status == FROM_FILE_TO_TREE)
                 {
-                    printf(MAKE_BOLD_RED("Failed to read from console\n"));
-                    break;
+                    if (variables_ptr) variables_destroy(&variables_ptr);
+                    variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
+
+                    rewind(input_file);
+                    buffer = read_file_to_buffer(input_file);
+                    size_t buffer_len = strlen(buffer);
+                    buffer[buffer_len] = '$';
+                    original_ptr = buffer;
                 }
 
-                buffer[num_of_characters - 1] = '$';
-                char* original_ptr = buffer;
+                if (program_status == FROM_CONSOLE_TO_TREE)
+                {
+                    printf(MAKE_BOLD("Please, write the expression in console\n"));
+
+                    if (variables_ptr) variables_destroy(&variables_ptr);
+                    variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
+
+                    buffer = nullptr;
+                    size_t length = 0;
+
+                    ssize_t num_of_characters = getline(&buffer, &length, stdin);
+                    if (num_of_characters == -1)
+                    {
+                        printf(MAKE_BOLD_RED("Failed to read from console\n"));
+                        break;
+                    }
+                    buffer[num_of_characters - 1] = '$';
+                    original_ptr = buffer;
+                }
 
                 list_t list = {nullptr, nullptr, nullptr};
                 list.head = create_token(SPEC, (token_union){.spec_symbol = '!'}, &list);
@@ -145,7 +122,6 @@ int main(int argc, const char* argv[])
                 free(original_ptr);
                 list_destroy(&list);
                 variables_ptr = variables;
-
                 if (!node)
                 {
                     program_status = request_re_entry();
