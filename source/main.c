@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 
 #include "font.h"
 #include "differentiator.h"
@@ -66,14 +67,26 @@ int main(int argc, const char* argv[])
             {
                 if (variables_ptr) variables_destroy(&variables_ptr);
                 variable_t* variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
+
                 rewind(input_file);
                 char* buffer = read_file_to_buffer(input_file);
+                size_t buffer_len = strlen(buffer);
+                buffer[buffer_len] = '$';
                 char* original_ptr = buffer;
 
                 list_t list = {nullptr, nullptr, nullptr};
                 list.head = create_token(SPEC, (token_union){.spec_symbol = '!'}, &list);
                 list.tail = list.head;
-                tokenization(buffer, variables, &list);
+
+                error_code error = tokenization(buffer, variables, &list);
+                if (error)
+                {
+                    free(original_ptr);
+                    list_destroy(&list);
+                    variables_ptr = variables;
+                    program_status = request_re_entry();
+                    break;
+                }
 
                 if (node) destroy_node(node);
                 token_t* current = list.head;
@@ -93,8 +106,10 @@ int main(int argc, const char* argv[])
             case FROM_CONSOLE_TO_TREE:
             {
                 printf(MAKE_BOLD("Please, write the expression in console\n"));
+
                 if (variables_ptr) variables_destroy(&variables_ptr);
                 variable_t* variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
+
                 char* buffer = nullptr;
                 size_t length = 0;
 
@@ -112,14 +127,30 @@ int main(int argc, const char* argv[])
                 list_t list = {nullptr, nullptr, nullptr};
                 list.head = create_token(SPEC, (token_union){.spec_symbol = '!'}, &list);
                 list.tail = list.head;
-                tokenization(buffer, variables, &list);
+
+                error_code error = tokenization(buffer, variables, &list);
+                if (error)
+                {
+                    free(original_ptr);
+                    list_destroy(&list);
+                    variables_ptr = variables;
+                    program_status = request_re_entry();
+                    break;
+                }
 
                 if (node) destroy_node(node);
-                node = GetG(&list.head);
+                token_t* current = list.head;
+                node = GetG(&current);
 
                 free(original_ptr);
                 list_destroy(&list);
                 variables_ptr = variables;
+
+                if (!node)
+                {
+                    program_status = request_re_entry();
+                    break;
+                }
                 printf(MAKE_BOLD_GREEN("Successfully\n"));
             }
             default:

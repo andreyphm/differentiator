@@ -17,6 +17,11 @@
 node_t* GetG(token_t** token)
 {
     node_t* value = GetE(token);
+    if (!(TOKEN_IS_SPEC && TOKEN_SPEC_SYMBOL == '$'))
+    {
+        destroy_node(value);
+        return nullptr;
+    }
     return value;
 }
 

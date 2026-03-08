@@ -13,6 +13,7 @@ error_code tokenization(const char* buffer, variable_t* variables, list_t* const
     while (*buffer != '$')
     {
         skip_spaces(&buffer);
+        if (*buffer == '$') break;
 
         if (try_digit(&buffer, list)    ||
             try_char_op(&buffer, list)  ||
@@ -23,11 +24,7 @@ error_code tokenization(const char* buffer, variable_t* variables, list_t* const
             continue;
         }
 
-        // else
-        // {
-        //     printf(MAKE_BOLD_RED("SYNTAX_ERROR\n"));
-        //     return SYNTAX_ERROR;
-        // }
+        else return SYNTAX_ERROR;
     }
 
     list_push_back(SPEC, (token_union){.spec_symbol = '$'}, list);
@@ -102,7 +99,7 @@ bool try_function(const char** buffer, list_t* const list)
 
         for (size_t i = FIRST_FUNC_NUM; i <= LAST_FUNC_NUM; i++)
         {
-            if (!strncmp(operators_array[i].design, start_of_buffer, (size_t) (*buffer - start_of_buffer)))
+            if (!strncmp(operators_array[i].design, start_of_buffer, (size_t) operators_array[i].strlen))
             {
                 list_push_back(OP, (token_union){.op = operators_array[i].code}, list);
                 return true;

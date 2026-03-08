@@ -105,7 +105,7 @@ char* read_file_to_buffer(FILE* const tree_txt_file)
 
     char* buffer = (char*) calloc(file_size + 1, sizeof(*buffer));
     file_size = fread(buffer, sizeof(*buffer), file_size, tree_txt_file);
-    *(buffer + file_size) = '$';
+    buffer[file_size] = '\0';
 
     return buffer;
 }
