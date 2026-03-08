@@ -101,7 +101,10 @@ node_t* GetP(token_t** token)
         *token = (*token)->next;
         node_t* value = GetE(token);
         if (!(TOKEN_IS_SPEC && TOKEN_SPEC_SYMBOL == ')'))
+        {
+            destroy_node(value);
             return nullptr;
+        }
         *token = (*token)->next;
         return value;
     }
@@ -144,7 +147,10 @@ node_t* GetF(token_t** token)
         *token = (*token)->next;
         node_t* value = GetE(token);
         if (!(TOKEN_IS_SPEC && TOKEN_SPEC_SYMBOL == ')'))
+        {
+            destroy_node(value);
             return nullptr;
+        }
 
         *token = (*token)->next;
 
