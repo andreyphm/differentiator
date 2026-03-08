@@ -7,6 +7,9 @@
 
 error_code tokenization(const char* buffer, variable_t* variables, list_t* const list)
 {
+    bool is_variables = false;
+    int last_variable_num = 0;
+
     while (*buffer != '$')
     {
         skip_spaces(&buffer);
@@ -15,7 +18,7 @@ error_code tokenization(const char* buffer, variable_t* variables, list_t* const
             try_char_op(&buffer, list)  ||
             try_function(&buffer, list) ||
             try_bracket(&buffer, list)  ||
-            try_variable(&buffer, list, variables))
+            try_variable(&buffer, list, variables, &last_variable_num, &is_variables))
         {
             continue;
         }
@@ -125,11 +128,8 @@ bool try_bracket(const char** buffer, list_t* const list)
     return false;
 }
 
-bool try_variable(const char** buffer, list_t* const list, variable_t* variables)
+bool try_variable(const char** buffer, list_t* const list, variable_t* variables, int* last_variable_num, bool* is_variables)
 {
-    static int last_variable_num = 0;
-    static bool no_variables = true;
-
     const char* start_of_buffer = *buffer;
 
     if (!isalpha(**buffer))
@@ -140,9 +140,9 @@ bool try_variable(const char** buffer, list_t* const list, variable_t* variables
 
     size_t name_length = (size_t) (*buffer - start_of_buffer);
 
-    if (!no_variables)
+    if (*is_variables)
     {
-        for (int i = 0; i <= last_variable_num; i++)
+        for (int i = 0; i <= *last_variable_num; i++)
         {
             if (variables[i].length == name_length && !strncmp(variables[i].name, start_of_buffer, name_length))
             {
@@ -152,23 +152,21 @@ bool try_variable(const char** buffer, list_t* const list, variable_t* variables
         }
     }
 
-    if (no_variables)
+    if (!*is_variables)
     {
         list_push_back(VAR, (token_union){.var_number = 0}, list);
-        no_variables = false;
+        *is_variables = true;
     }
 
     else
     {
-        last_variable_num++;
-        list_push_back(VAR, (token_union){.var_number = last_variable_num}, list);
+        (*last_variable_num)++;
+        list_push_back(VAR, (token_union){.var_number = *last_variable_num}, list);
     }
 
-    char* name_copy = strndup(start_of_buffer, name_length);
-
-    variables[last_variable_num].name = name_copy;
-    variables[last_variable_num].number = last_variable_num;
-    variables[last_variable_num].length = name_length;
+    variables[*last_variable_num].name = strndup(start_of_buffer, name_length);
+    variables[*last_variable_num].number = *last_variable_num;
+    variables[*last_variable_num].length = name_length;
 
     return true;
 }

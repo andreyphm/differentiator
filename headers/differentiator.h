@@ -79,7 +79,7 @@ void destroy_node(node_t* node);
 
 const char* enum_to_string(type_data type);
 void tree_dump(node_t* const node, const char* const png_file_name, const variable_t* const variables);
-void variables_destroy(variable_t* variables_ptr);
+void variables_destroy(variable_t** variables);
 
 node_t* copy_node(node_t* node);
 node_t* simplify_node(node_t* node, bool* simplifications_ptr);

@@ -90,14 +90,14 @@ node_t* dif_pow(node_t* node)
 {
     assert(node);
 
-    if (node->left->value->type == NUM && node->right->value->type == NUM)
+    if (LEFT_IS_NUMBER && RIGHT_IS_NUMBER)
         return NUM_(0);
 
-    else if (node->left->value->type != NUM && node->right->value->type == NUM)
-        return MUL_(MUL_(POW_(CL, NUM_(node->right->value->data_t.number - 1)), CR), DL);
+    else if (!LEFT_IS_NUMBER && RIGHT_IS_NUMBER)
+        return MUL_(MUL_(POW_(CL, NUM_(RIGHT_VALUE - 1)), CR), DL);
 
-    else if (node->left->value->type == NUM && node->right->value->type != NUM)
-        return MUL_(EXP_(MUL_(CR, LN_(CL))), MUL_(DR, LN_(CL)));
+    else if (LEFT_IS_NUMBER && !RIGHT_IS_NUMBER)
+        return MUL_((POW_(CL, CR)), MUL_(DR, LN_(CL)));
 
     else
         return MUL_(EXP_(MUL_(CR, LN_(CL))), ADD_(MUL_(CR, MUL_(DIV_(NUM_(1), CL), DL)), MUL_(LN_(CL), DR)));

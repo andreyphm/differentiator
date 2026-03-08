@@ -64,8 +64,9 @@ int main(int argc, const char* argv[])
                 break;
             case FROM_FILE_TO_TREE:
             {
-                if (variables_ptr) free(variables_ptr);
+                if (variables_ptr) variables_destroy(&variables_ptr);
                 variable_t* variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
+                rewind(input_file);
                 char* buffer = read_file_to_buffer(input_file);
                 char* original_ptr = buffer;
 
@@ -79,16 +80,20 @@ int main(int argc, const char* argv[])
                 node = GetG(&current);
 
                 free(original_ptr);
-                fclose(input_file);
                 list_destroy(&list);
                 variables_ptr = variables;
+                if (!node)
+                {
+                    program_status = request_re_entry();
+                    break;
+                }
                 printf(MAKE_BOLD_GREEN("Successfully\n"));
                 break;
             }
             case FROM_CONSOLE_TO_TREE:
             {
                 printf(MAKE_BOLD("Please, write the expression in console\n"));
-                if (variables_ptr) free(variables_ptr);
+                if (variables_ptr) variables_destroy(&variables_ptr);
                 variable_t* variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
                 char* buffer = nullptr;
                 size_t length = 0;
@@ -122,8 +127,9 @@ int main(int argc, const char* argv[])
         }
     }
 
-    if (variables_ptr) variables_destroy(variables_ptr);
+    if (variables_ptr) variables_destroy(&variables_ptr);
     destroy_node(node);
+    fclose(input_file);
     printf(MAKE_BOLD("Program completed. COMMIT GITHUB\n"));
 }
 
@@ -134,10 +140,11 @@ void bad_argc_message(const char* argv[])
                                 "use: %s input_file output_file.\n\n"), argv[0]);
 }
 
-void variables_destroy(variable_t* variables_ptr)
+void variables_destroy(variable_t** variables)
 {
     for (size_t i = 0; i < MAX_NUMBER_OF_VARS; i++)
-            free((void*)variables_ptr[i].name);
+            free((void*)(*variables)[i].name);
 
-    free(variables_ptr);
+    free(*variables);
+    *variables = nullptr;
 }

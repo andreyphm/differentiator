@@ -23,12 +23,19 @@ node_t* GetG(token_t** token)
 node_t* GetE(token_t** token)
 {
     node_t* value = GetT(token);
+    if (!value) return nullptr;
+
     while (TOKEN_IS_OP && (TOKEN_OP_CODE == ADD || TOKEN_OP_CODE == SUB))
     {
         operator_code op = TOKEN_OP_CODE;
         *token = (*token)->next;
 
         node_t* value_2 = GetT(token);
+        if (!value_2)
+        {
+            destroy_node(value);
+            return nullptr;
+        }
 
         if (op == ADD)
             value = ADD_(value, value_2);
@@ -42,12 +49,19 @@ node_t* GetE(token_t** token)
 node_t* GetT(token_t** token)
 {
     node_t* value = GetS(token);
+    if (!value) return nullptr;
+
     while (TOKEN_IS_OP && (TOKEN_OP_CODE == MUL || TOKEN_OP_CODE == DIV))
     {
         operator_code op = TOKEN_OP_CODE;
         *token = (*token)->next;
 
         node_t* value_2 = GetS(token);
+        if (!value_2)
+        {
+            destroy_node(value);
+            return nullptr;
+        }
 
         if (op == MUL)
             value = MUL_(value, value_2);
@@ -61,11 +75,18 @@ node_t* GetT(token_t** token)
 node_t* GetS(token_t** token)
 {
     node_t* value = GetP(token);
+    if (!value) return nullptr;
+
     while (TOKEN_IS_OP && TOKEN_OP_CODE == POW)
     {
         *token = (*token)->next;
 
         node_t* value_2 = GetP(token);
+        if (!value_2)
+        {
+            destroy_node(value);
+            return nullptr;
+        }
 
         value = POW_(value, value_2);
     }
@@ -79,6 +100,8 @@ node_t* GetP(token_t** token)
     {
         *token = (*token)->next;
         node_t* value = GetE(token);
+        if (!(TOKEN_IS_SPEC && TOKEN_SPEC_SYMBOL == ')'))
+            return nullptr;
         *token = (*token)->next;
         return value;
     }
