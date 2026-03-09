@@ -4,6 +4,7 @@
 
 #include "tokenization.h"
 #include "font.h"
+#include "dump.h"
 
 error_code tokenization(const char* buffer, variable_t* variables, list_t* const list)
 {
@@ -33,7 +34,7 @@ error_code tokenization(const char* buffer, variable_t* variables, list_t* const
     free(list->head);
     list->head = new_head;
 
-    list_dump(list, "list_dump.txt", "list_dump.png", variables);
+    list_dump(list, LIST_DUMP_TXT, LIST_DUMP_PNG, variables);
 
     return NO_ERROR;
 }
@@ -216,80 +217,6 @@ token_t* create_token(const type_data type, token_union data, list_t* const list
     return token;
 }
 
-void list_dump(list_t* const list, const char* const txt_file_name, const char* const png_file_name, const variable_t* const variables)
-{
-    assert(list);
-    assert(txt_file_name);
-    assert(png_file_name);
-
-    FILE* txt_file = fopen(txt_file_name, "w");
-    fprintf(txt_file, "digraph structs\n{\nrankdir = LR;\ngraph[bgcolor=\"#e0e0e9ff\"];\n");
-
-    int node_number = 1;
-    for (list->current = list->head; list->current != list->tail; node_number++)
-    {
-        fprintf(txt_file, "node_%d [style=filled, penwidth = 3, fillcolor=\"#b7e5f3ff\","
-               "color = \"#3f6969ff\", shape=record, label= \" ", node_number);
-        switch(list->current->type)
-        {
-            case OP:
-                fprintf(txt_file, "TYPE = OP | OP_CODE = %s | ", operators_array[list->current->data_t.op].name);
-                break;
-            case VAR:
-                fprintf(txt_file, "TYPE = VAR | VAR_NUM = %d (%s) | ", list->current->data_t.var_number, variables[list->current->data_t.var_number].name);
-                break;
-            case NUM:
-                fprintf(txt_file, "TYPE = NUM | VALUE = %lg | ", list->current->data_t.number);
-                break;
-            case SPEC:
-                fprintf(txt_file, "TYPE = SPEC | VALUE = %c | ", list->current->data_t.spec_symbol);
-            default:
-                break;
-        }
-        fprintf(txt_file, "ADDRESS = %p |\n", list->current);
-        fprintf(txt_file, "{next = %p | prev = %p}\" ];\n", list->current->next, list->current->prev);
-
-        list->current = list->current->next;
-    }
-
-    fprintf(txt_file, "node_%d [style=filled, penwidth = 3, fillcolor=\"#b7e5f3ff\","
-               "color = \"#3f6969ff\", shape=record, label= \" ", node_number);
-    switch(list->current->type)
-    {
-        case OP:
-            fprintf(txt_file, "TYPE = OP | OP_CODE = %s | ", operators_array[list->current->data_t.op].name);
-            break;
-        case VAR:
-            fprintf(txt_file, "TYPE = VAR | VAR_NUM = %d (%s) | ", list->current->data_t.var_number, variables[list->current->data_t.var_number].name);
-            break;
-        case NUM:
-            fprintf(txt_file, "TYPE = NUM | VALUE = %lg | ", list->current->data_t.number);
-            break;
-        case SPEC:
-            fprintf(txt_file, "TYPE = SPEC | VALUE = %c | ", list->current->data_t.spec_symbol);
-        default:
-            break;
-    }
-    fprintf(txt_file, "ADDRESS = %p |\n", list->current);
-    fprintf(txt_file, "{next = %p | prev = %p}\" ];\n", list->current->next, list->current->prev);
-
-    int list_capacity = node_number;
-    fprintf(txt_file, "{\nedge[color = \"#149b5aff\", weight = 1000];\n");
-    for (node_number = 1; node_number < list_capacity; node_number++)
-    {
-        fprintf(txt_file, "node_%d -> node_%d\n", node_number, node_number + 1);
-    }
-
-    fprintf(txt_file, "}\n");
-    fprintf(txt_file, "}");
-    fclose(txt_file);
-
-    char command[1000];
-    sprintf(command, "dot %s -T png -o %s", txt_file_name, png_file_name);
-
-    system(command);
-}
-
 void list_destroy(list_t* list)
 {
     token_t* current = list->head;
@@ -300,4 +227,13 @@ void list_destroy(list_t* list)
         free(current);
         current = next;
     }
+}
+
+void variables_destroy(variable_t** variables)
+{
+    for (size_t i = 0; i < MAX_NUMBER_OF_VARS; i++)
+            free((void*)(*variables)[i].name);
+
+    free(*variables);
+    *variables = nullptr;
 }

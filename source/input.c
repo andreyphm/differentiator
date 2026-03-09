@@ -109,3 +109,10 @@ char* read_file_to_buffer(FILE* const tree_txt_file)
 
     return buffer;
 }
+
+void bad_argc_message(const char* argv[])
+{
+    printf(MAKE_BOLD("You haven't entered the input and output files or you entered them incorrectly.\nDefault files will be used:"
+                                "input.txt for input and output.txt for output.\nIf you want to select your files, please, "
+                                "use: %s input_file output_file.\n\n"), argv[0]);
+}

@@ -4,6 +4,7 @@
 #include "parser.h"
 #include "differentiator.h"
 #include "font.h"
+#include "dump.h"
 
 void tree_dump(node_t* const node, const char* const png_file_name, const variable_t* const variables)
 {
@@ -14,7 +15,7 @@ void tree_dump(node_t* const node, const char* const png_file_name, const variab
     }
     assert(png_file_name);
 
-    FILE* txt_file = fopen("source/dump/dump.txt", "w");
+    FILE* txt_file = fopen(TREE_DUMP_TXT, "w");
     assert(txt_file);
 
     fprintf(txt_file, "digraph G {\n");
@@ -92,10 +93,10 @@ void tree_dump(node_t* const node, const char* const png_file_name, const variab
     free(stack);
 
     char command[100];
-    sprintf(command, "dot -Tpng source/dump/dump.txt -o %s", png_file_name);
+    sprintf(command, "dot -Tpng " TREE_DUMP_TXT " -o %s", png_file_name);
     system(command);
 
-    printf(MAKE_BOLD_GREEN("Tree visualization saved to %s\n"), "source/dump/differentiator_tree.png");
+    printf(MAKE_BOLD_GREEN("Tree visualization saved to %s\n"), TREE_DUMP_PNG);
     }
 
 const char* enum_to_string(type_data type)

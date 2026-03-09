@@ -6,6 +6,9 @@
 #include "input.h"
 #include "parser.h"
 #include "tokenization.h"
+#include "dump.h"
+
+#define TREE_TXT_FILE
 
 int main(int argc, const char* argv[])
 {
@@ -61,7 +64,7 @@ int main(int argc, const char* argv[])
                     dif_node = simplify_node(dif_node, &simplifications);
                 }
 
-                tree_dump(dif_node, "source/dump/differentiator_tree.png", variables_ptr);
+                tree_dump(dif_node, TREE_DUMP_PNG, variables_ptr);
 
                 destroy_node(dif_node);
             }
@@ -138,20 +141,4 @@ int main(int argc, const char* argv[])
     destroy_node(node);
     fclose(input_file);
     printf(MAKE_BOLD("Program completed. COMMIT GITHUB\n"));
-}
-
-void bad_argc_message(const char* argv[])
-{
-    printf(MAKE_BOLD("You haven't entered the input and output files or you entered them incorrectly.\nDefault files will be used:"
-                                "input.txt for input and output.txt for output.\nIf you want to select your files, please, "
-                                "use: %s input_file output_file.\n\n"), argv[0]);
-}
-
-void variables_destroy(variable_t** variables)
-{
-    for (size_t i = 0; i < MAX_NUMBER_OF_VARS; i++)
-            free((void*)(*variables)[i].name);
-
-    free(*variables);
-    *variables = nullptr;
 }

@@ -78,7 +78,6 @@ node_t* create_node(const type_data type, data_union data, node_t* left, node_t*
 void destroy_node(node_t* node);
 
 const char* enum_to_string(type_data type);
-void tree_dump(node_t* const node, const char* const png_file_name, const variable_t* const variables);
 void variables_destroy(variable_t** variables);
 
 node_t* copy_node(node_t* node);

@@ -39,7 +39,6 @@ bool try_variable(const char** buffer, list_t* const list, variable_t* variables
 
 token_t* list_push_back(const type_data type, token_union data, list_t* const list);
 token_t* create_token(const type_data type, token_union data, list_t* const list);
-void list_dump(list_t* const list, const char* const txt_file_name, const char* const png_file_name, const variable_t* const variables);
 void list_destroy(list_t* list);
 
 #endif //TOKENIZATION_H
