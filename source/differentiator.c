@@ -71,7 +71,7 @@ node_t* dif_ln(node_t* node)
 node_t* dif_cos(node_t* node)
 {
     assert(node);
-    return MUL_(MUL_(SIN_(CL), NUM_(-1)), DL);
+    return MUL_(MUL_(NUM_(-1), SIN_(CL)), DL);
 }
 
 node_t* dif_sin(node_t* node)
@@ -192,4 +192,9 @@ void destroy_node(node_t* node)
         free(node->value);
 
     free(node);
+}
+
+bool is_close_to_zero (double number_being_checked)
+{
+    return (fabs(number_being_checked) < NUMBER_CLOSE_TO_ZERO);
 }

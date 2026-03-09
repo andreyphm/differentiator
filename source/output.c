@@ -4,7 +4,10 @@
 #include "macros.h"
 #include "font.h"
 
-#define OP_DESIGN operators_array[NODE_OPERATION].design
+#define OP_DESIGN           operators_array[NODE_OPERATION].design
+#define OP_CODE             operators_array[NODE_OPERATION].code
+#define OP_PRIORITY         operators_array[NODE_OPERATION].priority
+#define PARENT_PRIORITY     operators_array[PARENT_OPERATION].priority
 
 void tree_to_latex(node_t* const node, FILE* const output_file, const variable_t* const variables)
 {
@@ -26,57 +29,62 @@ void tree_to_latex(node_t* const node, FILE* const output_file, const variable_t
     printf(MAKE_BOLD_GREEN("The differentiated expession is saved to output.pdf\n"));
 }
 
-void latex_output(node_t* const node, FILE* const output_file, const variable_t* const variables)
+void latex_output(node_t* const node, FILE* const output_file, const variable_t* const variables, node_t* const parent)
 {
     switch (NODE_TYPE)
     {
         case NUM:
-            fprintf(output_file, "%lg", NODE_NUMBER);
+            if (NODE_NUMBER > 0 || is_close_to_zero(NODE_NUMBER))
+                fprintf(output_file, "%lg", NODE_NUMBER);
+            else
+                fprintf(output_file, "\\left(%lg\\right)", NODE_NUMBER);
             break;
+
         case VAR:
             fprintf(output_file, "%s", variables[NODE_VAR_NUMBER].name);
             break;
+
         case OP:
-            switch(operators_array[NODE_OPERATION].code)
+            switch(OP_CODE)
             {
                 case ADD:
-                    fprintf(output_file, "\\left(");
-                    latex_output(node->left, output_file, variables);
+                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\left(");
+                    latex_output(node->left, output_file, variables, node);
                     fprintf(output_file, " + ");
-                    latex_output(node->right, output_file, variables);
-                    fprintf(output_file, "\\right)");
+                    latex_output(node->right, output_file, variables, node);
+                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\right)");
                     break;
 
                 case SUB:
-                    fprintf(output_file, "\\left(");
-                    latex_output(node->left, output_file, variables);
+                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\left(");
+                    latex_output(node->left, output_file, variables, node);
                     fprintf(output_file, " - ");
-                    latex_output(node->right, output_file, variables);
-                    fprintf(output_file, "\\right)");
+                    latex_output(node->right, output_file, variables, node);
+                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\right)");
                     break;
 
                 case MUL:
-                    fprintf(output_file, "\\left(");
-                    latex_output(node->left, output_file, variables);
+                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\left(");
+                    latex_output(node->left, output_file, variables, node);
                     fprintf(output_file, " \\cdot ");
-                    latex_output(node->right, output_file, variables);
-                    fprintf(output_file, "\\right)");
+                    latex_output(node->right, output_file, variables, node);
+                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\right)");
                     break;
 
                 case DIV:
-                    fprintf(output_file, "\\left(");
+                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\left(");
                     fprintf(output_file, "\\frac{");
-                    latex_output(node->left, output_file, variables);
+                    latex_output(node->left, output_file, variables, node);
                     fprintf(output_file, "}{");
-                    latex_output(node->right, output_file, variables);
+                    latex_output(node->right, output_file, variables, node);
                     fprintf(output_file, "}");
-                    fprintf(output_file, "\\right)");
+                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\right)");
                     break;
 
                 case POW:
-                    latex_output(node->left, output_file, variables);
+                    latex_output(node->left, output_file, variables, node);
                     fprintf(output_file, "^{");
-                    latex_output(node->right, output_file, variables);
+                    latex_output(node->right, output_file, variables, node);
                     fprintf(output_file, "}");
                     break;
 
@@ -85,7 +93,7 @@ void latex_output(node_t* const node, FILE* const output_file, const variable_t*
                 case SIN:
                 case EXP:
                     fprintf(output_file, "\\%s\\left(", OP_DESIGN);
-                    latex_output(node->left, output_file, variables);
+                    latex_output(node->left, output_file, variables, node);
                     fprintf(output_file, "\\right)");
                     break;
 

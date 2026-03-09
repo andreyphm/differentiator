@@ -2,18 +2,78 @@ digraph structs
 {
 rankdir = LR;
 graph[bgcolor="#e0e0e9ff"];
-node_1 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = VAR | VAR_NUM = 0 (x) | ADDRESS = 0x603000000040 |
-{next = 0x603000000070 | prev = 0x603000000010}" ];
-node_2 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = POW | ADDRESS = 0x603000000070 |
+node_1 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = SIN | ADDRESS = 0x603000000070 |
 {next = 0x6030000000a0 | prev = 0x603000000040}" ];
-node_3 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = VAR | VAR_NUM = 0 (x) | ADDRESS = 0x6030000000a0 |
+node_2 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ( | ADDRESS = 0x6030000000a0 |
 {next = 0x6030000000d0 | prev = 0x603000000070}" ];
-node_4 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = $ | ADDRESS = 0x6030000000d0 |
-{next = (nil) | prev = 0x6030000000a0}" ];
+node_3 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ( | ADDRESS = 0x6030000000d0 |
+{next = 0x603000000100 | prev = 0x6030000000a0}" ];
+node_4 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = VAR | VAR_NUM = 0 (x) | ADDRESS = 0x603000000100 |
+{next = 0x603000000130 | prev = 0x6030000000d0}" ];
+node_5 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = POW | ADDRESS = 0x603000000130 |
+{next = 0x603000000160 | prev = 0x603000000100}" ];
+node_6 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = NUM | VALUE = 3 | ADDRESS = 0x603000000160 |
+{next = 0x603000000190 | prev = 0x603000000130}" ];
+node_7 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ) | ADDRESS = 0x603000000190 |
+{next = 0x6030000001c0 | prev = 0x603000000160}" ];
+node_8 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = MUL | ADDRESS = 0x6030000001c0 |
+{next = 0x6030000001f0 | prev = 0x603000000190}" ];
+node_9 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = NUM | VALUE = 15 | ADDRESS = 0x6030000001f0 |
+{next = 0x603000000220 | prev = 0x6030000001c0}" ];
+node_10 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ) | ADDRESS = 0x603000000220 |
+{next = 0x603000000250 | prev = 0x6030000001f0}" ];
+node_11 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = ADD | ADDRESS = 0x603000000250 |
+{next = 0x603000000280 | prev = 0x603000000220}" ];
+node_12 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = COS | ADDRESS = 0x603000000280 |
+{next = 0x6030000002b0 | prev = 0x603000000250}" ];
+node_13 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ( | ADDRESS = 0x6030000002b0 |
+{next = 0x6030000002e0 | prev = 0x603000000280}" ];
+node_14 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = NUM | VALUE = 7 | ADDRESS = 0x6030000002e0 |
+{next = 0x603000000310 | prev = 0x6030000002b0}" ];
+node_15 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = MUL | ADDRESS = 0x603000000310 |
+{next = 0x603000000340 | prev = 0x6030000002e0}" ];
+node_16 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = VAR | VAR_NUM = 0 (x) | ADDRESS = 0x603000000340 |
+{next = 0x603000000370 | prev = 0x603000000310}" ];
+node_17 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = ADD | ADDRESS = 0x603000000370 |
+{next = 0x6030000003a0 | prev = 0x603000000340}" ];
+node_18 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = NUM | VALUE = 9 | ADDRESS = 0x6030000003a0 |
+{next = 0x6030000003d0 | prev = 0x603000000370}" ];
+node_19 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ) | ADDRESS = 0x6030000003d0 |
+{next = 0x603000000400 | prev = 0x6030000003a0}" ];
+node_20 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = POW | ADDRESS = 0x603000000400 |
+{next = 0x603000000430 | prev = 0x6030000003d0}" ];
+node_21 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = NUM | VALUE = 4 | ADDRESS = 0x603000000430 |
+{next = 0x603000000460 | prev = 0x603000000400}" ];
+node_22 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = ADD | ADDRESS = 0x603000000460 |
+{next = 0x603000000490 | prev = 0x603000000430}" ];
+node_23 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = NUM | VALUE = 1 | ADDRESS = 0x603000000490 |
+{next = 0x6030000004c0 | prev = 0x603000000460}" ];
+node_24 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = $ | ADDRESS = 0x6030000004c0 |
+{next = (nil) | prev = 0x603000000490}" ];
 {
 edge[color = "#149b5aff", weight = 1000];
 node_1 -> node_2
 node_2 -> node_3
 node_3 -> node_4
+node_4 -> node_5
+node_5 -> node_6
+node_6 -> node_7
+node_7 -> node_8
+node_8 -> node_9
+node_9 -> node_10
+node_10 -> node_11
+node_11 -> node_12
+node_12 -> node_13
+node_13 -> node_14
+node_14 -> node_15
+node_15 -> node_16
+node_16 -> node_17
+node_17 -> node_18
+node_18 -> node_19
+node_19 -> node_20
+node_20 -> node_21
+node_21 -> node_22
+node_22 -> node_23
+node_23 -> node_24
 }
 }

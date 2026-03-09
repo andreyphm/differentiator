@@ -131,11 +131,6 @@ node_t* simplify_node(node_t* node, bool* simplifications_ptr)
     return node;
 }
 
-bool is_close_to_zero (double number_being_checked)
-{
-    return (fabs(number_being_checked) < NUMBER_CLOSE_TO_ZERO);
-}
-
 double remove_minus_before_zero (double number_being_checked)
 {
     if (is_close_to_zero(number_being_checked))

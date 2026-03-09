@@ -37,6 +37,14 @@ typedef enum error_code
     SYNTAX_ERROR = 1
 } error_code;
 
+typedef enum priority_t
+{
+    ZERO_PRIORITY   = 0,
+    FIRST_PRIORITY  = 1,
+    SECOND_PRIORITY = 2,
+    THIRD_PRIORITY  = 3
+} priority_t;
+
 typedef union
 {
     double number;
@@ -65,6 +73,8 @@ typedef struct operator_t
     size_t strlen;
     node_t* (*dif) (node_t* node);
     bool is_one_arg;
+    priority_t priority;
+
 } operator_t;
 
 typedef struct variable_t
@@ -100,15 +110,15 @@ node_t* dif_pow(node_t* node);
 
 const operator_t operators_array[] =
 {
-    {ADD, "ADD", "+",   1, dif_add, false},
-    {SUB, "SUB", "-",   1, dif_sub, false},
-    {MUL, "MUL", "*",   1, dif_mul, false},
-    {DIV, "DIV", "/",   1, dif_div, false},
-    {POW, "POW", "^",   1, dif_pow, false},
-    {LN,  "LN" , "ln",  2, dif_ln , true },
-    {COS, "COS", "cos", 3, dif_cos, true },
-    {SIN, "SIN", "sin", 3, dif_sin, true },
-    {EXP, "EXP", "exp", 3, dif_exp, true }
+    {ADD, "ADD", "+",   1, dif_add, false, SECOND_PRIORITY},
+    {SUB, "SUB", "-",   1, dif_sub, false, SECOND_PRIORITY},
+    {MUL, "MUL", "*",   1, dif_mul, false, FIRST_PRIORITY},
+    {DIV, "DIV", "/",   1, dif_div, false, FIRST_PRIORITY},
+    {POW, "POW", "^",   1, dif_pow, false, ZERO_PRIORITY},
+    {LN,  "LN" , "ln",  2, dif_ln , true, THIRD_PRIORITY},
+    {COS, "COS", "cos", 3, dif_cos, true, THIRD_PRIORITY},
+    {SIN, "SIN", "sin", 3, dif_sin, true, THIRD_PRIORITY},
+    {EXP, "EXP", "exp", 3, dif_exp, true, THIRD_PRIORITY}
 };
 
 #endif //DIFFERENTIATOR_H
