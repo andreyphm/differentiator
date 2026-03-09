@@ -4,6 +4,8 @@
 #include "macros.h"
 #include "font.h"
 
+#define OP_DESIGN operators_array[NODE_OPERATION].design
+
 void tree_to_latex(node_t* const node, FILE* const output_file, const variable_t* const variables)
 {
     fprintf(output_file, "\\documentclass{article}\n");
@@ -19,6 +21,7 @@ void tree_to_latex(node_t* const node, FILE* const output_file, const variable_t
     fclose(output_file);
 
     system("pdflatex -interaction=nonstopmode output.tex > nul 2>&1");
+    // system("del /F /Q *.aux *.log *.out *.fdb_latexmk *.fls *.synctex.gz *.pdf 2>nul");
 
     printf(MAKE_BOLD_GREEN("The differentiated expession is saved to output.pdf\n"));
 }
@@ -37,27 +40,27 @@ void latex_output(node_t* const node, FILE* const output_file, const variable_t*
             switch(operators_array[NODE_OPERATION].code)
             {
                 case ADD:
-                    fprintf(output_file, "(");
+                    fprintf(output_file, "\\left(");
                     latex_output(node->left, output_file, variables);
                     fprintf(output_file, " + ");
                     latex_output(node->right, output_file, variables);
-                    fprintf(output_file, ")");
+                    fprintf(output_file, "\\right)");
                     break;
 
                 case SUB:
-                    fprintf(output_file, "(");
+                    fprintf(output_file, "\\left(");
                     latex_output(node->left, output_file, variables);
                     fprintf(output_file, " - ");
                     latex_output(node->right, output_file, variables);
-                    fprintf(output_file, ")");
+                    fprintf(output_file, "\\right)");
                     break;
 
                 case MUL:
-                    fprintf(output_file, "(");
+                    fprintf(output_file, "\\left(");
                     latex_output(node->left, output_file, variables);
                     fprintf(output_file, " \\cdot ");
                     latex_output(node->right, output_file, variables);
-                    fprintf(output_file, ")");
+                    fprintf(output_file, "\\right)");
                     break;
 
                 case DIV:
@@ -77,9 +80,19 @@ void latex_output(node_t* const node, FILE* const output_file, const variable_t*
                     fprintf(output_file, "}");
                     break;
 
+                case LN:
+                case COS:
+                case SIN:
+                case EXP:
+                    fprintf(output_file, "\\%s\\left(", OP_DESIGN);
+                    latex_output(node->left, output_file, variables);
+                    fprintf(output_file, "\\right)");
+                    break;
+
                 default:
                     break;
             }
+        case SPEC:
         default:
             break;
     }
