@@ -7,6 +7,7 @@
 #include "parser.h"
 #include "tokenization.h"
 #include "dump.h"
+#include "output.h"
 
 #define TREE_TXT_FILE
 
@@ -28,15 +29,15 @@ int main(int argc, const char* argv[])
 
         if (!output_file)
         {
-            printf(MAKE_BOLD_RED("Can't open output file. Default output file will be used: output.txt.\n"));
-            output_file = fopen("output.txt", "w");
+            printf(MAKE_BOLD_RED("Can't open output file. Default output file will be used: output.tex.\n"));
+            output_file = fopen("output.tex", "w");
         }
     }
     else
     {
         bad_argc_message(argv);
         input_file = fopen("input.txt", "r");
-        output_file = fopen("output.txt", "w");
+        output_file = fopen("output.tex", "w");
     }
 
     program_status_data program_status = FROM_FILE_TO_TREE;
@@ -54,7 +55,7 @@ int main(int argc, const char* argv[])
             case PROGRAM_QUIT:
             case PROGRAM_START_AGAIN:
                 break;
-            case DIF_TREE_TO_PNG_FILE:
+            case DIF_TREE_TO_LATEX_FILE:
             {
                 node_t* dif_node = dif(node);
 
@@ -65,6 +66,8 @@ int main(int argc, const char* argv[])
                 }
 
                 tree_dump(dif_node, TREE_DUMP_PNG, variables_ptr);
+
+                tree_to_latex(dif_node, output_file, variables_ptr);
 
                 destroy_node(dif_node);
             }

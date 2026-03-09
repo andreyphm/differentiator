@@ -16,7 +16,7 @@ node_t* simplify_node(node_t* node, bool* simplifications_ptr)
                 *simplifications_ptr = true;
                 double right_number = RIGHT_VALUE;
                 double left_number  = LEFT_VALUE;
-                operator_code op_code = OPERATION;
+                operator_code op_code = NODE_OPERATION;
                 destroy_node(node);
 
                 switch(op_code)
@@ -33,7 +33,7 @@ node_t* simplify_node(node_t* node, bool* simplifications_ptr)
                     default:  break;
                 }
             }
-            switch(OPERATION)
+            switch(NODE_OPERATION)
             {
                 case MUL:
                     if ((RIGHT_IS_NUMBER && is_close_to_zero(RIGHT_VALUE)) || (LEFT_IS_NUMBER && is_close_to_zero(LEFT_VALUE)))

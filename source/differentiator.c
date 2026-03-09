@@ -12,9 +12,9 @@ node_t* dif(node_t* node)
 {
     if (!node) return nullptr;
 
-    switch(node->value->type)
+    switch(NODE_TYPE)
     {
-        case OP: return operators_array[(int)node->value->data_t.op].dif(node);
+        case OP: return operators_array[(int)NODE_OPERATION].dif(node);
         case NUM: return dif_num(node);
         case VAR: return dif_var(node);
         case SPEC:
@@ -113,7 +113,7 @@ node_t* copy_node(node_t* node)
     new_node->value = (node_value*) calloc(1, sizeof(node_value));
     assert(new_node->value);
 
-    new_node->value->type = node->value->type;
+    new_node->value->type = NODE_TYPE;
 
     switch(new_node->value->type)
     {
@@ -155,7 +155,7 @@ node_t* create_node(const type_data type, data_union data, node_t* left, node_t*
     node->value = (node_value*) calloc(1, sizeof(node_value));
     assert(node->value);
 
-    node->value->type = type;
+    NODE_TYPE = type;
     switch(type)
     {
         case OP:

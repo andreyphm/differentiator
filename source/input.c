@@ -33,8 +33,8 @@ program_status_data action_request()
                 return FROM_FILE_TO_TREE;
             case (int) FROM_CONSOLE_TO_TREE:
                 return FROM_CONSOLE_TO_TREE;
-            case (int) DIF_TREE_TO_PNG_FILE:
-                return DIF_TREE_TO_PNG_FILE;
+            case (int) DIF_TREE_TO_LATEX_FILE:
+                return DIF_TREE_TO_LATEX_FILE;
             case (int) PROGRAM_QUIT:
                 return PROGRAM_QUIT;
             default:

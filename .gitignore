@@ -1,2 +1,7 @@
 build
-output.txt
+nul
+output.aux
+output.fdb_latexmk
+output.fls
+output.log
+output.synctex.gz

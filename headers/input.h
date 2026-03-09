@@ -7,7 +7,7 @@ enum program_status_data
 {
     FROM_FILE_TO_TREE        = 1,
     FROM_CONSOLE_TO_TREE     = 2,
-    DIF_TREE_TO_PNG_FILE     = 3,
+    DIF_TREE_TO_LATEX_FILE     = 3,
     PROGRAM_QUIT             = 4,
     PROGRAM_START_AGAIN      = 5
 };
