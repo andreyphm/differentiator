@@ -50,17 +50,19 @@ void tree_dump(node_t* const node, const char* const png_file_name, const variab
         {
             case OP:
                 fprintf(txt_file, "<val> code = %s | ", operators_array[current->value->data_t.op].name);
+                fprintf(txt_file, "{ <L> %p | <R> %p } }\", style=filled, fillcolor=\"#b7e5f3ff\"];\n", current->left, current->right);
                 break;
             case VAR:
                 fprintf(txt_file, "<val> num = %d (%s) | ", current->value->data_t.var_number, variables[current->value->data_t.var_number].name);
+                fprintf(txt_file, "{ <L> %p | <R> %p } }\", style=filled, fillcolor=\"#36ff6fff\"];\n", current->left, current->right);
                 break;
             case NUM:
                 fprintf(txt_file, "<val> val = %lg | ", current->value->data_t.number);
+                fprintf(txt_file, "{ <L> %p | <R> %p } }\", style=filled, fillcolor=\"#f8c331ff\"];\n", current->left, current->right);
             case SPEC:
             default:
                 break;
         }
-        fprintf(txt_file, "{ <L> %p | <R> %p } }\", style=filled, fillcolor=\"#ffffffff\"];\n", current->left, current->right);
 
         if (current->left)
         {
