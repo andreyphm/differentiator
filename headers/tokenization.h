@@ -5,28 +5,28 @@
 
 const int MAX_NUMBER_OF_VARS = 20;
 
-typedef union
+union token_union
 {
     double number;
     int var_number;
     operator_code op;
     char spec_symbol;
-} token_union;
+};
 
-typedef struct token_t
+struct token_t
 {
     type_data type;
     token_union data_t;
     token_t* prev;
     token_t* next;
-} token_t;
+};
 
-typedef struct list_t
+struct list_t
 {
     token_t* head;
     token_t* current;
     token_t* tail;
-} list_t;
+};
 
 error_code tokenization(const char* buffer, variable_t* variables, list_t* const list);
 void skip_spaces(const char** string);

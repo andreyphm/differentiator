@@ -1,5 +1,5 @@
-#ifndef OPERATIONS_MACROS_H
-#define OPERATIONS_MACROS_H
+#ifndef MACROS_H
+#define MACROS_H
 
 #define ADD_(left_node, right_node) create_node(OP,  (data_union){.op = ADD}, left_node, right_node)
 #define SUB_(left_node, right_node) create_node(OP,  (data_union){.op = SUB}, left_node, right_node)
@@ -29,4 +29,4 @@
 #define RIGHT_VALUE         node->right->value->data_t.number
 #define LEFT_VALUE          node->left->value->data_t.number
 
-#endif // OPERATIONS_MACROS_H
+#endif // MACROS_H

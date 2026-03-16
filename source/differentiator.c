@@ -100,7 +100,7 @@ node_t* dif_pow(node_t* node)
         return MUL_((POW_(CL, CR)), MUL_(DR, LN_(CL)));
 
     else
-        return MUL_(EXP_(MUL_(CR, LN_(CL))), ADD_(MUL_(CR, MUL_(DIV_(NUM_(1), CL), DL)), MUL_(LN_(CL), DR)));
+        return MUL_(POW_(CL, CR), ADD_(MUL_(CR, MUL_(DIV_(NUM_(1), CL), DL)), MUL_(LN_(CL), DR)));
 }
 
 node_t* copy_node(node_t* node)

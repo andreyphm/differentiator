@@ -10,7 +10,7 @@ const size_t LAST_CHAR_OP_NUM = 4;
 const size_t FIRST_FUNC_NUM   = 5;
 const size_t LAST_FUNC_NUM    = 8;
 
-typedef enum operator_codes_data
+enum operator_code
 {
     ADD = 0,
     SUB = 1,
@@ -21,51 +21,51 @@ typedef enum operator_codes_data
     COS = 6,
     SIN = 7,
     EXP = 8
-} operator_code;
+};
 
-typedef enum type_data
+enum type_data
 {
     OP   = 1,
     VAR  = 2,
     NUM  = 3,
     SPEC = 4
-} type_data;
+};
 
-typedef enum error_code
+enum error_code
 {
-    NO_ERROR = 0,
-    SYNTAX_ERROR = 1
-} error_code;
+    NO_ERROR            = 0,
+    SYNTAX_ERROR        = 1
+};
 
-typedef enum priority_t
+enum priority_t
 {
     ZERO_PRIORITY   = 0,
     FIRST_PRIORITY  = 1,
     SECOND_PRIORITY = 2,
     THIRD_PRIORITY  = 3
-} priority_t;
+};
 
-typedef union
+union data_union
 {
     double number;
     int var_number;
     operator_code op;
-} data_union;
+};
 
-typedef struct node_value
+struct node_value
 {
     type_data type;
     data_union data_t;
-} node_value;
+};
 
-typedef struct node_t
+struct node_t
 {
     node_value* value;
     node_t* right;
     node_t* left;
-} node_t;
+};
 
-typedef struct operator_t
+struct operator_t
 {
     operator_code code;
     const char* name;
@@ -75,14 +75,14 @@ typedef struct operator_t
     bool is_one_arg;
     priority_t priority;
 
-} operator_t;
+};
 
-typedef struct variable_t
+struct variable_t
 {
     int number;
     char* name;
     size_t length;
-} variable_t;
+};
 
 node_t* create_node(const type_data type, data_union data, node_t* left, node_t* right);
 void destroy_node(node_t* node);

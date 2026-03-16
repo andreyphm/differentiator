@@ -1,5 +1,14 @@
+SRC_DIR := source
+BUILD_DIR := build
+TARGET := $(BUILD_DIR)/differentiator.out
+HDR_DIR := headers
+
+SRCS := $(wildcard $(SRC_DIR)/**/*.c) $(wildcard $(SRC_DIR)/*.c)
+HDRS := $(wildcard $(HDR_DIR)/*.h)
+OBJS := $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+
 CXX := g++
-FLAGS := -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
+FLAGS := -I$(HDR_DIR) -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
          -Waggressive-loop-optimizations -Wc++14-compat -Wmissing-declarations \
          -Wcast-align -Wcast-qual -Wchar-subscripts -Wconditionally-supported \
          -Wconversion -Wctor-dtor-privacy -Wempty-body -Wfloat-equal -Wformat-nonliteral \
@@ -16,23 +25,18 @@ FLAGS := -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
          -fno-omit-frame-pointer -Wlarger-than=30000 -Wstack-usage=8192 \
          -pie -fPIE -Werror=vla -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,vla-bound,vptr
 
-SRC_DIR := source
-BUILD_DIR := build
-TARGET := $(BUILD_DIR)/differentiator.out
-HDR_DIR := headers
-
-SRCS := $(wildcard $(SRC_DIR)/**/*.c) $(wildcard $(SRC_DIR)/*.c)
-HDRS := $(wildcard $(HDR_DIR)/*.h)
 
 .PHONY: all clean
 
 all: $(TARGET)
 
-$(TARGET): $(SRCS) $(HDRS) | $(BUILD_DIR)
-	$(CXX) $(FLAGS) $(SRCS) -I$(HDR_DIR) -o $@
+$(TARGET): $(OBJS)
+	$(CXX) $(FLAGS) $(OBJS) -o $@
 
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HDRS)
+	@mkdir -p $(dir $@)
+	$(CXX) $(FLAGS) -c $< -o $@
 
 clean:
+	rm -rf $(BUILD_DIR)
 	rm -f *.aux *.log *.out *.fdb_latexmk *.fls *.synctex.gz *.pdf nul

@@ -6,6 +6,9 @@
 #include "font.h"
 #include "dump.h"
 
+const int STACK_CAPACITY = 1000;
+const int COMMAND_CAPACITY = 100;
+
 void tree_dump(node_t* const node, const char* const png_file_name, const variable_t* const variables)
 {
     if (!node)
@@ -29,7 +32,7 @@ void tree_dump(node_t* const node, const char* const png_file_name, const variab
         int index;
     };
 
-    struct stack_element* stack = (stack_element*) calloc(1000, sizeof(stack_element));
+    struct stack_element* stack = (stack_element*) calloc(STACK_CAPACITY, sizeof(stack_element));
     assert(stack);
 
     int stack_size = 0;
@@ -69,7 +72,7 @@ void tree_dump(node_t* const node, const char* const png_file_name, const variab
             int left_index = node_index++;
 
             fprintf(txt_file,"    n%d:L -> n%d [color=\"black\", constraint=true];\n", current_index, left_index);
-            if (stack_size < 1000)
+            if (stack_size < STACK_CAPACITY)
             {
                 stack[stack_size].node = current->left;
                 stack[stack_size].index = left_index;
@@ -82,7 +85,7 @@ void tree_dump(node_t* const node, const char* const png_file_name, const variab
             int right_index = node_index++;
 
             fprintf(txt_file, "    n%d:R -> n%d [color=\"black\", constraint=true];\n", current_index, right_index);
-            if (stack_size < 1000)
+            if (stack_size < STACK_CAPACITY)
             {
                 stack[stack_size].node = current->right;
                 stack[stack_size].index = right_index;
@@ -94,7 +97,7 @@ void tree_dump(node_t* const node, const char* const png_file_name, const variab
     fclose(txt_file);
     free(stack);
 
-    char command[100];
+    char command[COMMAND_CAPACITY];
     sprintf(command, "dot -Tpng " TREE_DUMP_TXT " -o %s", png_file_name);
     system(command);
 

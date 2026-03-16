@@ -1,8 +1,11 @@
 #include <stdlib.h>
+#include <string.h>
 
 #include "output.h"
 #include "macros.h"
 #include "font.h"
+#include "dump.h"
+#include "parser.h"
 
 #define OP_DESIGN           operators_array[NODE_OPERATION].design
 #define OP_CODE             operators_array[NODE_OPERATION].code
@@ -104,4 +107,102 @@ void latex_output(node_t* const node, FILE* const output_file, const variable_t*
         default:
             break;
     }
+}
+
+void dif_tree_to_latex_file(node_t* node, variable_t* variables_ptr, FILE* output_file)
+{
+    node_t* dif_node = dif(node);
+
+    for (bool simplifications = true; simplifications;)
+    {
+        simplifications = false;
+        dif_node = simplify_node(dif_node, &simplifications);
+    }
+
+    tree_dump(dif_node, TREE_DUMP_PNG, variables_ptr);
+    tree_to_latex(dif_node, output_file, variables_ptr);
+    destroy_node(dif_node);
+}
+
+void output_to_tree(program_status_data* program_status, variable_t** variables_ptr, 
+                    FILE* input_file, node_t** node_ptr)
+{
+    variable_t* variables = nullptr;
+    char* buffer = nullptr;
+    char* original_ptr = nullptr;
+    if (*variables_ptr) variables_destroy(variables_ptr);
+
+    if (*program_status == FROM_FILE_TO_TREE)
+        from_file_to_tree(&variables, input_file, &buffer, &original_ptr);
+    else
+        from_console_to_tree(&variables, &buffer, &original_ptr);
+                    
+
+    list_t list = {nullptr, nullptr, nullptr};
+    list.head = create_token(SPEC, (token_union){.spec_symbol = '!'}, &list);
+    list.tail = list.head;
+
+    error_code error = tokenization(buffer, variables, &list);
+    if (error)
+    {
+        free(original_ptr);
+        list_destroy(&list);
+        *variables_ptr = variables;
+        *program_status = request_re_entry();
+        return;
+    }
+
+    if (*node_ptr) destroy_node(*node_ptr);
+    token_t* current = list.head;
+    *node_ptr = GetG(&current);
+
+    free(original_ptr);
+    list_destroy(&list);
+    *variables_ptr = variables;
+    if (!*node_ptr)
+    {
+        *program_status = request_re_entry();
+        return;
+    }
+
+    printf(MAKE_BOLD_GREEN("Successfully\n"));
+}
+
+void from_file_to_tree(variable_t** variables, FILE* input_file, char** buffer_ptr, char** original_ptr)
+{
+    *variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
+    
+    rewind(input_file);
+    *buffer_ptr = read_file_to_buffer(input_file);
+    size_t buffer_len = strlen(*buffer_ptr);
+    (*buffer_ptr)[buffer_len] = '$';
+    *original_ptr = *buffer_ptr;
+}
+
+void from_console_to_tree(variable_t** variables, char** buffer_ptr, char** original_ptr)
+{
+    printf(MAKE_BOLD("Please, write the expression in console\n"));
+
+    *variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
+
+    *buffer_ptr = nullptr;
+    size_t length = 0;
+
+    ssize_t num_of_characters = getline(buffer_ptr, &length, stdin);
+    if (num_of_characters == -1)
+    {
+        free(*variables);
+        printf(MAKE_BOLD_RED("Failed to read from console\n"));
+        return;
+    }
+    (*buffer_ptr)[num_of_characters - 1] = '$';
+    *original_ptr = *buffer_ptr;
+}
+
+void program_complete(variable_t** variables_ptr, node_t** node_ptr, FILE* input_file)
+{
+    if (*variables_ptr) variables_destroy(variables_ptr);
+    destroy_node(*node_ptr);
+    fclose(input_file);
+    printf(MAKE_BOLD("Program completed. COMMIT GITHUB\n"));
 }

@@ -10,7 +10,8 @@
 program_status_data action_request()
 {
     printf(MAKE_BOLD("Program should:\n1. Read expression from file\n2. Read expression from console\n"
-                                      "3. Output the differentiated tree to a PNG file\n4. Shut down\nPlease, answer 1, 2, 3 or 4\n"));
+                                      "3. Output the differentiated tree to a PDF file\n4. Shut down\n"
+                                      "Please, answer 1, 2, 3 or 4\n"));
     int user_input = 0;
     int result_of_scanf = scanf("%d", &user_input);
     int extra_symbol = 0;
@@ -110,9 +111,36 @@ char* read_file_to_buffer(FILE* const tree_txt_file)
     return buffer;
 }
 
-void bad_argc_message(const char* argv[])
+void bad_argc_message(const char* const* argv)
 {
-    printf(MAKE_BOLD("You haven't entered the input and output files or you entered them incorrectly.\nDefault files will be used:"
+    printf(MAKE_BOLD("You haven't entered the input and output files or you entered them incorrectly.\nDefault files will be used: "
                                 "input.txt for input and output.txt for output.\nIf you want to select your files, please, "
                                 "use: %s input_file output_file.\n\n"), argv[0]);
+}
+
+void check_files(FILE** const input_file, FILE** const output_file, int argc, const char* const argv[])
+{
+    if (argc == CORRECT_NUMBER_OF_FILES)
+    {
+        *input_file = fopen(argv[1], "r");
+        *output_file = fopen(argv[2], "w");
+
+        if (!*input_file)
+        {
+            printf(MAKE_BOLD_RED("Can't open input file. Default input file will be used: input.txt.\n"));
+            *input_file = fopen("input.txt", "r");
+        }
+
+        if (!*output_file)
+        {
+            printf(MAKE_BOLD_RED("Can't open output file. Default output file will be used: output.tex.\n"));
+            *output_file = fopen("output.tex", "w");
+        }
+    }
+    else
+    {
+        bad_argc_message(argv);
+        *input_file = fopen("input.txt", "r");
+        *output_file = fopen("output.tex", "w");
+    }
 }

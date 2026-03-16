@@ -5,3 +5,6 @@ output.fdb_latexmk
 output.fls
 output.log
 output.synctex.gz
+.vscode
+compile_commands.json
+
