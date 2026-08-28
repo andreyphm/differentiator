@@ -29,16 +29,6 @@ struct list_t
 };
 
 error_code tokenization(const char* buffer, variable_t* variables, list_t* const list);
-void skip_spaces(const char** string);
-
-bool try_digit(const char** buffer, list_t* const list);
-bool try_char_op(const char** buffer, list_t* const list);
-bool try_function(const char** buffer, list_t* const list);
-bool try_bracket(const char** buffer, list_t* const list);
-bool try_variable(const char** buffer, list_t* const list, variable_t* variables, int* last_variable_num, bool* is_variables);
-
-token_t* list_push_back(const type_data type, token_union data, list_t* const list);
-token_t* create_token(const type_data type, token_union data, list_t* const list);
 void list_destroy(list_t* list);
 
 #endif //TOKENIZATION_H

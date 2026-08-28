@@ -8,13 +8,38 @@
 #include "font.h"
 #include "macros.h"
 
-node_t* dif(node_t* node)
+static node_t* dif_num(node_t* node);
+static node_t* dif_var(node_t* node);
+static node_t* dif_add(node_t* node);
+static node_t* dif_sub(node_t* node);
+static node_t* dif_mul(node_t* node);
+static node_t* dif_div(node_t* node);
+static node_t* dif_ln(node_t* node);
+static node_t* dif_cos(node_t* node);
+static node_t* dif_sin(node_t* node);
+static node_t* dif_exp(node_t* node);
+static node_t* dif_pow(node_t* node);
+
+const operator_t operators_array[] =
+{
+    {ADD, "ADD", "+",   1, dif_add, false, SECOND_PRIORITY},
+    {SUB, "SUB", "-",   1, dif_sub, false, SECOND_PRIORITY},
+    {MUL, "MUL", "*",   1, dif_mul, false, FIRST_PRIORITY},
+    {DIV, "DIV", "/",   1, dif_div, false, FIRST_PRIORITY},
+    {POW, "POW", "^",   1, dif_pow, false, ZERO_PRIORITY},
+    {LN,  "LN" , "ln",  2, dif_ln , true, THIRD_PRIORITY},
+    {COS, "COS", "cos", 3, dif_cos, true, THIRD_PRIORITY},
+    {SIN, "SIN", "sin", 3, dif_sin, true, THIRD_PRIORITY},
+    {EXP, "EXP", "exp", 3, dif_exp, true, THIRD_PRIORITY}
+};
+
+node_t* differentiate(node_t* node)
 {
     if (!node) return nullptr;
 
     switch(NODE_TYPE)
     {
-        case OP: return operators_array[(int)NODE_OPERATION].dif(node);
+        case OP: return operators_array[(int)NODE_OPERATION].differentiate(node);
         case NUM: return dif_num(node);
         case VAR: return dif_var(node);
         case SPEC:
@@ -23,25 +48,25 @@ node_t* dif(node_t* node)
     }
 }
 
-node_t* dif_var(node_t* node)
+static node_t* dif_var(node_t* node)
 {
     assert(node);
     return NUM_(1);
 }
 
-node_t* dif_num(node_t* node)
+static node_t* dif_num(node_t* node)
 {
     assert(node);
     return NUM_(0);
 }
 
-node_t* dif_add(node_t* node)
+static node_t* dif_add(node_t* node)
 {
     assert(node);
     return ADD_(DL, DR);
 }
 
-node_t* dif_sub(node_t* node)
+static node_t* dif_sub(node_t* node)
 {
     assert(node);
     if (node->left)
@@ -50,43 +75,43 @@ node_t* dif_sub(node_t* node)
         return MUL_(NUM_(-1), DR);
 }
 
-node_t* dif_mul(node_t* node)
+static node_t* dif_mul(node_t* node)
 {
     assert(node);
     return ADD_(MUL_(DL, CR), MUL_(CL, DR));
 }
 
-node_t* dif_div(node_t* node)
+static node_t* dif_div(node_t* node)
 {
     assert(node);
     return DIV_(SUB_(MUL_(DL, CR), MUL_(CL, DR)), POW_(CR, NUM_(2)));
 }
 
-node_t* dif_ln(node_t* node)
+static node_t* dif_ln(node_t* node)
 {
     assert(node);
     return DIV_(DL, CL);
 }
 
-node_t* dif_cos(node_t* node)
+static node_t* dif_cos(node_t* node)
 {
     assert(node);
     return MUL_(MUL_(NUM_(-1), SIN_(CL)), DL);
 }
 
-node_t* dif_sin(node_t* node)
+static node_t* dif_sin(node_t* node)
 {
     assert(node);
     return MUL_(COS_(CL), DL);
 }
 
-node_t* dif_exp(node_t* node)
+static node_t* dif_exp(node_t* node)
 {
     assert(node);
     return MUL_(EXP_(CL), DL);
 }
 
-node_t* dif_pow(node_t* node)
+static node_t* dif_pow(node_t* node)
 {
     assert(node);
 

@@ -15,8 +15,8 @@
 
 #define CR                  copy_node(node->right)
 #define CL                  copy_node(node->left)
-#define DR                  dif(node->right)
-#define DL                  dif(node->left)
+#define DR                  differentiate(node->right)
+#define DL                  differentiate(node->left)
 
 #define NODE_TYPE           node->value->type
 #define NODE_NUMBER         node->value->data_t.number

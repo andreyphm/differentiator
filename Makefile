@@ -8,6 +8,8 @@ HDRS := $(wildcard $(HDR_DIR)/*.h)
 OBJS := $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 CXX := g++
+SANITIZER_FLAGS := -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,vla-bound,vptr
+
 FLAGS := -I$(HDR_DIR) -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
          -Waggressive-loop-optimizations -Wc++14-compat -Wmissing-declarations \
          -Wcast-align -Wcast-qual -Wchar-subscripts -Wconditionally-supported \
@@ -23,7 +25,7 @@ FLAGS := -I$(HDR_DIR) -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
          -Wno-varargs -Wstack-protector -fcheck-new -fsized-deallocation \
          -fstack-protector -fstrict-overflow -flto-odr-type-merging \
          -fno-omit-frame-pointer -Wlarger-than=30000 -Wstack-usage=8192 \
-         -pie -fPIE -Werror=vla -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,vla-bound,vptr
+         -pie -fPIE -Werror=vla $(SANITIZER_FLAGS)
 
 
 .PHONY: all clean

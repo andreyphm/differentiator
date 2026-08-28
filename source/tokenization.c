@@ -6,8 +6,21 @@
 #include "font.h"
 #include "dump.h"
 
+static void skip_spaces(const char** string);
+static bool try_digit(const char** buffer, list_t* const list);
+static bool try_char_op(const char** buffer, list_t* const list);
+static bool try_function(const char** buffer, list_t* const list);
+static bool try_bracket(const char** buffer, list_t* const list);
+static bool try_variable(const char** buffer, list_t* const list, variable_t* variables,
+                         int* last_variable_num, bool* is_variables);
+static token_t* list_push_back(const type_data type, token_union data, list_t* const list);
+static token_t* create_token(const type_data type, token_union data, list_t* const list);
+
 error_code tokenization(const char* buffer, variable_t* variables, list_t* const list)
 {
+    list->head = create_token(SPEC, (token_union){.spec_symbol = '!'}, list);
+    list->tail = list->head;
+
     bool is_variables = false;
     int last_variable_num = 0;
 
@@ -33,19 +46,20 @@ error_code tokenization(const char* buffer, variable_t* variables, list_t* const
     token_t* new_head = list->head->next;
     free(list->head);
     list->head = new_head;
+    list->head->prev = nullptr;
 
-    list_dump(list, LIST_DUMP_TXT, LIST_DUMP_PNG, variables);
+    list_dump(list, variables);
 
     return NO_ERROR;
 }
 
-void skip_spaces(const char** string)
+static void skip_spaces(const char** string)
 {
     while (isspace(**string))
         (*string)++;
 }
 
-bool try_digit(const char** buffer, list_t* const list)
+static bool try_digit(const char** buffer, list_t* const list)
 {
     bool dot_already = false;
     double value = 0;
@@ -71,7 +85,7 @@ bool try_digit(const char** buffer, list_t* const list)
     return false;
 }
 
-bool try_char_op(const char** buffer, list_t* const list)
+static bool try_char_op(const char** buffer, list_t* const list)
 {
     for (size_t i = 0; i <= LAST_CHAR_OP_NUM; i++)
     {
@@ -87,7 +101,7 @@ bool try_char_op(const char** buffer, list_t* const list)
     return false;
 }
 
-bool try_function(const char** buffer, list_t* const list)
+static bool try_function(const char** buffer, list_t* const list)
 {
     const char* start_of_buffer = *buffer;
 
@@ -114,7 +128,7 @@ bool try_function(const char** buffer, list_t* const list)
     return false;
 }
 
-bool try_bracket(const char** buffer, list_t* const list)
+static bool try_bracket(const char** buffer, list_t* const list)
 {
     if (**buffer == '(' || **buffer == ')')
     {
@@ -126,7 +140,8 @@ bool try_bracket(const char** buffer, list_t* const list)
     return false;
 }
 
-bool try_variable(const char** buffer, list_t* const list, variable_t* variables, int* last_variable_num, bool* is_variables)
+static bool try_variable(const char** buffer, list_t* const list, variable_t* variables,
+                         int* last_variable_num, bool* is_variables)
 {
     const char* start_of_buffer = *buffer;
 
@@ -169,7 +184,7 @@ bool try_variable(const char** buffer, list_t* const list, variable_t* variables
     return true;
 }
 
-token_t* list_push_back(const type_data type, token_union data, list_t* const list)
+static token_t* list_push_back(const type_data type, token_union data, list_t* const list)
 {
     assert(list);
 
@@ -182,7 +197,7 @@ token_t* list_push_back(const type_data type, token_union data, list_t* const li
     return token;
 }
 
-token_t* create_token(const type_data type, token_union data, list_t* const list)
+static token_t* create_token(const type_data type, token_union data, list_t* const list)
 {
     assert(list);
 

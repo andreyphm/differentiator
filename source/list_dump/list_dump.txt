@@ -1,49 +1,122 @@
 digraph structs
 {
-rankdir = LR;
-graph[bgcolor="#e0e0e9ff"];
-node_1 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = COS | ADDRESS = 0x603000000070 |
-{next = 0x6030000000a0 | prev = 0x603000000040}" ];
-node_2 [style=filled, penwidth = 3, fillcolor="#f673e9ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ( | ADDRESS = 0x6030000000a0 |
-{next = 0x6030000000d0 | prev = 0x603000000070}" ];
-node_3 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = SIN | ADDRESS = 0x6030000000d0 |
-{next = 0x603000000100 | prev = 0x6030000000a0}" ];
-node_4 [style=filled, penwidth = 3, fillcolor="#f673e9ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ( | ADDRESS = 0x603000000100 |
-{next = 0x603000000130 | prev = 0x6030000000d0}" ];
-node_5 [style=filled, penwidth = 3, fillcolor="#f673e9ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ( | ADDRESS = 0x603000000130 |
-{next = 0x603000000160 | prev = 0x603000000100}" ];
-node_6 [style=filled, penwidth = 3, fillcolor="#36ff6fff",color = "#3f6969ff", shape=record, label= " TYPE = VAR | VAR_NUM = 0 (x) | ADDRESS = 0x603000000160 |
-{next = 0x603000000190 | prev = 0x603000000130}" ];
-node_7 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = POW | ADDRESS = 0x603000000190 |
-{next = 0x6030000001c0 | prev = 0x603000000160}" ];
-node_8 [style=filled, penwidth = 3, fillcolor="#f8c331ff",color = "#3f6969ff", shape=record, label= " TYPE = NUM | VALUE = 3 | ADDRESS = 0x6030000001c0 |
-{next = 0x6030000001f0 | prev = 0x603000000190}" ];
-node_9 [style=filled, penwidth = 3, fillcolor="#f673e9ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ) | ADDRESS = 0x6030000001f0 |
-{next = 0x603000000220 | prev = 0x6030000001c0}" ];
-node_10 [style=filled, penwidth = 3, fillcolor="#b7e5f3ff",color = "#3f6969ff", shape=record, label= " TYPE = OP | OP_CODE = MUL | ADDRESS = 0x603000000220 |
-{next = 0x603000000250 | prev = 0x6030000001f0}" ];
-node_11 [style=filled, penwidth = 3, fillcolor="#f8c331ff",color = "#3f6969ff", shape=record, label= " TYPE = NUM | VALUE = 15 | ADDRESS = 0x603000000250 |
-{next = 0x603000000280 | prev = 0x603000000220}" ];
-node_12 [style=filled, penwidth = 3, fillcolor="#f673e9ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ) | ADDRESS = 0x603000000280 |
-{next = 0x6030000002b0 | prev = 0x603000000250}" ];
-node_13 [style=filled, penwidth = 3, fillcolor="#f673e9ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = ) | ADDRESS = 0x6030000002b0 |
-{next = 0x6030000002e0 | prev = 0x603000000280}" ];
-node_14 [style=filled, penwidth = 3, fillcolor="#f673e9ff",color = "#3f6969ff", shape=record, label= " TYPE = SPEC | VALUE = $ | ADDRESS = 0x6030000002e0 |
-{next = (nil) | prev = 0x6030000002b0}" ];
+rankdir = TB;
+graph[bgcolor="#e0e0e9ff", newrank=true];
+node_1 [shape=plain, group="column_0", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = (</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000121f0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012220</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">(nil)</TD></TR></TABLE>>];
+node_2 [shape=plain, group="column_1", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#36ff6fff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = VAR</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VAR_NUM = 0 (x)</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012220</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012250</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000121f0</TD></TR></TABLE>>];
+node_3 [shape=plain, group="column_2", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = ADD</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012250</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012280</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012220</TD></TR></TABLE>>];
+node_4 [shape=plain, group="column_3", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f8c331ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = NUM</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = 1</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012280</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000122b0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012250</TD></TR></TABLE>>];
+node_5 [shape=plain, group="column_4", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = )</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000122b0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000122e0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012280</TD></TR></TABLE>>];
+node_6 [shape=plain, group="column_5", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = MUL</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000122e0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012310</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000122b0</TD></TR></TABLE>>];
+node_7 [shape=plain, group="column_6", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = (</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012310</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012340</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000122e0</TD></TR></TABLE>>];
+node_8 [shape=plain, group="column_7", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#36ff6fff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = VAR</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VAR_NUM = 0 (x)</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012340</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012370</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012310</TD></TR></TABLE>>];
+node_9 [shape=plain, group="column_8", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = ADD</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012370</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000123a0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012340</TD></TR></TABLE>>];
+node_10 [shape=plain, group="column_9", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f8c331ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = NUM</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = 2</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000123a0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000123d0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012370</TD></TR></TABLE>>];
+node_11 [shape=plain, group="column_10", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = )</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000123d0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012400</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000123a0</TD></TR></TABLE>>];
+node_12 [shape=plain, group="column_11", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = MUL</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012400</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012430</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000123d0</TD></TR></TABLE>>];
+node_13 [shape=plain, group="column_12", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = (</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012430</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012460</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012400</TD></TR></TABLE>>];
+node_14 [shape=plain, group="column_13", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#36ff6fff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = VAR</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VAR_NUM = 0 (x)</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012460</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012490</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012430</TD></TR></TABLE>>];
+node_15 [shape=plain, group="column_14", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = ADD</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012490</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000124c0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012460</TD></TR></TABLE>>];
+node_16 [shape=plain, group="column_15", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f8c331ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = NUM</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = 3</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000124c0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000124f0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012490</TD></TR></TABLE>>];
+node_17 [shape=plain, group="column_16", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = )</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000124f0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012520</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000124c0</TD></TR></TABLE>>];
+node_18 [shape=plain, group="column_17", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = MUL</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012520</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012550</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000124f0</TD></TR></TABLE>>];
+node_19 [shape=plain, group="column_18", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = (</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012550</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012580</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012520</TD></TR></TABLE>>];
+node_20 [shape=plain, group="column_19", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#36ff6fff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = VAR</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VAR_NUM = 0 (x)</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012580</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000125b0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012550</TD></TR></TABLE>>];
+node_21 [shape=plain, group="column_19", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = ADD</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000125b0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000125e0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012580</TD></TR></TABLE>>];
+node_22 [shape=plain, group="column_18", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f8c331ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = NUM</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = 4</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000125e0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012610</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000125b0</TD></TR></TABLE>>];
+node_23 [shape=plain, group="column_17", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = )</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012610</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012640</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000125e0</TD></TR></TABLE>>];
+node_24 [shape=plain, group="column_16", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = MUL</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012640</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012670</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012610</TD></TR></TABLE>>];
+node_25 [shape=plain, group="column_15", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = (</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012670</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000126a0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012640</TD></TR></TABLE>>];
+node_26 [shape=plain, group="column_14", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#36ff6fff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = VAR</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VAR_NUM = 0 (x)</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000126a0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000126d0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012670</TD></TR></TABLE>>];
+node_27 [shape=plain, group="column_13", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = ADD</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000126d0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012700</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000126a0</TD></TR></TABLE>>];
+node_28 [shape=plain, group="column_12", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f8c331ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = NUM</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = 5</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012700</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012730</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000126d0</TD></TR></TABLE>>];
+node_29 [shape=plain, group="column_11", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = )</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012730</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012760</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012700</TD></TR></TABLE>>];
+node_30 [shape=plain, group="column_10", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = MUL</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012760</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012790</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012730</TD></TR></TABLE>>];
+node_31 [shape=plain, group="column_9", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = (</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012790</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000127c0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012760</TD></TR></TABLE>>];
+node_32 [shape=plain, group="column_8", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#36ff6fff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = VAR</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VAR_NUM = 0 (x)</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000127c0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000127f0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012790</TD></TR></TABLE>>];
+node_33 [shape=plain, group="column_7", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = ADD</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000127f0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012820</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000127c0</TD></TR></TABLE>>];
+node_34 [shape=plain, group="column_6", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f8c331ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = NUM</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = 6</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012820</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012850</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000127f0</TD></TR></TABLE>>];
+node_35 [shape=plain, group="column_5", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = )</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012850</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012880</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012820</TD></TR></TABLE>>];
+node_36 [shape=plain, group="column_4", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = MUL</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012880</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000128b0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012850</TD></TR></TABLE>>];
+node_37 [shape=plain, group="column_3", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = (</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000128b0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000128e0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012880</TD></TR></TABLE>>];
+node_38 [shape=plain, group="column_2", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#36ff6fff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = VAR</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VAR_NUM = 0 (x)</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000128e0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012910</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000128b0</TD></TR></TABLE>>];
+node_39 [shape=plain, group="column_1", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = ADD</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012910</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012940</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000128e0</TD></TR></TABLE>>];
+node_40 [shape=plain, group="column_0", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f8c331ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = NUM</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = 7</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012940</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012970</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012910</TD></TR></TABLE>>];
+node_41 [shape=plain, group="column_0", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = )</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012970</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000129a0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012940</TD></TR></TABLE>>];
+node_42 [shape=plain, group="column_1", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = MUL</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000129a0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x6030000129d0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012970</TD></TR></TABLE>>];
+node_43 [shape=plain, group="column_2", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = (</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x6030000129d0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012a00</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000129a0</TD></TR></TABLE>>];
+node_44 [shape=plain, group="column_3", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#36ff6fff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = VAR</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VAR_NUM = 0 (x)</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012a00</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012a30</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x6030000129d0</TD></TR></TABLE>>];
+node_45 [shape=plain, group="column_4", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#b7e5f3ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = OP</TD></TR><TR><TD COLSPAN="2" WIDTH="260">OP_CODE = ADD</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012a30</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012a60</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012a00</TD></TR></TABLE>>];
+node_46 [shape=plain, group="column_5", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f8c331ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = NUM</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = 8</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012a60</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012a90</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012a30</TD></TR></TABLE>>];
+node_47 [shape=plain, group="column_6", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = )</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012a90</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">0x603000012ac0</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012a60</TD></TR></TABLE>>];
+node_48 [shape=plain, group="column_7", label=<<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#f673e9ff" COLOR="#3f6969ff"><TR><TD COLSPAN="2" WIDTH="260">TYPE = SPEC</TD></TR><TR><TD COLSPAN="2" WIDTH="260">VALUE = $</TD></TR><TR><TD COLSPAN="2" WIDTH="260">ADDRESS = 0x603000012ac0</TD></TR><TR><TD WIDTH="80">next</TD><TD WIDTH="180">(nil)</TD></TR><TR><TD WIDTH="80">prev</TD><TD WIDTH="180">0x603000012a90</TD></TR></TABLE>>];
+left_rail_0 [shape=point, width=0, height=0, style=invis, group="left_rail"];
+right_rail_0 [shape=point, width=0, height=0, style=invis, group="right_rail"];
+{ rank=same; left_rail_0; node_1; node_2; node_3; node_4; node_5; node_6; node_7; node_8; node_9; node_10; node_11; node_12; node_13; node_14; node_15; node_16; node_17; node_18; node_19; node_20; right_rail_0; }
+left_rail_0 -> node_1 [style=invis, weight=10000];
+node_20 -> right_rail_0 [style=invis, weight=10000];
+left_rail_1 [shape=point, width=0, height=0, style=invis, group="left_rail"];
+right_rail_1 [shape=point, width=0, height=0, style=invis, group="right_rail"];
+{ rank=same; left_rail_1; node_40; node_39; node_38; node_37; node_36; node_35; node_34; node_33; node_32; node_31; node_30; node_29; node_28; node_27; node_26; node_25; node_24; node_23; node_22; node_21; right_rail_1; }
+left_rail_1 -> node_40 [style=invis, weight=10000];
+node_21 -> right_rail_1 [style=invis, weight=10000];
+left_rail_0 -> left_rail_1 [style=invis, weight=10000];
+right_rail_0 -> right_rail_1 [style=invis, weight=10000];
+left_rail_2 [shape=point, width=0, height=0, style=invis, group="left_rail"];
+right_rail_2 [shape=point, width=0, height=0, style=invis, group="right_rail"];
+{ rank=same; left_rail_2; node_41; node_42; node_43; node_44; node_45; node_46; node_47; node_48; right_rail_2; }
+left_rail_2 -> node_41 [style=invis, weight=10000];
+node_48 -> right_rail_2 [style=invis, weight=10000];
+left_rail_1 -> left_rail_2 [style=invis, weight=10000];
+right_rail_1 -> right_rail_2 [style=invis, weight=10000];
 {
-edge[color = "#149b5aff", weight = 1000];
-node_1 -> node_2
-node_2 -> node_3
-node_3 -> node_4
-node_4 -> node_5
-node_5 -> node_6
-node_6 -> node_7
-node_7 -> node_8
-node_8 -> node_9
-node_9 -> node_10
-node_10 -> node_11
-node_11 -> node_12
-node_12 -> node_13
-node_13 -> node_14
+edge[color="#149b5aff", style=solid, weight=1000];
+node_1 -> node_2;
+node_2 -> node_3;
+node_3 -> node_4;
+node_4 -> node_5;
+node_5 -> node_6;
+node_6 -> node_7;
+node_7 -> node_8;
+node_8 -> node_9;
+node_9 -> node_10;
+node_10 -> node_11;
+node_11 -> node_12;
+node_12 -> node_13;
+node_13 -> node_14;
+node_14 -> node_15;
+node_15 -> node_16;
+node_16 -> node_17;
+node_17 -> node_18;
+node_18 -> node_19;
+node_19 -> node_20;
+node_20 -> node_21;
+node_22 -> node_21 [dir=back];
+node_23 -> node_22 [dir=back];
+node_24 -> node_23 [dir=back];
+node_25 -> node_24 [dir=back];
+node_26 -> node_25 [dir=back];
+node_27 -> node_26 [dir=back];
+node_28 -> node_27 [dir=back];
+node_29 -> node_28 [dir=back];
+node_30 -> node_29 [dir=back];
+node_31 -> node_30 [dir=back];
+node_32 -> node_31 [dir=back];
+node_33 -> node_32 [dir=back];
+node_34 -> node_33 [dir=back];
+node_35 -> node_34 [dir=back];
+node_36 -> node_35 [dir=back];
+node_37 -> node_36 [dir=back];
+node_38 -> node_37 [dir=back];
+node_39 -> node_38 [dir=back];
+node_40 -> node_39 [dir=back];
+node_40 -> node_41;
+node_41 -> node_42;
+node_42 -> node_43;
+node_43 -> node_44;
+node_44 -> node_45;
+node_45 -> node_46;
+node_46 -> node_47;
+node_47 -> node_48;
 }
 }

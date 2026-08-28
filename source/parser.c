@@ -14,6 +14,14 @@
 #define TOKEN_NUM_VALUE             (*token)->data_t.number
 #define TOKEN_VAR_NUMBER            (*token)->data_t.var_number
 
+static node_t* GetP(token_t** token);
+static node_t* GetE(token_t** token);
+static node_t* GetT(token_t** token);
+static node_t* GetS(token_t** token);
+static node_t* GetF(token_t** token);
+static node_t* GetN(token_t** token);
+static node_t* GetV(token_t** token);
+
 node_t* GetG(token_t** token)
 {
     node_t* value = GetE(token);
@@ -25,7 +33,7 @@ node_t* GetG(token_t** token)
     return value;
 }
 
-node_t* GetE(token_t** token)
+static node_t* GetE(token_t** token)
 {
     node_t* value = GetT(token);
     if (!value) return nullptr;
@@ -51,7 +59,7 @@ node_t* GetE(token_t** token)
     return value;
 }
 
-node_t* GetT(token_t** token)
+static node_t* GetT(token_t** token)
 {
     node_t* value = GetS(token);
     if (!value) return nullptr;
@@ -77,7 +85,7 @@ node_t* GetT(token_t** token)
     return value;
 }
 
-node_t* GetS(token_t** token)
+static node_t* GetS(token_t** token)
 {
     node_t* value = GetP(token);
     if (!value) return nullptr;
@@ -99,7 +107,7 @@ node_t* GetS(token_t** token)
     return value;
 }
 
-node_t* GetP(token_t** token)
+static node_t* GetP(token_t** token)
 {
     if (TOKEN_IS_SPEC && TOKEN_SPEC_SYMBOL == '(')
     {
@@ -126,7 +134,7 @@ node_t* GetP(token_t** token)
     else return nullptr;
 }
 
-node_t* GetN(token_t** token)
+static node_t* GetN(token_t** token)
 {
     node_t* value = NUM_(TOKEN_NUM_VALUE);
     *token = (*token)->next;
@@ -134,7 +142,7 @@ node_t* GetN(token_t** token)
     return value;
 }
 
-node_t* GetV(token_t** token)
+static node_t* GetV(token_t** token)
 {
     node_t* value = VAR_(TOKEN_VAR_NUMBER);
     *token = (*token)->next;
@@ -142,7 +150,7 @@ node_t* GetV(token_t** token)
     return value;
 }
 
-node_t* GetF(token_t** token)
+static node_t* GetF(token_t** token)
 {
     operator_code code = TOKEN_OP_CODE;
     *token = (*token)->next;

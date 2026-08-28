@@ -6,12 +6,5 @@
 #include "tokenization.h"
 
 node_t* GetG(token_t** token);
-node_t* GetP(token_t** token);
-node_t* GetE(token_t** token);
-node_t* GetT(token_t** token);
-node_t* GetS(token_t** token);
-node_t* GetF(token_t** token);
-node_t* GetN(token_t** token);
-node_t* GetV(token_t** token);
 
 #endif // PARSER_H

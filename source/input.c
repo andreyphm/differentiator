@@ -2,16 +2,23 @@
 #include <ctype.h>
 #include <sys/stat.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "differentiator.h"
 #include "font.h"
 #include "input.h"
 
-program_status_data action_request()
+static void bad_argc_message(const char* const* argv);
+static program_status_data request_re_entry(void);
+static void clear_input_buffer(void);
+static bool has_pdf_extension(const char* file_name);
+
+program_status_data action_request(void)
 {
-    printf(MAKE_BOLD("Program should:\n1. Read expression from file\n2. Read expression from console\n"
-                                      "3. Output the differentiated tree to a PDF file\n4. Shut down\n"
-                                      "Please, answer 1, 2, 3 or 4\n"));
+    printf(MAKE_BOLD("Program should:\n1. Differentiate expression from the input file\n"
+                                      "2. Differentiate expression from console\n"
+                                      "3. Shut down\n"
+                                      "Please, answer 1, 2 or 3\n"));
     int user_input = 0;
     int result_of_scanf = scanf("%d", &user_input);
     int extra_symbol = 0;
@@ -31,13 +38,9 @@ program_status_data action_request()
             switch (user_input)
             {
             case (int) FROM_FILE_TO_TREE:
-                return FROM_FILE_TO_TREE;
             case (int) FROM_CONSOLE_TO_TREE:
-                return FROM_CONSOLE_TO_TREE;
-            case (int) DIF_TREE_TO_LATEX_FILE:
-                return DIF_TREE_TO_LATEX_FILE;
             case (int) PROGRAM_QUIT:
-                return PROGRAM_QUIT;
+                return (program_status_data) user_input;
             default:
                 program_status = request_re_entry();
             }
@@ -53,7 +56,7 @@ program_status_data action_request()
     return program_status;
 }
 
-program_status_data request_re_entry()
+static program_status_data request_re_entry(void)
 {
     program_status_data program_status = FROM_FILE_TO_TREE;
     int user_answer = 0;
@@ -87,7 +90,7 @@ program_status_data request_re_entry()
     return program_status;
 }
 
-void clear_input_buffer()
+static void clear_input_buffer(void)
 {
     int entered_character = 0;
 
@@ -111,36 +114,45 @@ char* read_file_to_buffer(FILE* const tree_txt_file)
     return buffer;
 }
 
-void bad_argc_message(const char* const* argv)
+static void bad_argc_message(const char* const* argv)
 {
-    printf(MAKE_BOLD("You haven't entered the input and output files or you entered them incorrectly.\nDefault files will be used: "
-                                "input.txt for input and output.txt for output.\nIf you want to select your files, please, "
-                                "use: %s input_file output_file.\n\n"), argv[0]);
+    printf(MAKE_BOLD_RED("Incorrect command line arguments.\n")
+           MAKE_BOLD("Usage: %s input_file [output.pdf]\n"), argv[0]);
 }
 
-void check_files(FILE** const input_file, FILE** const output_file, int argc, const char* const argv[])
+bool check_files(FILE** const input_file, int argc, const char* const argv[])
 {
-    if (argc == CORRECT_NUMBER_OF_FILES)
-    {
-        *input_file = fopen(argv[1], "r");
-        *output_file = fopen(argv[2], "w");
-
-        if (!*input_file)
-        {
-            printf(MAKE_BOLD_RED("Can't open input file. Default input file will be used: input.txt.\n"));
-            *input_file = fopen("input.txt", "r");
-        }
-
-        if (!*output_file)
-        {
-            printf(MAKE_BOLD_RED("Can't open output file. Default output file will be used: output.tex.\n"));
-            *output_file = fopen("output.tex", "w");
-        }
-    }
-    else
+    if (argc < MIN_NUMBER_OF_ARGUMENTS || argc > MAX_NUMBER_OF_ARGUMENTS)
     {
         bad_argc_message(argv);
-        *input_file = fopen("input.txt", "r");
-        *output_file = fopen("output.tex", "w");
+        return false;
     }
+
+    if (argc == MAX_NUMBER_OF_ARGUMENTS && !has_pdf_extension(argv[2]))
+    {
+        bad_argc_message(argv);
+        return false;
+    }
+
+    *input_file = fopen(argv[1], "r");
+    if (!*input_file)
+    {
+        printf(MAKE_BOLD_RED("Can't open input file: %s\n"), argv[1]);
+        return false;
+    }
+
+    return true;
+}
+
+static bool has_pdf_extension(const char* file_name)
+{
+    size_t length = strlen(file_name);
+    if (length < 4)
+        return false;
+
+    const char* extension = file_name + length - 4;
+    return extension[0] == '.' &&
+           tolower(extension[1]) == 'p' &&
+           tolower(extension[2]) == 'd' &&
+           tolower(extension[3]) == 'f';
 }

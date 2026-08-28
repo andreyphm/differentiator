@@ -3,7 +3,9 @@
 #include "differentiator.h"
 #include "macros.h"
 
-node_t* simplify_node(node_t* node, bool* simplifications_ptr)
+static double remove_minus_before_zero(double number_being_checked);
+
+node_t* simplify_tree(node_t* node, bool* simplifications_ptr)
 {
     if (!node) return nullptr;
     if (!node->left || !node->right) return node;
@@ -125,13 +127,13 @@ node_t* simplify_node(node_t* node, bool* simplifications_ptr)
         default:
             break;
     }
-    node->left  = simplify_node(node->left, simplifications_ptr);
-    node->right = simplify_node(node->right, simplifications_ptr);
+    node->left  = simplify_tree(node->left, simplifications_ptr);
+    node->right = simplify_tree(node->right, simplifications_ptr);
 
     return node;
 }
 
-double remove_minus_before_zero (double number_being_checked)
+static double remove_minus_before_zero(double number_being_checked)
 {
     if (is_close_to_zero(number_being_checked))
         number_being_checked = fabs(number_being_checked);

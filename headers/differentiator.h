@@ -71,7 +71,7 @@ struct operator_t
     const char* name;
     const char* design;
     size_t strlen;
-    node_t* (*dif) (node_t* node);
+    node_t* (*differentiate)(node_t* node);
     bool is_one_arg;
     priority_t priority;
 
@@ -87,38 +87,14 @@ struct variable_t
 node_t* create_node(const type_data type, data_union data, node_t* left, node_t* right);
 void destroy_node(node_t* node);
 
-const char* enum_to_string(type_data type);
 void variables_destroy(variable_t** variables);
 
 node_t* copy_node(node_t* node);
-node_t* simplify_node(node_t* node, bool* simplifications_ptr);
+node_t* simplify_tree(node_t* node, bool* simplifications_ptr);
 bool is_close_to_zero (double number_being_checked);
-double remove_minus_before_zero (double number_being_checked);
 
-node_t* dif(node_t* node);
-node_t* dif_num(node_t* node);
-node_t* dif_var(node_t* node);
-node_t* dif_add(node_t* node);
-node_t* dif_sub(node_t* node);
-node_t* dif_mul(node_t* node);
-node_t* dif_div(node_t* node);
-node_t* dif_ln (node_t* node);
-node_t* dif_cos(node_t* node);
-node_t* dif_sin(node_t* node);
-node_t* dif_exp(node_t* node);
-node_t* dif_pow(node_t* node);
+node_t* differentiate(node_t* node);
 
-const operator_t operators_array[] =
-{
-    {ADD, "ADD", "+",   1, dif_add, false, SECOND_PRIORITY},
-    {SUB, "SUB", "-",   1, dif_sub, false, SECOND_PRIORITY},
-    {MUL, "MUL", "*",   1, dif_mul, false, FIRST_PRIORITY},
-    {DIV, "DIV", "/",   1, dif_div, false, FIRST_PRIORITY},
-    {POW, "POW", "^",   1, dif_pow, false, ZERO_PRIORITY},
-    {LN,  "LN" , "ln",  2, dif_ln , true, THIRD_PRIORITY},
-    {COS, "COS", "cos", 3, dif_cos, true, THIRD_PRIORITY},
-    {SIN, "SIN", "sin", 3, dif_sin, true, THIRD_PRIORITY},
-    {EXP, "EXP", "exp", 3, dif_exp, true, THIRD_PRIORITY}
-};
+extern const operator_t operators_array[];
 
 #endif //DIFFERENTIATOR_H

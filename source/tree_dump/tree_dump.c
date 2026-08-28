@@ -9,15 +9,15 @@
 const int STACK_CAPACITY = 1000;
 const int COMMAND_CAPACITY = 100;
 
-void tree_dump(node_t* const node, const char* const png_file_name, const variable_t* const variables)
+static const char* enum_to_string(type_data type);
+
+void tree_dump(node_t* const node, const variable_t* const variables)
 {
     if (!node)
     {
         printf(MAKE_BOLD_RED("Tree is empty, nothing to dump\n"));
         return;
     }
-    assert(png_file_name);
-
     FILE* txt_file = fopen(TREE_DUMP_TXT, "w");
     assert(txt_file);
 
@@ -97,14 +97,14 @@ void tree_dump(node_t* const node, const char* const png_file_name, const variab
     fclose(txt_file);
     free(stack);
 
-    char command[COMMAND_CAPACITY];
-    sprintf(command, "dot -Tpng " TREE_DUMP_TXT " -o %s", png_file_name);
+    char command[COMMAND_CAPACITY] = {};
+    sprintf(command, "dot \"" TREE_DUMP_TXT "\" -Tsvg -o \"" TREE_DUMP_SVG "\"");
     system(command);
 
-    printf(MAKE_BOLD_GREEN("Tree visualization saved to %s\n"), TREE_DUMP_PNG);
-    }
+    // printf(MAKE_BOLD_GREEN("Tree visualization saved to %s\n"), TREE_DUMP_SVG);
+}
 
-const char* enum_to_string(type_data type)
+static const char* enum_to_string(type_data type)
 {
     switch (type)
     {
