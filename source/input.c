@@ -8,96 +8,8 @@
 #include "font.h"
 #include "input.h"
 
-static void bad_argc_message(const char* const* argv);
-static program_status_data request_re_entry(void);
-static void clear_input_buffer(void);
+static void bad_arguments_message(const char* program_name);
 static bool has_pdf_extension(const char* file_name);
-
-program_status_data action_request(void)
-{
-    printf(MAKE_BOLD("Program should:\n1. Differentiate expression from the input file\n"
-                                      "2. Differentiate expression from console\n"
-                                      "3. Shut down\n"
-                                      "Please, answer 1, 2 or 3\n"));
-    int user_input = 0;
-    int result_of_scanf = scanf("%d", &user_input);
-    int extra_symbol = 0;
-    program_status_data program_status = FROM_FILE_TO_TREE;
-
-    if (result_of_scanf == 1)
-    {
-        extra_symbol = getchar();
-        if (!(extra_symbol == '\n' || extra_symbol == EOF))
-        {
-            clear_input_buffer();
-            program_status = request_re_entry();
-        }
-
-        else
-        {
-            switch (user_input)
-            {
-            case (int) FROM_FILE_TO_TREE:
-            case (int) FROM_CONSOLE_TO_TREE:
-            case (int) PROGRAM_QUIT:
-                return (program_status_data) user_input;
-            default:
-                program_status = request_re_entry();
-            }
-        }
-    }
-
-    else
-    {
-        clear_input_buffer();
-        program_status = request_re_entry();
-    }
-
-    return program_status;
-}
-
-static program_status_data request_re_entry(void)
-{
-    program_status_data program_status = FROM_FILE_TO_TREE;
-    int user_answer = 0;
-
-    printf(MAKE_BOLD_RED("Input is incorrect.\n"
-                         "Do you want to continue the program?\n"
-                         "Answer 1 to start again and write something else to exit:\n"));
-
-    scanf("%d", &user_answer);
-
-    if (user_answer != 1)
-        program_status = PROGRAM_QUIT;
-
-    else
-    {
-        int extra_symbol = 0;
-        program_status = PROGRAM_START_AGAIN;
-
-        do {
-            extra_symbol = getchar();
-
-            if(!isspace(extra_symbol))
-            {
-                program_status = PROGRAM_QUIT;
-                clear_input_buffer();
-                break;
-            }
-
-        } while(extra_symbol != '\n' && extra_symbol != EOF);
-    }
-    return program_status;
-}
-
-static void clear_input_buffer(void)
-{
-    int entered_character = 0;
-
-    do {
-        entered_character = getchar();
-    } while (entered_character != '\n' && entered_character != EOF);
-}
 
 char* read_file_to_buffer(FILE* const tree_txt_file)
 {
@@ -114,30 +26,54 @@ char* read_file_to_buffer(FILE* const tree_txt_file)
     return buffer;
 }
 
-static void bad_argc_message(const char* const* argv)
+static void bad_arguments_message(const char* program_name)
 {
     printf(MAKE_BOLD_RED("Incorrect command line arguments.\n")
-           MAKE_BOLD("Usage: %s input_file [output.pdf]\n"), argv[0]);
+           MAKE_BOLD("Usage: %s [-i input_file] [-o output.pdf]\n"), program_name);
 }
 
-bool check_files(FILE** const input_file, int argc, const char* const argv[])
+bool parse_arguments(program_options_t* options, int argc, const char* const argv[])
 {
-    if (argc < MIN_NUMBER_OF_ARGUMENTS || argc > MAX_NUMBER_OF_ARGUMENTS)
+    assert(options);
+    assert(argv);
+
+    *options = {};
+    for (int i = 1; i < argc; i++)
     {
-        bad_argc_message(argv);
+        if (!strcmp(argv[i], "-i") && !options->input_file_name && i + 1 < argc)
+            options->input_file_name = argv[++i];
+
+        else if (!strcmp(argv[i], "-o") && !options->output_file_name && i + 1 < argc)
+            options->output_file_name = argv[++i];
+
+        else
+        {
+            bad_arguments_message(argv[0]);
+            return false;
+        }
+    }
+
+    if (options->output_file_name && !has_pdf_extension(options->output_file_name))
+    {
+        bad_arguments_message(argv[0]);
         return false;
     }
 
-    if (argc == MAX_NUMBER_OF_ARGUMENTS && !has_pdf_extension(argv[2]))
-    {
-        bad_argc_message(argv);
-        return false;
-    }
+    return true;
+}
 
-    *input_file = fopen(argv[1], "r");
+bool open_input_file(FILE** input_file, const char* input_file_name)
+{
+    assert(input_file);
+
+    *input_file = nullptr;
+    if (!input_file_name)
+        return true;
+
+    *input_file = fopen(input_file_name, "r");
     if (!*input_file)
     {
-        printf(MAKE_BOLD_RED("Can't open input file: %s\n"), argv[1]);
+        printf(MAKE_BOLD_RED("Can't open input file: %s\n"), input_file_name);
         return false;
     }
 

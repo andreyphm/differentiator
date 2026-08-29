@@ -292,7 +292,7 @@ bool make_dif_tree(program_status_data program_status, variable_t** variables_pt
     *node_ptr = differentiated_node;
     tree_dump(*node_ptr, *variables_ptr);
 
-    printf(MAKE_BOLD_GREEN("Successfully differentiated.\n"));
+    // printf(MAKE_BOLD_GREEN("Successfully differentiated.\n"));
     return true;
 }
 
@@ -354,8 +354,6 @@ static void from_file_to_tree(variable_t** variables, FILE* input_file,
 
 static bool from_console_to_tree(variable_t** variables, char** buffer_ptr, char** original_ptr)
 {
-    printf(MAKE_BOLD("Please, write the expression in console\n"));
-
     *variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
 
     size_t capacity = FIRST_CONSOLE_CAPACITY;
@@ -554,6 +552,5 @@ void program_complete(variable_t** variables_ptr, node_t** node_ptr, FILE* input
 {
     if (*variables_ptr) variables_destroy(variables_ptr);
     destroy_node(*node_ptr);
-    fclose(input_file);
-    printf(MAKE_BOLD("Program completed.\n"));
+    if (input_file) fclose(input_file);
 }
