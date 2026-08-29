@@ -24,7 +24,7 @@ FLAGS := -I$(HDR_DIR) -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
          -Wno-missing-field-initializers -Wno-narrowing -Wno-old-style-cast \
          -Wno-varargs -Wstack-protector -fcheck-new -fsized-deallocation \
          -fstack-protector -fstrict-overflow -flto-odr-type-merging \
-         -fno-omit-frame-pointer -Wlarger-than=30000 -Wstack-usage=8192 \
+         -fno-omit-frame-pointer -Wlarger-than=50000 -Wstack-usage=8192 \
          -pie -fPIE -Werror=vla $(SANITIZER_FLAGS)
 
 

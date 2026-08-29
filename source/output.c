@@ -22,8 +22,8 @@
 #define TEMP_PDF_FILE       "temp/output.pdf"
 
 static const size_t FIRST_CONSOLE_CAPACITY       = 128;
-static const size_t MAX_CONSOLE_EXPRESSION_DEPTH = 6;
-static const size_t MAX_LATEX_EXPRESSION_DEPTH   = 4;
+static const size_t MAX_CONSOLE_EXPRESSION_DEPTH = 7;
+static const size_t MAX_LATEX_EXPRESSION_DEPTH   = 6;
 static const size_t MIN_ALIAS_SUBTREE_SIZE       = 6;
 
 struct expression_alias_t
@@ -41,6 +41,8 @@ struct expression_aliases_t
 
 static char* alias_name(size_t number, char* buffer, size_t buffer_size);
 static size_t subtree_size(const node_t* node);
+static bool subtrees_equal(const node_t* first, const node_t* second);
+static size_t find_alias(const expression_aliases_t* aliases, const node_t* node);
 static size_t add_alias(expression_aliases_t* aliases, const node_t* node);
 static bool check_for_alias(const node_t* node, size_t depth, size_t max_depth,
                             expression_aliases_t* aliases, FILE* output_file);
@@ -451,13 +453,59 @@ static size_t subtree_size(const node_t* node)
     return 1 + subtree_size(node->left) + subtree_size(node->right);
 }
 
+static bool subtrees_equal(const node_t* first, const node_t* second)
+{
+    if (first == second) return true;
+    if (!first || !second) return false;
+    if (first->value->type != second->value->type) return false;
+
+    switch (first->value->type)
+    {
+        case NUM:
+            if (!is_close_to_zero(first->value->data_t.number - second->value->data_t.number))
+                return false;
+            break;
+
+        case VAR:
+            if (first->value->data_t.var_number != second->value->data_t.var_number)
+                return false;
+            break;
+
+        case OP:
+            if (first->value->data_t.op != second->value->data_t.op)
+                return false;
+            break;
+
+        case SPEC:
+        default:
+            break;
+    }
+
+    return subtrees_equal(first->left, second->left) &&
+           subtrees_equal(first->right, second->right);
+}
+
+static size_t find_alias(const expression_aliases_t* aliases, const node_t* node)
+{
+    for (size_t i = 0; i < aliases->size; i++)
+    {
+        if (subtrees_equal(aliases->data[i].node, node))
+            return aliases->data[i].number;
+    }
+
+    return (size_t) -1;
+}
+
 static bool check_for_alias(const node_t* node, size_t depth, size_t max_depth,
                             expression_aliases_t* aliases, FILE* output_file)
 {
     if (depth < max_depth || subtree_size(node) < MIN_ALIAS_SUBTREE_SIZE)
         return false;
 
-    size_t number = add_alias(aliases, node);
+    size_t number = find_alias(aliases, node);
+    if (number == (size_t) -1)
+        number = add_alias(aliases, node);
+
     if (number == (size_t) -1)
         return false;
 
