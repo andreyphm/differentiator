@@ -58,11 +58,11 @@
 <!-- node_3 -->
 <g id="node3" class="node">
 <title>node_3</title>
-<polygon fill="#b7e5f3" stroke="transparent" points="586,-147 586,-258 852,-258 852,-147 586,-147"/>
+<polygon fill="#36ff6f" stroke="transparent" points="586,-147 586,-258 852,-258 852,-147 586,-147"/>
 <polygon fill="none" stroke="#3f6969" points="589,-233.5 589,-254.5 849,-254.5 849,-233.5 589,-233.5"/>
-<text text-anchor="start" x="678.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
+<text text-anchor="start" x="674.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = VAR</text>
 <polygon fill="none" stroke="#3f6969" points="589,-212.5 589,-233.5 849,-233.5 849,-212.5 589,-212.5"/>
-<text text-anchor="start" x="659" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = SIN</text>
+<text text-anchor="start" x="655" y="-219.3" font-family="Times,serif" font-size="14.00">VAR_NUM = 0 (x)</text>
 <polygon fill="none" stroke="#3f6969" points="589,-191.5 589,-212.5 849,-212.5 849,-191.5 589,-191.5"/>
 <text text-anchor="start" x="610" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000000a0</text>
 <polygon fill="none" stroke="#3f6969" points="589,-170.5 589,-191.5 669,-191.5 669,-170.5 589,-170.5"/>
@@ -88,7 +88,7 @@
 <polygon fill="none" stroke="#3f6969" points="873,-233.5 873,-254.5 1133,-254.5 1133,-233.5 873,-233.5"/>
 <text text-anchor="start" x="953" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
 <polygon fill="none" stroke="#3f6969" points="873,-212.5 873,-233.5 1133,-233.5 1133,-212.5 873,-212.5"/>
-<text text-anchor="start" x="965" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
+<text text-anchor="start" x="965" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
 <polygon fill="none" stroke="#3f6969" points="873,-191.5 873,-212.5 1133,-212.5 1133,-191.5 873,-191.5"/>
 <text text-anchor="start" x="893.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000000d0</text>
 <polygon fill="none" stroke="#3f6969" points="873,-170.5 873,-191.5 953,-191.5 953,-170.5 873,-170.5"/>
@@ -114,7 +114,7 @@
 <polygon fill="none" stroke="#3f6969" points="1157,-233.5 1157,-254.5 1417,-254.5 1417,-233.5 1157,-233.5"/>
 <text text-anchor="start" x="1246.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
 <polygon fill="none" stroke="#3f6969" points="1157,-212.5 1157,-233.5 1417,-233.5 1417,-212.5 1157,-212.5"/>
-<text text-anchor="start" x="1227" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = SIN</text>
+<text text-anchor="start" x="1223" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = MUL</text>
 <polygon fill="none" stroke="#3f6969" points="1157,-191.5 1157,-212.5 1417,-212.5 1417,-191.5 1157,-191.5"/>
 <text text-anchor="start" x="1177.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000100</text>
 <polygon fill="none" stroke="#3f6969" points="1157,-170.5 1157,-191.5 1237,-191.5 1237,-170.5 1157,-170.5"/>
@@ -136,11 +136,11 @@
 <!-- node_6 -->
 <g id="node6" class="node">
 <title>node_6</title>
-<polygon fill="#f673e9" stroke="transparent" points="1438,-147 1438,-258 1704,-258 1704,-147 1438,-147"/>
+<polygon fill="#b7e5f3" stroke="transparent" points="1438,-147 1438,-258 1704,-258 1704,-147 1438,-147"/>
 <polygon fill="none" stroke="#3f6969" points="1441,-233.5 1441,-254.5 1701,-254.5 1701,-233.5 1441,-233.5"/>
-<text text-anchor="start" x="1521" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
+<text text-anchor="start" x="1530.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
 <polygon fill="none" stroke="#3f6969" points="1441,-212.5 1441,-233.5 1701,-233.5 1701,-212.5 1441,-212.5"/>
-<text text-anchor="start" x="1533" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
+<text text-anchor="start" x="1509" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = COS</text>
 <polygon fill="none" stroke="#3f6969" points="1441,-191.5 1441,-212.5 1701,-212.5 1701,-191.5 1441,-191.5"/>
 <text text-anchor="start" x="1461.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000130</text>
 <polygon fill="none" stroke="#3f6969" points="1441,-170.5 1441,-191.5 1521,-191.5 1521,-170.5 1441,-170.5"/>
@@ -162,11 +162,11 @@
 <!-- node_7 -->
 <g id="node7" class="node">
 <title>node_7</title>
-<polygon fill="#b7e5f3" stroke="transparent" points="1722,-147 1722,-258 1988,-258 1988,-147 1722,-147"/>
+<polygon fill="#f673e9" stroke="transparent" points="1722,-147 1722,-258 1988,-258 1988,-147 1722,-147"/>
 <polygon fill="none" stroke="#3f6969" points="1725,-233.5 1725,-254.5 1985,-254.5 1985,-233.5 1725,-233.5"/>
-<text text-anchor="start" x="1814.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
+<text text-anchor="start" x="1805" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
 <polygon fill="none" stroke="#3f6969" points="1725,-212.5 1725,-233.5 1985,-233.5 1985,-212.5 1725,-212.5"/>
-<text text-anchor="start" x="1795" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = SIN</text>
+<text text-anchor="start" x="1817" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
 <polygon fill="none" stroke="#3f6969" points="1725,-191.5 1725,-212.5 1985,-212.5 1985,-191.5 1725,-191.5"/>
 <text text-anchor="start" x="1745.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000160</text>
 <polygon fill="none" stroke="#3f6969" points="1725,-170.5 1725,-191.5 1805,-191.5 1805,-170.5 1725,-170.5"/>
@@ -188,11 +188,11 @@
 <!-- node_8 -->
 <g id="node8" class="node">
 <title>node_8</title>
-<polygon fill="#f673e9" stroke="transparent" points="2006,-147 2006,-258 2272,-258 2272,-147 2006,-147"/>
+<polygon fill="#36ff6f" stroke="transparent" points="2006,-147 2006,-258 2272,-258 2272,-147 2006,-147"/>
 <polygon fill="none" stroke="#3f6969" points="2009,-233.5 2009,-254.5 2269,-254.5 2269,-233.5 2009,-233.5"/>
-<text text-anchor="start" x="2089" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
+<text text-anchor="start" x="2094.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = VAR</text>
 <polygon fill="none" stroke="#3f6969" points="2009,-212.5 2009,-233.5 2269,-233.5 2269,-212.5 2009,-212.5"/>
-<text text-anchor="start" x="2101" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
+<text text-anchor="start" x="2075" y="-219.3" font-family="Times,serif" font-size="14.00">VAR_NUM = 0 (x)</text>
 <polygon fill="none" stroke="#3f6969" points="2009,-191.5 2009,-212.5 2269,-212.5 2269,-191.5 2009,-191.5"/>
 <text text-anchor="start" x="2029.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000190</text>
 <polygon fill="none" stroke="#3f6969" points="2009,-170.5 2009,-191.5 2089,-191.5 2089,-170.5 2009,-170.5"/>
@@ -214,11 +214,11 @@
 <!-- node_9 -->
 <g id="node9" class="node">
 <title>node_9</title>
-<polygon fill="#b7e5f3" stroke="transparent" points="2290,-147 2290,-258 2556,-258 2556,-147 2290,-147"/>
+<polygon fill="#f673e9" stroke="transparent" points="2290,-147 2290,-258 2556,-258 2556,-147 2290,-147"/>
 <polygon fill="none" stroke="#3f6969" points="2293,-233.5 2293,-254.5 2553,-254.5 2553,-233.5 2293,-233.5"/>
-<text text-anchor="start" x="2382.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
+<text text-anchor="start" x="2373" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
 <polygon fill="none" stroke="#3f6969" points="2293,-212.5 2293,-233.5 2553,-233.5 2553,-212.5 2293,-212.5"/>
-<text text-anchor="start" x="2363" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = SIN</text>
+<text text-anchor="start" x="2385" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
 <polygon fill="none" stroke="#3f6969" points="2293,-191.5 2293,-212.5 2553,-212.5 2553,-191.5 2293,-191.5"/>
 <text text-anchor="start" x="2314.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000001c0</text>
 <polygon fill="none" stroke="#3f6969" points="2293,-170.5 2293,-191.5 2373,-191.5 2373,-170.5 2293,-170.5"/>
@@ -240,11 +240,11 @@
 <!-- node_10 -->
 <g id="node10" class="node">
 <title>node_10</title>
-<polygon fill="#f673e9" stroke="transparent" points="2574,-147 2574,-258 2840,-258 2840,-147 2574,-147"/>
+<polygon fill="#b7e5f3" stroke="transparent" points="2574,-147 2574,-258 2840,-258 2840,-147 2574,-147"/>
 <polygon fill="none" stroke="#3f6969" points="2577,-233.5 2577,-254.5 2837,-254.5 2837,-233.5 2577,-233.5"/>
-<text text-anchor="start" x="2657" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
+<text text-anchor="start" x="2666.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
 <polygon fill="none" stroke="#3f6969" points="2577,-212.5 2577,-233.5 2837,-233.5 2837,-212.5 2577,-212.5"/>
-<text text-anchor="start" x="2669" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
+<text text-anchor="start" x="2643" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = MUL</text>
 <polygon fill="none" stroke="#3f6969" points="2577,-191.5 2577,-212.5 2837,-212.5 2837,-191.5 2577,-191.5"/>
 <text text-anchor="start" x="2599.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000001f0</text>
 <polygon fill="none" stroke="#3f6969" points="2577,-170.5 2577,-191.5 2657,-191.5 2657,-170.5 2577,-170.5"/>
@@ -270,7 +270,7 @@
 <polygon fill="none" stroke="#3f6969" points="2861,-233.5 2861,-254.5 3121,-254.5 3121,-233.5 2861,-233.5"/>
 <text text-anchor="start" x="2950.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
 <polygon fill="none" stroke="#3f6969" points="2861,-212.5 2861,-233.5 3121,-233.5 3121,-212.5 2861,-212.5"/>
-<text text-anchor="start" x="2931" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = SIN</text>
+<text text-anchor="start" x="2929.5" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = EXP</text>
 <polygon fill="none" stroke="#3f6969" points="2861,-191.5 2861,-212.5 3121,-212.5 3121,-191.5 2861,-191.5"/>
 <text text-anchor="start" x="2881.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000220</text>
 <polygon fill="none" stroke="#3f6969" points="2861,-170.5 2861,-191.5 2941,-191.5 2941,-170.5 2861,-170.5"/>
@@ -318,11 +318,11 @@
 <!-- node_13 -->
 <g id="node13" class="node">
 <title>node_13</title>
-<polygon fill="#b7e5f3" stroke="transparent" points="3426,-147 3426,-258 3692,-258 3692,-147 3426,-147"/>
+<polygon fill="#36ff6f" stroke="transparent" points="3426,-147 3426,-258 3692,-258 3692,-147 3426,-147"/>
 <polygon fill="none" stroke="#3f6969" points="3429,-233.5 3429,-254.5 3689,-254.5 3689,-233.5 3429,-233.5"/>
-<text text-anchor="start" x="3518.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
+<text text-anchor="start" x="3514.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = VAR</text>
 <polygon fill="none" stroke="#3f6969" points="3429,-212.5 3429,-233.5 3689,-233.5 3689,-212.5 3429,-212.5"/>
-<text text-anchor="start" x="3499" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = SIN</text>
+<text text-anchor="start" x="3495" y="-219.3" font-family="Times,serif" font-size="14.00">VAR_NUM = 0 (x)</text>
 <polygon fill="none" stroke="#3f6969" points="3429,-191.5 3429,-212.5 3689,-212.5 3689,-191.5 3429,-191.5"/>
 <text text-anchor="start" x="3449.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000280</text>
 <polygon fill="none" stroke="#3f6969" points="3429,-170.5 3429,-191.5 3509,-191.5 3509,-170.5 3429,-170.5"/>
@@ -348,7 +348,7 @@
 <polygon fill="none" stroke="#3f6969" points="3713,-233.5 3713,-254.5 3973,-254.5 3973,-233.5 3713,-233.5"/>
 <text text-anchor="start" x="3793" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
 <polygon fill="none" stroke="#3f6969" points="3713,-212.5 3713,-233.5 3973,-233.5 3973,-212.5 3713,-212.5"/>
-<text text-anchor="start" x="3805" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
+<text text-anchor="start" x="3805" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
 <polygon fill="none" stroke="#3f6969" points="3713,-191.5 3713,-212.5 3973,-212.5 3973,-191.5 3713,-191.5"/>
 <text text-anchor="start" x="3733.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000002b0</text>
 <polygon fill="none" stroke="#3f6969" points="3713,-170.5 3713,-191.5 3793,-191.5 3793,-170.5 3713,-170.5"/>
@@ -374,7 +374,7 @@
 <polygon fill="none" stroke="#3f6969" points="3997,-233.5 3997,-254.5 4257,-254.5 4257,-233.5 3997,-233.5"/>
 <text text-anchor="start" x="4086.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
 <polygon fill="none" stroke="#3f6969" points="3997,-212.5 3997,-233.5 4257,-233.5 4257,-212.5 3997,-212.5"/>
-<text text-anchor="start" x="4067" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = SIN</text>
+<text text-anchor="start" x="4063" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = MUL</text>
 <polygon fill="none" stroke="#3f6969" points="3997,-191.5 3997,-212.5 4257,-212.5 4257,-191.5 3997,-191.5"/>
 <text text-anchor="start" x="4018" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000002e0</text>
 <polygon fill="none" stroke="#3f6969" points="3997,-170.5 3997,-191.5 4077,-191.5 4077,-170.5 3997,-170.5"/>
@@ -396,11 +396,11 @@
 <!-- node_16 -->
 <g id="node16" class="node">
 <title>node_16</title>
-<polygon fill="#f673e9" stroke="transparent" points="4278,-147 4278,-258 4544,-258 4544,-147 4278,-147"/>
+<polygon fill="#b7e5f3" stroke="transparent" points="4278,-147 4278,-258 4544,-258 4544,-147 4278,-147"/>
 <polygon fill="none" stroke="#3f6969" points="4281,-233.5 4281,-254.5 4541,-254.5 4541,-233.5 4281,-233.5"/>
-<text text-anchor="start" x="4361" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
+<text text-anchor="start" x="4370.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
 <polygon fill="none" stroke="#3f6969" points="4281,-212.5 4281,-233.5 4541,-233.5 4541,-212.5 4281,-212.5"/>
-<text text-anchor="start" x="4373" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
+<text text-anchor="start" x="4354" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = LN</text>
 <polygon fill="none" stroke="#3f6969" points="4281,-191.5 4281,-212.5 4541,-212.5 4541,-191.5 4281,-191.5"/>
 <text text-anchor="start" x="4301.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000310</text>
 <polygon fill="none" stroke="#3f6969" points="4281,-170.5 4281,-191.5 4361,-191.5 4361,-170.5 4281,-170.5"/>
@@ -422,11 +422,11 @@
 <!-- node_17 -->
 <g id="node17" class="node">
 <title>node_17</title>
-<polygon fill="#b7e5f3" stroke="transparent" points="4562,-147 4562,-258 4828,-258 4828,-147 4562,-147"/>
+<polygon fill="#f673e9" stroke="transparent" points="4562,-147 4562,-258 4828,-258 4828,-147 4562,-147"/>
 <polygon fill="none" stroke="#3f6969" points="4565,-233.5 4565,-254.5 4825,-254.5 4825,-233.5 4565,-233.5"/>
-<text text-anchor="start" x="4654.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
+<text text-anchor="start" x="4645" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
 <polygon fill="none" stroke="#3f6969" points="4565,-212.5 4565,-233.5 4825,-233.5 4825,-212.5 4565,-212.5"/>
-<text text-anchor="start" x="4635" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = SIN</text>
+<text text-anchor="start" x="4657" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
 <polygon fill="none" stroke="#3f6969" points="4565,-191.5 4565,-212.5 4825,-212.5 4825,-191.5 4565,-191.5"/>
 <text text-anchor="start" x="4585.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000340</text>
 <polygon fill="none" stroke="#3f6969" points="4565,-170.5 4565,-191.5 4645,-191.5 4645,-170.5 4565,-170.5"/>
@@ -448,11 +448,11 @@
 <!-- node_18 -->
 <g id="node18" class="node">
 <title>node_18</title>
-<polygon fill="#f673e9" stroke="transparent" points="4846,-147 4846,-258 5112,-258 5112,-147 4846,-147"/>
+<polygon fill="#36ff6f" stroke="transparent" points="4846,-147 4846,-258 5112,-258 5112,-147 4846,-147"/>
 <polygon fill="none" stroke="#3f6969" points="4849,-233.5 4849,-254.5 5109,-254.5 5109,-233.5 4849,-233.5"/>
-<text text-anchor="start" x="4929" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
+<text text-anchor="start" x="4934.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = VAR</text>
 <polygon fill="none" stroke="#3f6969" points="4849,-212.5 4849,-233.5 5109,-233.5 5109,-212.5 4849,-212.5"/>
-<text text-anchor="start" x="4941" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
+<text text-anchor="start" x="4915" y="-219.3" font-family="Times,serif" font-size="14.00">VAR_NUM = 0 (x)</text>
 <polygon fill="none" stroke="#3f6969" points="4849,-191.5 4849,-212.5 5109,-212.5 5109,-191.5 4849,-191.5"/>
 <text text-anchor="start" x="4869.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000370</text>
 <polygon fill="none" stroke="#3f6969" points="4849,-170.5 4849,-191.5 4929,-191.5 4929,-170.5 4849,-170.5"/>
@@ -474,11 +474,11 @@
 <!-- node_19 -->
 <g id="node19" class="node">
 <title>node_19</title>
-<polygon fill="#b7e5f3" stroke="transparent" points="5130,-147 5130,-258 5396,-258 5396,-147 5130,-147"/>
+<polygon fill="#f673e9" stroke="transparent" points="5130,-147 5130,-258 5396,-258 5396,-147 5130,-147"/>
 <polygon fill="none" stroke="#3f6969" points="5133,-233.5 5133,-254.5 5393,-254.5 5393,-233.5 5133,-233.5"/>
-<text text-anchor="start" x="5222.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
+<text text-anchor="start" x="5213" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
 <polygon fill="none" stroke="#3f6969" points="5133,-212.5 5133,-233.5 5393,-233.5 5393,-212.5 5133,-212.5"/>
-<text text-anchor="start" x="5203" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = SIN</text>
+<text text-anchor="start" x="5225" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
 <polygon fill="none" stroke="#3f6969" points="5133,-191.5 5133,-212.5 5393,-212.5 5393,-191.5 5133,-191.5"/>
 <text text-anchor="start" x="5154" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000003a0</text>
 <polygon fill="none" stroke="#3f6969" points="5133,-170.5 5133,-191.5 5213,-191.5 5213,-170.5 5133,-170.5"/>
@@ -500,11 +500,11 @@
 <!-- node_20 -->
 <g id="node20" class="node">
 <title>node_20</title>
-<polygon fill="#f673e9" stroke="transparent" points="5414,-147 5414,-258 5680,-258 5680,-147 5414,-147"/>
+<polygon fill="#b7e5f3" stroke="transparent" points="5414,-147 5414,-258 5680,-258 5680,-147 5414,-147"/>
 <polygon fill="none" stroke="#3f6969" points="5417,-233.5 5417,-254.5 5677,-254.5 5677,-233.5 5417,-233.5"/>
-<text text-anchor="start" x="5497" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
+<text text-anchor="start" x="5506.5" y="-240.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
 <polygon fill="none" stroke="#3f6969" points="5417,-212.5 5417,-233.5 5677,-233.5 5677,-212.5 5417,-212.5"/>
-<text text-anchor="start" x="5509" y="-219.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
+<text text-anchor="start" x="5483" y="-219.3" font-family="Times,serif" font-size="14.00">OP_CODE = MUL</text>
 <polygon fill="none" stroke="#3f6969" points="5417,-191.5 5417,-212.5 5677,-212.5 5677,-191.5 5417,-191.5"/>
 <text text-anchor="start" x="5437.5" y="-198.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000003d0</text>
 <polygon fill="none" stroke="#3f6969" points="5417,-170.5 5417,-191.5 5497,-191.5 5497,-170.5 5417,-170.5"/>
@@ -526,11 +526,11 @@
 <!-- node_21 -->
 <g id="node21" class="node">
 <title>node_21</title>
-<polygon fill="#36ff6f" stroke="transparent" points="5414,0 5414,-111 5680,-111 5680,0 5414,0"/>
+<polygon fill="#b7e5f3" stroke="transparent" points="5414,0 5414,-111 5680,-111 5680,0 5414,0"/>
 <polygon fill="none" stroke="#3f6969" points="5417,-86.5 5417,-107.5 5677,-107.5 5677,-86.5 5417,-86.5"/>
-<text text-anchor="start" x="5502.5" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = VAR</text>
+<text text-anchor="start" x="5506.5" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
 <polygon fill="none" stroke="#3f6969" points="5417,-65.5 5417,-86.5 5677,-86.5 5677,-65.5 5417,-65.5"/>
-<text text-anchor="start" x="5483" y="-72.3" font-family="Times,serif" font-size="14.00">VAR_NUM = 0 (x)</text>
+<text text-anchor="start" x="5487" y="-72.3" font-family="Times,serif" font-size="14.00">OP_CODE = SIN</text>
 <polygon fill="none" stroke="#3f6969" points="5417,-44.5 5417,-65.5 5677,-65.5 5677,-44.5 5417,-44.5"/>
 <text text-anchor="start" x="5437.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000400</text>
 <polygon fill="none" stroke="#3f6969" points="5417,-23.5 5417,-44.5 5497,-44.5 5497,-23.5 5417,-23.5"/>
@@ -556,273 +556,325 @@
 <!-- node_22 -->
 <g id="node22" class="node">
 <title>node_22</title>
-<polygon fill="#f673e9" stroke="transparent" points="5128,0 5128,-111 5394,-111 5394,0 5128,0"/>
-<polygon fill="none" stroke="#3f6969" points="5131,-86.5 5131,-107.5 5391,-107.5 5391,-86.5 5131,-86.5"/>
-<text text-anchor="start" x="5211" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
-<polygon fill="none" stroke="#3f6969" points="5131,-65.5 5131,-86.5 5391,-86.5 5391,-65.5 5131,-65.5"/>
-<text text-anchor="start" x="5223" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
-<polygon fill="none" stroke="#3f6969" points="5131,-44.5 5131,-65.5 5391,-65.5 5391,-44.5 5131,-44.5"/>
-<text text-anchor="start" x="5151.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000430</text>
-<polygon fill="none" stroke="#3f6969" points="5131,-23.5 5131,-44.5 5211,-44.5 5211,-23.5 5131,-23.5"/>
-<text text-anchor="start" x="5155" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
-<polygon fill="none" stroke="#3f6969" points="5211,-23.5 5211,-44.5 5391,-44.5 5391,-23.5 5211,-23.5"/>
-<text text-anchor="start" x="5238" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000460</text>
-<polygon fill="none" stroke="#3f6969" points="5131,-2.5 5131,-23.5 5211,-23.5 5211,-2.5 5131,-2.5"/>
-<text text-anchor="start" x="5154.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
-<polygon fill="none" stroke="#3f6969" points="5211,-2.5 5211,-23.5 5391,-23.5 5391,-2.5 5211,-2.5"/>
-<text text-anchor="start" x="5238" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000400</text>
-<polygon fill="none" stroke="#3f6969" stroke-width="3" points="5129.5,-1.5 5129.5,-109.5 5392.5,-109.5 5392.5,-1.5 5129.5,-1.5"/>
+<polygon fill="#f673e9" stroke="transparent" points="5130,0 5130,-111 5396,-111 5396,0 5130,0"/>
+<polygon fill="none" stroke="#3f6969" points="5133,-86.5 5133,-107.5 5393,-107.5 5393,-86.5 5133,-86.5"/>
+<text text-anchor="start" x="5213" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
+<polygon fill="none" stroke="#3f6969" points="5133,-65.5 5133,-86.5 5393,-86.5 5393,-65.5 5133,-65.5"/>
+<text text-anchor="start" x="5225" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
+<polygon fill="none" stroke="#3f6969" points="5133,-44.5 5133,-65.5 5393,-65.5 5393,-44.5 5133,-44.5"/>
+<text text-anchor="start" x="5153.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000430</text>
+<polygon fill="none" stroke="#3f6969" points="5133,-23.5 5133,-44.5 5213,-44.5 5213,-23.5 5133,-23.5"/>
+<text text-anchor="start" x="5157" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="5213,-23.5 5213,-44.5 5393,-44.5 5393,-23.5 5213,-23.5"/>
+<text text-anchor="start" x="5240" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000460</text>
+<polygon fill="none" stroke="#3f6969" points="5133,-2.5 5133,-23.5 5213,-23.5 5213,-2.5 5133,-2.5"/>
+<text text-anchor="start" x="5156.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="5213,-2.5 5213,-23.5 5393,-23.5 5393,-2.5 5213,-2.5"/>
+<text text-anchor="start" x="5240" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000400</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="5131.5,-1.5 5131.5,-109.5 5394.5,-109.5 5394.5,-1.5 5131.5,-1.5"/>
 </g>
 <!-- node_22&#45;&gt;node_21 -->
 <g id="edge27" class="edge">
 <title>node_22&#45;&gt;node_21</title>
-<path fill="none" stroke="#149b5a" d="M5404.38,-55.5C5407.56,-55.5 5410.74,-55.5 5413.92,-55.5"/>
-<polygon fill="#149b5a" stroke="#149b5a" points="5404.22,-52 5394.22,-55.5 5404.22,-59 5404.22,-52"/>
+<path fill="none" stroke="#149b5a" d="M5406.35,-55.5C5408.83,-55.5 5411.32,-55.5 5413.81,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="5406.12,-52 5396.12,-55.5 5406.13,-59 5406.12,-52"/>
 </g>
 <!-- node_23 -->
 <g id="node23" class="node">
 <title>node_23</title>
-<polygon fill="#f673e9" stroke="transparent" points="4840,0 4840,-111 5106,-111 5106,0 4840,0"/>
-<polygon fill="none" stroke="#3f6969" points="4843,-86.5 4843,-107.5 5103,-107.5 5103,-86.5 4843,-86.5"/>
-<text text-anchor="start" x="4923" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
-<polygon fill="none" stroke="#3f6969" points="4843,-65.5 4843,-86.5 5103,-86.5 5103,-65.5 4843,-65.5"/>
-<text text-anchor="start" x="4935" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
-<polygon fill="none" stroke="#3f6969" points="4843,-44.5 4843,-65.5 5103,-65.5 5103,-44.5 4843,-44.5"/>
-<text text-anchor="start" x="4863.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000460</text>
-<polygon fill="none" stroke="#3f6969" points="4843,-23.5 4843,-44.5 4923,-44.5 4923,-23.5 4843,-23.5"/>
-<text text-anchor="start" x="4867" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
-<polygon fill="none" stroke="#3f6969" points="4923,-23.5 4923,-44.5 5103,-44.5 5103,-23.5 4923,-23.5"/>
-<text text-anchor="start" x="4950" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000490</text>
-<polygon fill="none" stroke="#3f6969" points="4843,-2.5 4843,-23.5 4923,-23.5 4923,-2.5 4843,-2.5"/>
-<text text-anchor="start" x="4866.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
-<polygon fill="none" stroke="#3f6969" points="4923,-2.5 4923,-23.5 5103,-23.5 5103,-2.5 4923,-2.5"/>
-<text text-anchor="start" x="4950" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000430</text>
-<polygon fill="none" stroke="#3f6969" stroke-width="3" points="4841.5,-1.5 4841.5,-109.5 5104.5,-109.5 5104.5,-1.5 4841.5,-1.5"/>
+<polygon fill="#36ff6f" stroke="transparent" points="4845,0 4845,-111 5111,-111 5111,0 4845,0"/>
+<polygon fill="none" stroke="#3f6969" points="4848,-86.5 4848,-107.5 5108,-107.5 5108,-86.5 4848,-86.5"/>
+<text text-anchor="start" x="4933.5" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = VAR</text>
+<polygon fill="none" stroke="#3f6969" points="4848,-65.5 4848,-86.5 5108,-86.5 5108,-65.5 4848,-65.5"/>
+<text text-anchor="start" x="4914" y="-72.3" font-family="Times,serif" font-size="14.00">VAR_NUM = 0 (x)</text>
+<polygon fill="none" stroke="#3f6969" points="4848,-44.5 4848,-65.5 5108,-65.5 5108,-44.5 4848,-44.5"/>
+<text text-anchor="start" x="4868.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000460</text>
+<polygon fill="none" stroke="#3f6969" points="4848,-23.5 4848,-44.5 4928,-44.5 4928,-23.5 4848,-23.5"/>
+<text text-anchor="start" x="4872" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="4928,-23.5 4928,-44.5 5108,-44.5 5108,-23.5 4928,-23.5"/>
+<text text-anchor="start" x="4955" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000490</text>
+<polygon fill="none" stroke="#3f6969" points="4848,-2.5 4848,-23.5 4928,-23.5 4928,-2.5 4848,-2.5"/>
+<text text-anchor="start" x="4871.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="4928,-2.5 4928,-23.5 5108,-23.5 5108,-2.5 4928,-2.5"/>
+<text text-anchor="start" x="4955" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000430</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="4846.5,-1.5 4846.5,-109.5 5109.5,-109.5 5109.5,-1.5 4846.5,-1.5"/>
 </g>
 <!-- node_23&#45;&gt;node_22 -->
 <g id="edge28" class="edge">
 <title>node_23&#45;&gt;node_22</title>
-<path fill="none" stroke="#149b5a" d="M5116.25,-55.5C5120.11,-55.5 5123.96,-55.5 5127.82,-55.5"/>
-<polygon fill="#149b5a" stroke="#149b5a" points="5116.03,-52 5106.03,-55.5 5116.03,-59 5116.03,-52"/>
+<path fill="none" stroke="#149b5a" d="M5121.26,-55.5C5124.09,-55.5 5126.91,-55.5 5129.74,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="5121.04,-52 5111.04,-55.5 5121.04,-59 5121.04,-52"/>
 </g>
 <!-- node_24 -->
 <g id="node24" class="node">
 <title>node_24</title>
-<polygon fill="#f673e9" stroke="transparent" points="4547,0 4547,-111 4813,-111 4813,0 4547,0"/>
-<polygon fill="none" stroke="#3f6969" points="4550,-86.5 4550,-107.5 4810,-107.5 4810,-86.5 4550,-86.5"/>
-<text text-anchor="start" x="4630" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
-<polygon fill="none" stroke="#3f6969" points="4550,-65.5 4550,-86.5 4810,-86.5 4810,-65.5 4550,-65.5"/>
-<text text-anchor="start" x="4642" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
-<polygon fill="none" stroke="#3f6969" points="4550,-44.5 4550,-65.5 4810,-65.5 4810,-44.5 4550,-44.5"/>
-<text text-anchor="start" x="4570.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000490</text>
-<polygon fill="none" stroke="#3f6969" points="4550,-23.5 4550,-44.5 4630,-44.5 4630,-23.5 4550,-23.5"/>
-<text text-anchor="start" x="4574" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
-<polygon fill="none" stroke="#3f6969" points="4630,-23.5 4630,-44.5 4810,-44.5 4810,-23.5 4630,-23.5"/>
-<text text-anchor="start" x="4658" y="-30.3" font-family="Times,serif" font-size="14.00">0x6030000004c0</text>
-<polygon fill="none" stroke="#3f6969" points="4550,-2.5 4550,-23.5 4630,-23.5 4630,-2.5 4550,-2.5"/>
-<text text-anchor="start" x="4573.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
-<polygon fill="none" stroke="#3f6969" points="4630,-2.5 4630,-23.5 4810,-23.5 4810,-2.5 4630,-2.5"/>
-<text text-anchor="start" x="4657" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000460</text>
-<polygon fill="none" stroke="#3f6969" stroke-width="3" points="4548.5,-1.5 4548.5,-109.5 4811.5,-109.5 4811.5,-1.5 4548.5,-1.5"/>
+<polygon fill="#b7e5f3" stroke="transparent" points="4559,0 4559,-111 4825,-111 4825,0 4559,0"/>
+<polygon fill="none" stroke="#3f6969" points="4562,-86.5 4562,-107.5 4822,-107.5 4822,-86.5 4562,-86.5"/>
+<text text-anchor="start" x="4651.5" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
+<polygon fill="none" stroke="#3f6969" points="4562,-65.5 4562,-86.5 4822,-86.5 4822,-65.5 4562,-65.5"/>
+<text text-anchor="start" x="4628" y="-72.3" font-family="Times,serif" font-size="14.00">OP_CODE = POW</text>
+<polygon fill="none" stroke="#3f6969" points="4562,-44.5 4562,-65.5 4822,-65.5 4822,-44.5 4562,-44.5"/>
+<text text-anchor="start" x="4582.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000490</text>
+<polygon fill="none" stroke="#3f6969" points="4562,-23.5 4562,-44.5 4642,-44.5 4642,-23.5 4562,-23.5"/>
+<text text-anchor="start" x="4586" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="4642,-23.5 4642,-44.5 4822,-44.5 4822,-23.5 4642,-23.5"/>
+<text text-anchor="start" x="4670" y="-30.3" font-family="Times,serif" font-size="14.00">0x6030000004c0</text>
+<polygon fill="none" stroke="#3f6969" points="4562,-2.5 4562,-23.5 4642,-23.5 4642,-2.5 4562,-2.5"/>
+<text text-anchor="start" x="4585.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="4642,-2.5 4642,-23.5 4822,-23.5 4822,-2.5 4642,-2.5"/>
+<text text-anchor="start" x="4669" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000460</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="4560.5,-1.5 4560.5,-109.5 4823.5,-109.5 4823.5,-1.5 4560.5,-1.5"/>
 </g>
 <!-- node_24&#45;&gt;node_23 -->
 <g id="edge29" class="edge">
 <title>node_24&#45;&gt;node_23</title>
-<path fill="none" stroke="#149b5a" d="M4823.13,-55.5C4828.72,-55.5 4834.32,-55.5 4839.92,-55.5"/>
-<polygon fill="#149b5a" stroke="#149b5a" points="4823.05,-52 4813.05,-55.5 4823.05,-59 4823.05,-52"/>
+<path fill="none" stroke="#149b5a" d="M4835.38,-55.5C4838.56,-55.5 4841.74,-55.5 4844.92,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="4835.22,-52 4825.22,-55.5 4835.22,-59 4835.22,-52"/>
 </g>
 <!-- node_25 -->
 <g id="node25" class="node">
 <title>node_25</title>
-<polygon fill="#f673e9" stroke="transparent" points="4245,0 4245,-111 4511,-111 4511,0 4245,0"/>
-<polygon fill="none" stroke="#3f6969" points="4248,-86.5 4248,-107.5 4508,-107.5 4508,-86.5 4248,-86.5"/>
-<text text-anchor="start" x="4328" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
-<polygon fill="none" stroke="#3f6969" points="4248,-65.5 4248,-86.5 4508,-86.5 4508,-65.5 4248,-65.5"/>
-<text text-anchor="start" x="4340" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
-<polygon fill="none" stroke="#3f6969" points="4248,-44.5 4248,-65.5 4508,-65.5 4508,-44.5 4248,-44.5"/>
-<text text-anchor="start" x="4269.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000004c0</text>
-<polygon fill="none" stroke="#3f6969" points="4248,-23.5 4248,-44.5 4328,-44.5 4328,-23.5 4248,-23.5"/>
-<text text-anchor="start" x="4272" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
-<polygon fill="none" stroke="#3f6969" points="4328,-23.5 4328,-44.5 4508,-44.5 4508,-23.5 4328,-23.5"/>
-<text text-anchor="start" x="4357" y="-30.3" font-family="Times,serif" font-size="14.00">0x6030000004f0</text>
-<polygon fill="none" stroke="#3f6969" points="4248,-2.5 4248,-23.5 4328,-23.5 4328,-2.5 4248,-2.5"/>
-<text text-anchor="start" x="4271.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
-<polygon fill="none" stroke="#3f6969" points="4328,-2.5 4328,-23.5 4508,-23.5 4508,-2.5 4328,-2.5"/>
-<text text-anchor="start" x="4355" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000490</text>
-<polygon fill="none" stroke="#3f6969" stroke-width="3" points="4246.5,-1.5 4246.5,-109.5 4509.5,-109.5 4509.5,-1.5 4246.5,-1.5"/>
+<polygon fill="#f8c331" stroke="transparent" points="4272,0 4272,-111 4538,-111 4538,0 4272,0"/>
+<polygon fill="none" stroke="#3f6969" points="4275,-86.5 4275,-107.5 4535,-107.5 4535,-86.5 4275,-86.5"/>
+<text text-anchor="start" x="4356" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = NUM</text>
+<polygon fill="none" stroke="#3f6969" points="4275,-65.5 4275,-86.5 4535,-86.5 4535,-65.5 4275,-65.5"/>
+<text text-anchor="start" x="4365" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = 2</text>
+<polygon fill="none" stroke="#3f6969" points="4275,-44.5 4275,-65.5 4535,-65.5 4535,-44.5 4275,-44.5"/>
+<text text-anchor="start" x="4296.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000004c0</text>
+<polygon fill="none" stroke="#3f6969" points="4275,-23.5 4275,-44.5 4355,-44.5 4355,-23.5 4275,-23.5"/>
+<text text-anchor="start" x="4299" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="4355,-23.5 4355,-44.5 4535,-44.5 4535,-23.5 4355,-23.5"/>
+<text text-anchor="start" x="4384" y="-30.3" font-family="Times,serif" font-size="14.00">0x6030000004f0</text>
+<polygon fill="none" stroke="#3f6969" points="4275,-2.5 4275,-23.5 4355,-23.5 4355,-2.5 4275,-2.5"/>
+<text text-anchor="start" x="4298.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="4355,-2.5 4355,-23.5 4535,-23.5 4535,-2.5 4355,-2.5"/>
+<text text-anchor="start" x="4382" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000490</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="4273.5,-1.5 4273.5,-109.5 4536.5,-109.5 4536.5,-1.5 4273.5,-1.5"/>
 </g>
 <!-- node_25&#45;&gt;node_24 -->
 <g id="edge30" class="edge">
 <title>node_25&#45;&gt;node_24</title>
-<path fill="none" stroke="#149b5a" d="M4521.13,-55.5C4529.75,-55.5 4538.37,-55.5 4546.99,-55.5"/>
-<polygon fill="#149b5a" stroke="#149b5a" points="4521.01,-52 4511.01,-55.5 4521.01,-59 4521.01,-52"/>
+<path fill="none" stroke="#149b5a" d="M4548.17,-55.5C4551.74,-55.5 4555.3,-55.5 4558.87,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="4548.13,-52 4538.13,-55.5 4548.13,-59 4548.13,-52"/>
 </g>
 <!-- node_26 -->
 <g id="node26" class="node">
 <title>node_26</title>
-<polygon fill="#f673e9" stroke="transparent" points="3926,0 3926,-111 4192,-111 4192,0 3926,0"/>
-<polygon fill="none" stroke="#3f6969" points="3929,-86.5 3929,-107.5 4189,-107.5 4189,-86.5 3929,-86.5"/>
-<text text-anchor="start" x="4009" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
-<polygon fill="none" stroke="#3f6969" points="3929,-65.5 3929,-86.5 4189,-86.5 4189,-65.5 3929,-65.5"/>
-<text text-anchor="start" x="4021" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
-<polygon fill="none" stroke="#3f6969" points="3929,-44.5 3929,-65.5 4189,-65.5 4189,-44.5 3929,-44.5"/>
-<text text-anchor="start" x="3951.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000004f0</text>
-<polygon fill="none" stroke="#3f6969" points="3929,-23.5 3929,-44.5 4009,-44.5 4009,-23.5 3929,-23.5"/>
-<text text-anchor="start" x="3953" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
-<polygon fill="none" stroke="#3f6969" points="4009,-23.5 4009,-44.5 4189,-44.5 4189,-23.5 4009,-23.5"/>
-<text text-anchor="start" x="4036" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000520</text>
-<polygon fill="none" stroke="#3f6969" points="3929,-2.5 3929,-23.5 4009,-23.5 4009,-2.5 3929,-2.5"/>
-<text text-anchor="start" x="3952.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
-<polygon fill="none" stroke="#3f6969" points="4009,-2.5 4009,-23.5 4189,-23.5 4189,-2.5 4009,-2.5"/>
-<text text-anchor="start" x="4037" y="-9.3" font-family="Times,serif" font-size="14.00">0x6030000004c0</text>
-<polygon fill="none" stroke="#3f6969" stroke-width="3" points="3927.5,-1.5 3927.5,-109.5 4190.5,-109.5 4190.5,-1.5 3927.5,-1.5"/>
+<polygon fill="#f673e9" stroke="transparent" points="3981,0 3981,-111 4247,-111 4247,0 3981,0"/>
+<polygon fill="none" stroke="#3f6969" points="3984,-86.5 3984,-107.5 4244,-107.5 4244,-86.5 3984,-86.5"/>
+<text text-anchor="start" x="4064" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
+<polygon fill="none" stroke="#3f6969" points="3984,-65.5 3984,-86.5 4244,-86.5 4244,-65.5 3984,-65.5"/>
+<text text-anchor="start" x="4076" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
+<polygon fill="none" stroke="#3f6969" points="3984,-44.5 3984,-65.5 4244,-65.5 4244,-44.5 3984,-44.5"/>
+<text text-anchor="start" x="4006.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000004f0</text>
+<polygon fill="none" stroke="#3f6969" points="3984,-23.5 3984,-44.5 4064,-44.5 4064,-23.5 3984,-23.5"/>
+<text text-anchor="start" x="4008" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="4064,-23.5 4064,-44.5 4244,-44.5 4244,-23.5 4064,-23.5"/>
+<text text-anchor="start" x="4091" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000520</text>
+<polygon fill="none" stroke="#3f6969" points="3984,-2.5 3984,-23.5 4064,-23.5 4064,-2.5 3984,-2.5"/>
+<text text-anchor="start" x="4007.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="4064,-2.5 4064,-23.5 4244,-23.5 4244,-2.5 4064,-2.5"/>
+<text text-anchor="start" x="4092" y="-9.3" font-family="Times,serif" font-size="14.00">0x6030000004c0</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="3982.5,-1.5 3982.5,-109.5 4245.5,-109.5 4245.5,-1.5 3982.5,-1.5"/>
 </g>
 <!-- node_26&#45;&gt;node_25 -->
 <g id="edge31" class="edge">
 <title>node_26&#45;&gt;node_25</title>
-<path fill="none" stroke="#149b5a" d="M4202.31,-55.5C4216.44,-55.5 4230.56,-55.5 4244.69,-55.5"/>
-<polygon fill="#149b5a" stroke="#149b5a" points="4202.02,-52 4192.02,-55.5 4202.02,-59 4202.02,-52"/>
+<path fill="none" stroke="#149b5a" d="M4257.29,-55.5C4262.17,-55.5 4267.05,-55.5 4271.92,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="4257.28,-52 4247.28,-55.5 4257.28,-59 4257.28,-52"/>
 </g>
 <!-- node_27 -->
 <g id="node27" class="node">
 <title>node_27</title>
-<polygon fill="#f673e9" stroke="transparent" points="3571,0 3571,-111 3837,-111 3837,0 3571,0"/>
-<polygon fill="none" stroke="#3f6969" points="3574,-86.5 3574,-107.5 3834,-107.5 3834,-86.5 3574,-86.5"/>
-<text text-anchor="start" x="3654" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
-<polygon fill="none" stroke="#3f6969" points="3574,-65.5 3574,-86.5 3834,-86.5 3834,-65.5 3574,-65.5"/>
-<text text-anchor="start" x="3666" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
-<polygon fill="none" stroke="#3f6969" points="3574,-44.5 3574,-65.5 3834,-65.5 3834,-44.5 3574,-44.5"/>
-<text text-anchor="start" x="3594.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000520</text>
-<polygon fill="none" stroke="#3f6969" points="3574,-23.5 3574,-44.5 3654,-44.5 3654,-23.5 3574,-23.5"/>
-<text text-anchor="start" x="3598" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
-<polygon fill="none" stroke="#3f6969" points="3654,-23.5 3654,-44.5 3834,-44.5 3834,-23.5 3654,-23.5"/>
-<text text-anchor="start" x="3681" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000550</text>
-<polygon fill="none" stroke="#3f6969" points="3574,-2.5 3574,-23.5 3654,-23.5 3654,-2.5 3574,-2.5"/>
-<text text-anchor="start" x="3597.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
-<polygon fill="none" stroke="#3f6969" points="3654,-2.5 3654,-23.5 3834,-23.5 3834,-2.5 3654,-2.5"/>
-<text text-anchor="start" x="3683" y="-9.3" font-family="Times,serif" font-size="14.00">0x6030000004f0</text>
-<polygon fill="none" stroke="#3f6969" stroke-width="3" points="3572.5,-1.5 3572.5,-109.5 3835.5,-109.5 3835.5,-1.5 3572.5,-1.5"/>
+<polygon fill="#b7e5f3" stroke="transparent" points="3684,0 3684,-111 3950,-111 3950,0 3684,0"/>
+<polygon fill="none" stroke="#3f6969" points="3687,-86.5 3687,-107.5 3947,-107.5 3947,-86.5 3687,-86.5"/>
+<text text-anchor="start" x="3776.5" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
+<polygon fill="none" stroke="#3f6969" points="3687,-65.5 3687,-86.5 3947,-86.5 3947,-65.5 3687,-65.5"/>
+<text text-anchor="start" x="3753" y="-72.3" font-family="Times,serif" font-size="14.00">OP_CODE = MUL</text>
+<polygon fill="none" stroke="#3f6969" points="3687,-44.5 3687,-65.5 3947,-65.5 3947,-44.5 3687,-44.5"/>
+<text text-anchor="start" x="3707.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000520</text>
+<polygon fill="none" stroke="#3f6969" points="3687,-23.5 3687,-44.5 3767,-44.5 3767,-23.5 3687,-23.5"/>
+<text text-anchor="start" x="3711" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="3767,-23.5 3767,-44.5 3947,-44.5 3947,-23.5 3767,-23.5"/>
+<text text-anchor="start" x="3794" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000550</text>
+<polygon fill="none" stroke="#3f6969" points="3687,-2.5 3687,-23.5 3767,-23.5 3767,-2.5 3687,-2.5"/>
+<text text-anchor="start" x="3710.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="3767,-2.5 3767,-23.5 3947,-23.5 3947,-2.5 3767,-2.5"/>
+<text text-anchor="start" x="3796" y="-9.3" font-family="Times,serif" font-size="14.00">0x6030000004f0</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="3685.5,-1.5 3685.5,-109.5 3948.5,-109.5 3948.5,-1.5 3685.5,-1.5"/>
 </g>
 <!-- node_27&#45;&gt;node_26 -->
 <g id="edge32" class="edge">
 <title>node_27&#45;&gt;node_26</title>
-<path fill="none" stroke="#149b5a" d="M3847.19,-55.5C3873.45,-55.5 3899.7,-55.5 3925.96,-55.5"/>
-<polygon fill="#149b5a" stroke="#149b5a" points="3847.13,-52 3837.12,-55.5 3847.12,-59 3847.13,-52"/>
+<path fill="none" stroke="#149b5a" d="M3960.21,-55.5C3967.09,-55.5 3973.97,-55.5 3980.85,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="3960.13,-52 3950.13,-55.5 3960.13,-59 3960.13,-52"/>
 </g>
 <!-- node_28 -->
 <g id="node28" class="node">
 <title>node_28</title>
-<polygon fill="#f673e9" stroke="transparent" points="3145,0 3145,-111 3411,-111 3411,0 3145,0"/>
-<polygon fill="none" stroke="#3f6969" points="3148,-86.5 3148,-107.5 3408,-107.5 3408,-86.5 3148,-86.5"/>
-<text text-anchor="start" x="3228" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
-<polygon fill="none" stroke="#3f6969" points="3148,-65.5 3148,-86.5 3408,-86.5 3408,-65.5 3148,-65.5"/>
-<text text-anchor="start" x="3240" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
-<polygon fill="none" stroke="#3f6969" points="3148,-44.5 3148,-65.5 3408,-65.5 3408,-44.5 3148,-44.5"/>
-<text text-anchor="start" x="3168.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000550</text>
-<polygon fill="none" stroke="#3f6969" points="3148,-23.5 3148,-44.5 3228,-44.5 3228,-23.5 3148,-23.5"/>
-<text text-anchor="start" x="3172" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
-<polygon fill="none" stroke="#3f6969" points="3228,-23.5 3228,-44.5 3408,-44.5 3408,-23.5 3228,-23.5"/>
-<text text-anchor="start" x="3255" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000580</text>
-<polygon fill="none" stroke="#3f6969" points="3148,-2.5 3148,-23.5 3228,-23.5 3228,-2.5 3148,-2.5"/>
-<text text-anchor="start" x="3171.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
-<polygon fill="none" stroke="#3f6969" points="3228,-2.5 3228,-23.5 3408,-23.5 3408,-2.5 3228,-2.5"/>
-<text text-anchor="start" x="3255" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000520</text>
-<polygon fill="none" stroke="#3f6969" stroke-width="3" points="3146.5,-1.5 3146.5,-109.5 3409.5,-109.5 3409.5,-1.5 3146.5,-1.5"/>
+<polygon fill="#b7e5f3" stroke="transparent" points="3373,0 3373,-111 3639,-111 3639,0 3373,0"/>
+<polygon fill="none" stroke="#3f6969" points="3376,-86.5 3376,-107.5 3636,-107.5 3636,-86.5 3376,-86.5"/>
+<text text-anchor="start" x="3465.5" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
+<polygon fill="none" stroke="#3f6969" points="3376,-65.5 3376,-86.5 3636,-86.5 3636,-65.5 3376,-65.5"/>
+<text text-anchor="start" x="3444" y="-72.3" font-family="Times,serif" font-size="14.00">OP_CODE = COS</text>
+<polygon fill="none" stroke="#3f6969" points="3376,-44.5 3376,-65.5 3636,-65.5 3636,-44.5 3376,-44.5"/>
+<text text-anchor="start" x="3396.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000550</text>
+<polygon fill="none" stroke="#3f6969" points="3376,-23.5 3376,-44.5 3456,-44.5 3456,-23.5 3376,-23.5"/>
+<text text-anchor="start" x="3400" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="3456,-23.5 3456,-44.5 3636,-44.5 3636,-23.5 3456,-23.5"/>
+<text text-anchor="start" x="3483" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000580</text>
+<polygon fill="none" stroke="#3f6969" points="3376,-2.5 3376,-23.5 3456,-23.5 3456,-2.5 3376,-2.5"/>
+<text text-anchor="start" x="3399.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="3456,-2.5 3456,-23.5 3636,-23.5 3636,-2.5 3456,-2.5"/>
+<text text-anchor="start" x="3483" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000520</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="3374.5,-1.5 3374.5,-109.5 3637.5,-109.5 3637.5,-1.5 3374.5,-1.5"/>
 </g>
 <!-- node_28&#45;&gt;node_27 -->
 <g id="edge33" class="edge">
 <title>node_28&#45;&gt;node_27</title>
-<path fill="none" stroke="#149b5a" d="M3421.41,-55.5C3471.18,-55.5 3520.95,-55.5 3570.72,-55.5"/>
-<polygon fill="#149b5a" stroke="#149b5a" points="3421.13,-52 3411.12,-55.5 3421.12,-59 3421.13,-52"/>
+<path fill="none" stroke="#149b5a" d="M3649.18,-55.5C3660.75,-55.5 3672.31,-55.5 3683.87,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="3649.03,-52 3639.03,-55.5 3649.03,-59 3649.03,-52"/>
 </g>
 <!-- node_29 -->
 <g id="node29" class="node">
 <title>node_29</title>
-<polygon fill="#f673e9" stroke="transparent" points="2577,0 2577,-111 2843,-111 2843,0 2577,0"/>
-<polygon fill="none" stroke="#3f6969" points="2580,-86.5 2580,-107.5 2840,-107.5 2840,-86.5 2580,-86.5"/>
-<text text-anchor="start" x="2660" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
-<polygon fill="none" stroke="#3f6969" points="2580,-65.5 2580,-86.5 2840,-86.5 2840,-65.5 2580,-65.5"/>
-<text text-anchor="start" x="2672" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
-<polygon fill="none" stroke="#3f6969" points="2580,-44.5 2580,-65.5 2840,-65.5 2840,-44.5 2580,-44.5"/>
-<text text-anchor="start" x="2600.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000580</text>
-<polygon fill="none" stroke="#3f6969" points="2580,-23.5 2580,-44.5 2660,-44.5 2660,-23.5 2580,-23.5"/>
-<text text-anchor="start" x="2604" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
-<polygon fill="none" stroke="#3f6969" points="2660,-23.5 2660,-44.5 2840,-44.5 2840,-23.5 2660,-23.5"/>
-<text text-anchor="start" x="2687" y="-30.3" font-family="Times,serif" font-size="14.00">0x6030000005b0</text>
-<polygon fill="none" stroke="#3f6969" points="2580,-2.5 2580,-23.5 2660,-23.5 2660,-2.5 2580,-2.5"/>
-<text text-anchor="start" x="2603.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
-<polygon fill="none" stroke="#3f6969" points="2660,-2.5 2660,-23.5 2840,-23.5 2840,-2.5 2660,-2.5"/>
-<text text-anchor="start" x="2687" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000550</text>
-<polygon fill="none" stroke="#3f6969" stroke-width="3" points="2578.5,-1.5 2578.5,-109.5 2841.5,-109.5 2841.5,-1.5 2578.5,-1.5"/>
+<polygon fill="#f673e9" stroke="transparent" points="3036,0 3036,-111 3302,-111 3302,0 3036,0"/>
+<polygon fill="none" stroke="#3f6969" points="3039,-86.5 3039,-107.5 3299,-107.5 3299,-86.5 3039,-86.5"/>
+<text text-anchor="start" x="3119" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
+<polygon fill="none" stroke="#3f6969" points="3039,-65.5 3039,-86.5 3299,-86.5 3299,-65.5 3039,-65.5"/>
+<text text-anchor="start" x="3131" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = (</text>
+<polygon fill="none" stroke="#3f6969" points="3039,-44.5 3039,-65.5 3299,-65.5 3299,-44.5 3039,-44.5"/>
+<text text-anchor="start" x="3059.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000580</text>
+<polygon fill="none" stroke="#3f6969" points="3039,-23.5 3039,-44.5 3119,-44.5 3119,-23.5 3039,-23.5"/>
+<text text-anchor="start" x="3063" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="3119,-23.5 3119,-44.5 3299,-44.5 3299,-23.5 3119,-23.5"/>
+<text text-anchor="start" x="3146" y="-30.3" font-family="Times,serif" font-size="14.00">0x6030000005b0</text>
+<polygon fill="none" stroke="#3f6969" points="3039,-2.5 3039,-23.5 3119,-23.5 3119,-2.5 3039,-2.5"/>
+<text text-anchor="start" x="3062.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="3119,-2.5 3119,-23.5 3299,-23.5 3299,-2.5 3119,-2.5"/>
+<text text-anchor="start" x="3146" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000550</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="3037.5,-1.5 3037.5,-109.5 3300.5,-109.5 3300.5,-1.5 3037.5,-1.5"/>
 </g>
 <!-- node_29&#45;&gt;node_28 -->
 <g id="edge34" class="edge">
 <title>node_29&#45;&gt;node_28</title>
-<path fill="none" stroke="#149b5a" d="M2853.14,-55.5C2950.31,-55.5 3047.48,-55.5 3144.65,-55.5"/>
-<polygon fill="#149b5a" stroke="#149b5a" points="2853.13,-52 2843.12,-55.5 2853.12,-59 2853.13,-52"/>
+<path fill="none" stroke="#149b5a" d="M3312.46,-55.5C3332.55,-55.5 3352.63,-55.5 3372.71,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="3312.29,-52 3302.29,-55.5 3312.29,-59 3312.29,-52"/>
 </g>
 <!-- node_30 -->
 <g id="node30" class="node">
 <title>node_30</title>
-<polygon fill="#f673e9" stroke="transparent" points="1725,0 1725,-111 1991,-111 1991,0 1725,0"/>
-<polygon fill="none" stroke="#3f6969" points="1728,-86.5 1728,-107.5 1988,-107.5 1988,-86.5 1728,-86.5"/>
-<text text-anchor="start" x="1808" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
-<polygon fill="none" stroke="#3f6969" points="1728,-65.5 1728,-86.5 1988,-86.5 1988,-65.5 1728,-65.5"/>
-<text text-anchor="start" x="1820" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
-<polygon fill="none" stroke="#3f6969" points="1728,-44.5 1728,-65.5 1988,-65.5 1988,-44.5 1728,-44.5"/>
-<text text-anchor="start" x="1748.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000005b0</text>
-<polygon fill="none" stroke="#3f6969" points="1728,-23.5 1728,-44.5 1808,-44.5 1808,-23.5 1728,-23.5"/>
-<text text-anchor="start" x="1752" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
-<polygon fill="none" stroke="#3f6969" points="1808,-23.5 1808,-44.5 1988,-44.5 1988,-23.5 1808,-23.5"/>
-<text text-anchor="start" x="1835.5" y="-30.3" font-family="Times,serif" font-size="14.00">0x6030000005e0</text>
-<polygon fill="none" stroke="#3f6969" points="1728,-2.5 1728,-23.5 1808,-23.5 1808,-2.5 1728,-2.5"/>
-<text text-anchor="start" x="1751.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
-<polygon fill="none" stroke="#3f6969" points="1808,-2.5 1808,-23.5 1988,-23.5 1988,-2.5 1808,-2.5"/>
-<text text-anchor="start" x="1835" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000580</text>
-<polygon fill="none" stroke="#3f6969" stroke-width="3" points="1726.5,-1.5 1726.5,-109.5 1989.5,-109.5 1989.5,-1.5 1726.5,-1.5"/>
+<polygon fill="#36ff6f" stroke="transparent" points="2646,0 2646,-111 2912,-111 2912,0 2646,0"/>
+<polygon fill="none" stroke="#3f6969" points="2649,-86.5 2649,-107.5 2909,-107.5 2909,-86.5 2649,-86.5"/>
+<text text-anchor="start" x="2734.5" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = VAR</text>
+<polygon fill="none" stroke="#3f6969" points="2649,-65.5 2649,-86.5 2909,-86.5 2909,-65.5 2649,-65.5"/>
+<text text-anchor="start" x="2715" y="-72.3" font-family="Times,serif" font-size="14.00">VAR_NUM = 0 (x)</text>
+<polygon fill="none" stroke="#3f6969" points="2649,-44.5 2649,-65.5 2909,-65.5 2909,-44.5 2649,-44.5"/>
+<text text-anchor="start" x="2669.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000005b0</text>
+<polygon fill="none" stroke="#3f6969" points="2649,-23.5 2649,-44.5 2729,-44.5 2729,-23.5 2649,-23.5"/>
+<text text-anchor="start" x="2673" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="2729,-23.5 2729,-44.5 2909,-44.5 2909,-23.5 2729,-23.5"/>
+<text text-anchor="start" x="2756.5" y="-30.3" font-family="Times,serif" font-size="14.00">0x6030000005e0</text>
+<polygon fill="none" stroke="#3f6969" points="2649,-2.5 2649,-23.5 2729,-23.5 2729,-2.5 2649,-2.5"/>
+<text text-anchor="start" x="2672.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="2729,-2.5 2729,-23.5 2909,-23.5 2909,-2.5 2729,-2.5"/>
+<text text-anchor="start" x="2756" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000580</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="2647.5,-1.5 2647.5,-109.5 2910.5,-109.5 2910.5,-1.5 2647.5,-1.5"/>
 </g>
 <!-- node_30&#45;&gt;node_29 -->
 <g id="edge35" class="edge">
 <title>node_30&#45;&gt;node_29</title>
-<path fill="none" stroke="#149b5a" d="M2001.14,-55.5C2193.08,-55.5 2385.02,-55.5 2576.97,-55.5"/>
-<polygon fill="#149b5a" stroke="#149b5a" points="2001.13,-52 1991.12,-55.5 2001.12,-59 2001.13,-52"/>
+<path fill="none" stroke="#149b5a" d="M2922.44,-55.5C2960.25,-55.5 2998.07,-55.5 3035.89,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="2922.3,-52 2912.3,-55.5 2922.3,-59 2922.3,-52"/>
 </g>
 <!-- node_31 -->
 <g id="node31" class="node">
 <title>node_31</title>
-<polygon fill="#f673e9" stroke="transparent" points="305,0 305,-111 571,-111 571,0 305,0"/>
-<polygon fill="none" stroke="#3f6969" points="308,-86.5 308,-107.5 568,-107.5 568,-86.5 308,-86.5"/>
-<text text-anchor="start" x="388" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
-<polygon fill="none" stroke="#3f6969" points="308,-65.5 308,-86.5 568,-86.5 568,-65.5 308,-65.5"/>
-<text text-anchor="start" x="400" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
-<polygon fill="none" stroke="#3f6969" points="308,-44.5 308,-65.5 568,-65.5 568,-44.5 308,-44.5"/>
-<text text-anchor="start" x="329" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000005e0</text>
-<polygon fill="none" stroke="#3f6969" points="308,-23.5 308,-44.5 388,-44.5 388,-23.5 308,-23.5"/>
-<text text-anchor="start" x="332" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
-<polygon fill="none" stroke="#3f6969" points="388,-23.5 388,-44.5 568,-44.5 568,-23.5 388,-23.5"/>
-<text text-anchor="start" x="415" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000610</text>
-<polygon fill="none" stroke="#3f6969" points="308,-2.5 308,-23.5 388,-23.5 388,-2.5 308,-2.5"/>
-<text text-anchor="start" x="331.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
-<polygon fill="none" stroke="#3f6969" points="388,-2.5 388,-23.5 568,-23.5 568,-2.5 388,-2.5"/>
-<text text-anchor="start" x="415" y="-9.3" font-family="Times,serif" font-size="14.00">0x6030000005b0</text>
-<polygon fill="none" stroke="#3f6969" stroke-width="3" points="306.5,-1.5 306.5,-109.5 569.5,-109.5 569.5,-1.5 306.5,-1.5"/>
+<polygon fill="#b7e5f3" stroke="transparent" points="2149,0 2149,-111 2415,-111 2415,0 2149,0"/>
+<polygon fill="none" stroke="#3f6969" points="2152,-86.5 2152,-107.5 2412,-107.5 2412,-86.5 2152,-86.5"/>
+<text text-anchor="start" x="2241.5" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = OP</text>
+<polygon fill="none" stroke="#3f6969" points="2152,-65.5 2152,-86.5 2412,-86.5 2412,-65.5 2152,-65.5"/>
+<text text-anchor="start" x="2218" y="-72.3" font-family="Times,serif" font-size="14.00">OP_CODE = POW</text>
+<polygon fill="none" stroke="#3f6969" points="2152,-44.5 2152,-65.5 2412,-65.5 2412,-44.5 2152,-44.5"/>
+<text text-anchor="start" x="2173" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x6030000005e0</text>
+<polygon fill="none" stroke="#3f6969" points="2152,-23.5 2152,-44.5 2232,-44.5 2232,-23.5 2152,-23.5"/>
+<text text-anchor="start" x="2176" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="2232,-23.5 2232,-44.5 2412,-44.5 2412,-23.5 2232,-23.5"/>
+<text text-anchor="start" x="2259" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000610</text>
+<polygon fill="none" stroke="#3f6969" points="2152,-2.5 2152,-23.5 2232,-23.5 2232,-2.5 2152,-2.5"/>
+<text text-anchor="start" x="2175.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="2232,-2.5 2232,-23.5 2412,-23.5 2412,-2.5 2232,-2.5"/>
+<text text-anchor="start" x="2259" y="-9.3" font-family="Times,serif" font-size="14.00">0x6030000005b0</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="2150.5,-1.5 2150.5,-109.5 2413.5,-109.5 2413.5,-1.5 2150.5,-1.5"/>
 </g>
 <!-- node_31&#45;&gt;node_30 -->
 <g id="edge36" class="edge">
 <title>node_31&#45;&gt;node_30</title>
-<path fill="none" stroke="#149b5a" d="M581.26,-55.5C962.44,-55.5 1343.61,-55.5 1724.79,-55.5"/>
-<polygon fill="#149b5a" stroke="#149b5a" points="581.13,-52 571.12,-55.5 581.12,-59 581.13,-52"/>
+<path fill="none" stroke="#149b5a" d="M2425.82,-55.5C2499.17,-55.5 2572.52,-55.5 2645.87,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="2425.47,-52 2415.47,-55.5 2425.47,-59 2425.47,-52"/>
 </g>
 <!-- node_32 -->
 <g id="node32" class="node">
 <title>node_32</title>
+<polygon fill="#f8c331" stroke="transparent" points="1439,0 1439,-111 1705,-111 1705,0 1439,0"/>
+<polygon fill="none" stroke="#3f6969" points="1442,-86.5 1442,-107.5 1702,-107.5 1702,-86.5 1442,-86.5"/>
+<text text-anchor="start" x="1523" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = NUM</text>
+<polygon fill="none" stroke="#3f6969" points="1442,-65.5 1442,-86.5 1702,-86.5 1702,-65.5 1442,-65.5"/>
+<text text-anchor="start" x="1532" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = 2</text>
+<polygon fill="none" stroke="#3f6969" points="1442,-44.5 1442,-65.5 1702,-65.5 1702,-44.5 1442,-44.5"/>
+<text text-anchor="start" x="1462.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000610</text>
+<polygon fill="none" stroke="#3f6969" points="1442,-23.5 1442,-44.5 1522,-44.5 1522,-23.5 1442,-23.5"/>
+<text text-anchor="start" x="1466" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="1522,-23.5 1522,-44.5 1702,-44.5 1702,-23.5 1522,-23.5"/>
+<text text-anchor="start" x="1549" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000640</text>
+<polygon fill="none" stroke="#3f6969" points="1442,-2.5 1442,-23.5 1522,-23.5 1522,-2.5 1442,-2.5"/>
+<text text-anchor="start" x="1465.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="1522,-2.5 1522,-23.5 1702,-23.5 1702,-2.5 1522,-2.5"/>
+<text text-anchor="start" x="1549.5" y="-9.3" font-family="Times,serif" font-size="14.00">0x6030000005e0</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="1440.5,-1.5 1440.5,-109.5 1703.5,-109.5 1703.5,-1.5 1440.5,-1.5"/>
+</g>
+<!-- node_32&#45;&gt;node_31 -->
+<g id="edge37" class="edge">
+<title>node_32&#45;&gt;node_31</title>
+<path fill="none" stroke="#149b5a" d="M1715.52,-55.5C1859.94,-55.5 2004.35,-55.5 2148.77,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="1715.13,-52 1705.12,-55.5 1715.12,-59 1715.13,-52"/>
+</g>
+<!-- node_33 -->
+<g id="node33" class="node">
+<title>node_33</title>
+<polygon fill="#f673e9" stroke="transparent" points="303,0 303,-111 569,-111 569,0 303,0"/>
+<polygon fill="none" stroke="#3f6969" points="306,-86.5 306,-107.5 566,-107.5 566,-86.5 306,-86.5"/>
+<text text-anchor="start" x="386" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
+<polygon fill="none" stroke="#3f6969" points="306,-65.5 306,-86.5 566,-86.5 566,-65.5 306,-65.5"/>
+<text text-anchor="start" x="398" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = )</text>
+<polygon fill="none" stroke="#3f6969" points="306,-44.5 306,-65.5 566,-65.5 566,-44.5 306,-44.5"/>
+<text text-anchor="start" x="326.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000640</text>
+<polygon fill="none" stroke="#3f6969" points="306,-23.5 306,-44.5 386,-44.5 386,-23.5 306,-23.5"/>
+<text text-anchor="start" x="330" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
+<polygon fill="none" stroke="#3f6969" points="386,-23.5 386,-44.5 566,-44.5 566,-23.5 386,-23.5"/>
+<text text-anchor="start" x="413" y="-30.3" font-family="Times,serif" font-size="14.00">0x603000000670</text>
+<polygon fill="none" stroke="#3f6969" points="306,-2.5 306,-23.5 386,-23.5 386,-2.5 306,-2.5"/>
+<text text-anchor="start" x="329.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
+<polygon fill="none" stroke="#3f6969" points="386,-2.5 386,-23.5 566,-23.5 566,-2.5 386,-2.5"/>
+<text text-anchor="start" x="413" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000610</text>
+<polygon fill="none" stroke="#3f6969" stroke-width="3" points="304.5,-1.5 304.5,-109.5 567.5,-109.5 567.5,-1.5 304.5,-1.5"/>
+</g>
+<!-- node_33&#45;&gt;node_32 -->
+<g id="edge38" class="edge">
+<title>node_33&#45;&gt;node_32</title>
+<path fill="none" stroke="#149b5a" d="M579.32,-55.5C865.81,-55.5 1152.31,-55.5 1438.81,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="579.13,-52 569.12,-55.5 579.12,-59 579.13,-52"/>
+</g>
+<!-- node_34 -->
+<g id="node34" class="node">
+<title>node_34</title>
 <polygon fill="#f673e9" stroke="transparent" points="18,0 18,-111 284,-111 284,0 18,0"/>
 <polygon fill="none" stroke="#3f6969" points="21,-86.5 21,-107.5 281,-107.5 281,-86.5 21,-86.5"/>
 <text text-anchor="start" x="101" y="-93.3" font-family="Times,serif" font-size="14.00">TYPE = SPEC</text>
 <polygon fill="none" stroke="#3f6969" points="21,-65.5 21,-86.5 281,-86.5 281,-65.5 21,-65.5"/>
 <text text-anchor="start" x="111" y="-72.3" font-family="Times,serif" font-size="14.00">VALUE = $</text>
 <polygon fill="none" stroke="#3f6969" points="21,-44.5 21,-65.5 281,-65.5 281,-44.5 21,-44.5"/>
-<text text-anchor="start" x="41.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000610</text>
+<text text-anchor="start" x="41.5" y="-51.3" font-family="Times,serif" font-size="14.00">ADDRESS = 0x603000000670</text>
 <polygon fill="none" stroke="#3f6969" points="21,-23.5 21,-44.5 101,-44.5 101,-23.5 21,-23.5"/>
 <text text-anchor="start" x="45" y="-30.3" font-family="Times,serif" font-size="14.00">next</text>
 <polygon fill="none" stroke="#3f6969" points="101,-23.5 101,-44.5 281,-44.5 281,-23.5 101,-23.5"/>
@@ -830,20 +882,20 @@
 <polygon fill="none" stroke="#3f6969" points="21,-2.5 21,-23.5 101,-23.5 101,-2.5 21,-2.5"/>
 <text text-anchor="start" x="44.5" y="-9.3" font-family="Times,serif" font-size="14.00">prev</text>
 <polygon fill="none" stroke="#3f6969" points="101,-2.5 101,-23.5 281,-23.5 281,-2.5 101,-2.5"/>
-<text text-anchor="start" x="128.5" y="-9.3" font-family="Times,serif" font-size="14.00">0x6030000005e0</text>
+<text text-anchor="start" x="128" y="-9.3" font-family="Times,serif" font-size="14.00">0x603000000640</text>
 <polygon fill="none" stroke="#3f6969" stroke-width="3" points="19.5,-1.5 19.5,-109.5 282.5,-109.5 282.5,-1.5 19.5,-1.5"/>
 </g>
-<!-- node_32&#45;&gt;node_31 -->
-<g id="edge37" class="edge">
-<title>node_32&#45;&gt;node_31</title>
-<path fill="none" stroke="#149b5a" d="M294.17,-55.5C297.74,-55.5 301.3,-55.5 304.87,-55.5"/>
-<polygon fill="#149b5a" stroke="#149b5a" points="294.13,-52 284.13,-55.5 294.13,-59 294.13,-52"/>
+<!-- node_34&#45;&gt;node_33 -->
+<g id="edge39" class="edge">
+<title>node_34&#45;&gt;node_33</title>
+<path fill="none" stroke="#149b5a" d="M294.26,-55.5C297.09,-55.5 299.91,-55.5 302.74,-55.5"/>
+<polygon fill="#149b5a" stroke="#149b5a" points="294.04,-52 284.04,-55.5 294.04,-59 294.04,-52"/>
 </g>
 <!-- left_rail_0 -->
 <!-- left_rail_0&#45;&gt;node_1 -->
 <!-- left_rail_1 -->
 <!-- left_rail_0&#45;&gt;left_rail_1 -->
 <!-- right_rail_0&#45;&gt;right_rail_1 -->
-<!-- left_rail_1&#45;&gt;node_32 -->
+<!-- left_rail_1&#45;&gt;node_34 -->
 </g>
 </svg>

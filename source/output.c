@@ -22,34 +22,26 @@
 #define TEMP_LATEX_FILE     "temp/output.tex"
 #define TEMP_PDF_FILE       "temp/output.pdf"
 
-static const size_t FIRST_CONSOLE_CAPACITY       = 128;
-static const size_t MAX_CONSOLE_EXPRESSION_DEPTH = 7;
-static const size_t MAX_LATEX_EXPRESSION_DEPTH   = 6;
-static const size_t MIN_ALIAS_SUBTREE_SIZE       = 6;
+static const size_t FIRST_CONSOLE_CAPACITY        = 128;
+static const size_t MAX_LATEX_EXPRESSION_LENGTH   = 80;
 
-struct expression_alias_t
+struct latex_output_state_t
 {
-    const node_t* node;
-    size_t number;
+    size_t line_length;
+    size_t max_line_length;
 };
 
-struct expression_aliases_t
-{
-    expression_alias_t* data;
-    size_t size;
-    size_t capacity;
-};
-
-static char* alias_name(size_t number, char* buffer, size_t buffer_size);
-static size_t subtree_size(const node_t* node);
-static bool subtrees_equal(const node_t* first, const node_t* second);
-static size_t find_alias(const expression_aliases_t* aliases, const node_t* node);
-static size_t add_alias(expression_aliases_t* aliases, const node_t* node);
-static bool check_for_alias(const node_t* node, size_t depth, size_t max_depth,
-                            expression_aliases_t* aliases, FILE* output_file);
+static size_t latex_expression_length(const node_t* node, const variable_t* variables);
+static size_t latex_first_line_length(const node_t* node, const variable_t* variables,
+                                      const node_t* parent, bool line_break_allowed);
+static const char* latex_operator_design(operator_code operation);
+static void latex_binary_separator(const node_t* parent, const node_t* right,
+                                   const variable_t* variables, bool line_break_allowed,
+                                   FILE* output_file, latex_output_state_t* state);
 static void tree_to_latex(const node_t* node, FILE* output_file, const variable_t* variables);
 static void latex_output(const node_t* node, FILE* output_file, const variable_t* variables,
-                         const node_t* parent, size_t depth, expression_aliases_t* aliases);
+                         const node_t* parent, bool line_break_allowed,
+                         latex_output_state_t* state);
 static bool expression_to_tree(program_status_data program_status, variable_t** variables_ptr,
                                FILE* input_file, node_t** node_ptr);
 static void from_file_to_tree(variable_t** variables, FILE* input_file,
@@ -60,7 +52,7 @@ static bool run_pdf_latex(void);
 static bool copy_file(const char* source_file_name, const char* destination_file_name);
 static bool console_parentheses_required(const node_t* node, const node_t* parent, bool is_right_child);
 static void console_output(const node_t* node, const variable_t* variables, const node_t* parent,
-                           bool is_right_child, size_t depth, expression_aliases_t* aliases);
+                           bool is_right_child);
 
 static void tree_to_latex(const node_t* node, FILE* output_file, const variable_t* variables)
 {
@@ -68,118 +60,126 @@ static void tree_to_latex(const node_t* node, FILE* output_file, const variable_
     assert(output_file);
     assert(variables);
 
-    expression_aliases_t aliases = {};
+    latex_output_state_t state = {0, MAX_LATEX_EXPRESSION_LENGTH};
 
     fprintf(output_file, "\\documentclass{article}\n");
     fprintf(output_file, "\\usepackage{amsmath}\n");
     fprintf(output_file, "\\begin{document}\n");
-    fprintf(output_file, "\\[\n");
-
-    latex_output(node, output_file, variables, nullptr, 1, &aliases);
-
-    fprintf(output_file, "\n\\]\n");
-
-    if (aliases.size > 0)
-    {
-        fprintf(output_file, "\\[\n\\begin{aligned}\n");
-        for (size_t i = 0; i < aliases.size; i++)
-        {
-            char name[32] = {};
-            fprintf(output_file, "%s &= ", alias_name(aliases.data[i].number, name, sizeof(name)));
-            latex_output(aliases.data[i].node, output_file, variables, nullptr, 1, &aliases);
-            fprintf(output_file, " \\\\");
-            fputc('\n', output_file);
-        }
-        fprintf(output_file, "\\end{aligned}\n\\]\n");
-    }
-
+    fprintf(output_file, "\\[\n\\begin{aligned}\n& ");
+    latex_output(node, output_file, variables, nullptr, true, &state);
+    fprintf(output_file, "\n\\end{aligned}\n\\]\n");
     fprintf(output_file, "\\end{document}\n");
 
     fflush(output_file);
-    free(aliases.data);
 }
 
 static void latex_output(const node_t* node, FILE* output_file, const variable_t* variables,
-                         const node_t* parent, size_t depth, expression_aliases_t* aliases)
+                         const node_t* parent, bool line_break_allowed,
+                         latex_output_state_t* state)
 {
     assert(output_file);
     assert(variables);
-    assert(aliases);
+    assert(state);
 
     if (!node) return;
     assert(node->value);
 
-    if (check_for_alias(node, depth, MAX_LATEX_EXPRESSION_DEPTH, aliases, output_file)) return;
-
     switch (NODE_TYPE)
     {
         case NUM:
+        {
             if (NODE_NUMBER > 0 || is_close_to_zero(NODE_NUMBER))
                 fprintf(output_file, "%lg", NODE_NUMBER);
             else
                 fprintf(output_file, "\\left(%lg\\right)", NODE_NUMBER);
+
+            state->line_length += latex_expression_length(node, variables);
             break;
+        }
 
         case VAR:
             fprintf(output_file, "%s", variables[NODE_VAR_NUMBER].name);
+            state->line_length += variables[NODE_VAR_NUMBER].length;
             break;
 
         case OP:
+        {
             switch(OP_CODE)
             {
                 case ADD:
-                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\left(");
-                    latex_output(node->left, output_file, variables, node, depth + 1, aliases);
-                    fprintf(output_file, " + ");
-                    latex_output(node->right, output_file, variables, node, depth + 1, aliases);
-                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\right)");
-                    break;
-
                 case SUB:
-                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\left(");
-                    latex_output(node->left, output_file, variables, node, depth + 1, aliases);
-                    fprintf(output_file, " - ");
-                    latex_output(node->right, output_file, variables, node, depth + 1, aliases);
-                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\right)");
-                    break;
-
                 case MUL:
-                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\left(");
-                    latex_output(node->left, output_file, variables, node, depth + 1, aliases);
-                    fprintf(output_file, " \\cdot ");
-                    latex_output(node->right, output_file, variables, node, depth + 1, aliases);
-                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\right)");
+                {
+                    bool parentheses = parent && (OP_PRIORITY > PARENT_PRIORITY);
+                    if (parentheses)
+                    {
+                        fprintf(output_file, "\\bigl(");
+                        state->line_length++;
+                    }
+
+                    latex_output(node->left, output_file, variables, node,
+                                 line_break_allowed, state);
+                    latex_binary_separator(node, node->right, variables,
+                                           line_break_allowed, output_file, state);
+                    latex_output(node->right, output_file, variables, node,
+                                 line_break_allowed, state);
+
+                    if (parentheses)
+                    {
+                        fprintf(output_file, "\\bigr)");
+                        state->line_length++;
+                    }
                     break;
+                }
 
                 case DIV:
-                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\left(");
+                {
+                    bool parentheses = parent && (OP_PRIORITY > PARENT_PRIORITY);
+                    latex_output_state_t nested_state = {0, state->max_line_length};
+                    if (parentheses) fprintf(output_file, "\\left(");
                     fprintf(output_file, "\\frac{");
-                    latex_output(node->left, output_file, variables, node, depth + 1, aliases);
+                    latex_output(node->left, output_file, variables, node, false, &nested_state);
                     fprintf(output_file, "}{");
-                    latex_output(node->right, output_file, variables, node, depth + 1, aliases);
+                    nested_state.line_length = 0;
+                    latex_output(node->right, output_file, variables, node, false, &nested_state);
                     fprintf(output_file, "}");
-                    if (parent && (OP_PRIORITY > PARENT_PRIORITY)) fprintf(output_file, "\\right)");
+                    if (parentheses) fprintf(output_file, "\\right)");
+                    state->line_length += latex_expression_length(node, variables) +
+                                          (parentheses ? 2 : 0);
                     break;
+                }
 
                 case POW:
-                    latex_output(node->left, output_file, variables, node, depth + 1, aliases);
+                {
+                    latex_output_state_t nested_state = {0, state->max_line_length};
+                    latex_output(node->left, output_file, variables, node, false, &nested_state);
                     fprintf(output_file, "^{");
-                    latex_output(node->right, output_file, variables, node, depth + 1, aliases);
+                    nested_state.line_length = 0;
+                    latex_output(node->right, output_file, variables, node, false, &nested_state);
                     fprintf(output_file, "}");
+                    state->line_length += latex_expression_length(node, variables);
                     break;
+                }
 
                 case LN:
                 case COS:
                 case SIN:
                 case EXP:
+                {
+                    latex_output_state_t nested_state = {0, state->max_line_length};
                     fprintf(output_file, "\\%s\\left(", OP_DESIGN);
-                    latex_output(node->left, output_file, variables, node, depth + 1, aliases);
+                    latex_output(node->left, output_file, variables, node, false, &nested_state);
                     fprintf(output_file, "\\right)");
+                    state->line_length += latex_expression_length(node, variables);
                     break;
+                }
 
                 default:
                     break;
             }
+            break;
+        }
+
         case SPEC:
         default:
             break;
@@ -448,125 +448,117 @@ static bool from_console_to_tree(variable_t** variables, char** buffer_ptr, char
     return true;
 }
 
-static char* alias_name(size_t number, char* buffer, size_t buffer_size)
-{
-    assert(buffer);
-    assert(buffer_size > 0);
-
-    char reversed_name[32] = {};
-    size_t length = 0;
-
-    while (length < sizeof(reversed_name))
-    {
-        reversed_name[length++] = (char) ('a' + number % 26);
-        if (number < 26) break;
-        number = number / 26 - 1;
-    }
-
-    size_t output_length = length < buffer_size - 1 ? length : buffer_size - 1;
-    for (size_t i = 0; i < output_length; i++)
-        buffer[i] = reversed_name[length - i - 1];
-    buffer[output_length] = '\0';
-
-    return buffer;
-}
-
-static size_t add_alias(expression_aliases_t* aliases, const node_t* node)
-{
-    assert(aliases);
-    assert(node);
-
-    if (aliases->size == aliases->capacity)
-    {
-        size_t new_capacity = aliases->capacity ? aliases->capacity * 2 : 16;
-        expression_alias_t* new_data = (expression_alias_t*) realloc(aliases->data, new_capacity * sizeof(*new_data));
-        if (!new_data) return (size_t) -1;
-        aliases->data = new_data;
-        aliases->capacity = new_capacity;
-    }
-
-    size_t number = aliases->size;
-    aliases->data[aliases->size++] = (expression_alias_t) {node, number};
-    return number;
-}
-
-static size_t subtree_size(const node_t* node)
+static size_t latex_expression_length(const node_t* node, const variable_t* variables)
 {
     if (!node) return 0;
-    return 1 + subtree_size(node->left) + subtree_size(node->right);
-}
 
-static bool subtrees_equal(const node_t* first, const node_t* second)
-{
-    if (first == second) return true;
-    if (!first || !second) return false;
+    assert(node->value);
+    assert(variables);
 
-    assert(first->value);
-    assert(second->value);
-
-    if (first->value->type != second->value->type) return false;
-
-    switch (first->value->type)
+    switch (node->value->type)
     {
         case NUM:
-            if (!is_close_to_zero(first->value->data_t.number - second->value->data_t.number))
-                return false;
-            break;
+        {
+            char number[64] = {};
+            int length = snprintf(number, sizeof(number), "%lg", node->value->data_t.number);
+            size_t result = length > 0 ? (size_t) length : 0;
+            if (node->value->data_t.number < 0 && !is_close_to_zero(node->value->data_t.number))
+                result += 2;
+            return result;
+        }
 
         case VAR:
-            if (first->value->data_t.var_number != second->value->data_t.var_number)
-                return false;
-            break;
+            return variables[node->value->data_t.var_number].length;
 
         case OP:
-            if (first->value->data_t.op != second->value->data_t.op)
-                return false;
-            break;
+        {
+            operator_code operation = node->value->data_t.op;
+            size_t left_length = latex_expression_length(node->left, variables);
+
+            if (operators_array[operation].is_one_arg)
+                return operators_array[operation].strlen + left_length + 2;
+
+            size_t right_length = latex_expression_length(node->right, variables);
+            if (operation == DIV)
+                return (left_length > right_length ? left_length : right_length) + 2;
+
+            if (operation == POW)
+                return left_length + right_length + 1;
+
+            return left_length + right_length + 3;
+        }
 
         case SPEC:
         default:
-            break;
+            return 0;
     }
-
-    return subtrees_equal(first->left, second->left) &&
-           subtrees_equal(first->right, second->right);
 }
 
-static size_t find_alias(const expression_aliases_t* aliases, const node_t* node)
+static size_t latex_first_line_length(const node_t* node, const variable_t* variables,
+                                      const node_t* parent, bool line_break_allowed)
 {
-    assert(aliases);
     assert(node);
+    assert(node->value);
+    assert(variables);
+    if (parent) assert(parent->value);
 
-    for (size_t i = 0; i < aliases->size; i++)
+    if (!line_break_allowed || node->value->type != OP)
+        return latex_expression_length(node, variables);
+
+    operator_code operation = node->value->data_t.op;
+    if (operation != ADD && operation != SUB && operation != MUL)
+        return latex_expression_length(node, variables);
+
+    bool parentheses = parent && parent->value->type == OP &&
+                       operators_array[operation].priority >
+                       operators_array[parent->value->data_t.op].priority;
+    size_t result = latex_first_line_length(node->left, variables, node, true);
+    return result + (parentheses ? 1 : 0);
+}
+
+static const char* latex_operator_design(operator_code operation)
+{
+    switch (operation)
     {
-        if (subtrees_equal(aliases->data[i].node, node))
-            return aliases->data[i].number;
+        case ADD: return "+";
+        case SUB: return "-";
+        case MUL: return "\\cdot";
+        case DIV:
+        case POW:
+        case LN:
+        case COS:
+        case SIN:
+        case EXP:
+        default:  return "";
     }
-
-    return (size_t) -1;
 }
 
-static bool check_for_alias(const node_t* node, size_t depth, size_t max_depth,
-                            expression_aliases_t* aliases, FILE* output_file)
+static void latex_binary_separator(const node_t* parent, const node_t* right,
+                                   const variable_t* variables, bool line_break_allowed,
+                                   FILE* output_file, latex_output_state_t* state)
 {
-    assert(node);
-    assert(aliases);
+    assert(parent);
+    assert(parent->value);
+    assert(parent->value->type == OP);
+    assert(right);
+    assert(variables);
     assert(output_file);
-    assert(max_depth > 0);
+    assert(state);
 
-    if (depth < max_depth || subtree_size(node) < MIN_ALIAS_SUBTREE_SIZE)
-        return false;
+    operator_code operation = parent->value->data_t.op;
+    const char* design = latex_operator_design(operation);
+    size_t right_length = latex_first_line_length(right, variables, parent,
+                                                  line_break_allowed);
+    if (line_break_allowed &&
+        state->line_length + right_length + 3 > state->max_line_length)
+    {
+        fprintf(output_file, " %s{} \\\\\n& {}%s ", design, design);
+        state->line_length = 2;
+        return;
+    }
 
-    size_t number = find_alias(aliases, node);
-    if (number == (size_t) -1)
-        number = add_alias(aliases, node);
-
-    if (number == (size_t) -1)
-        return false;
-
-    char name[32] = {};
-    fprintf(output_file, "%s", alias_name(number, name, sizeof(name)));
-    return true;
+    fprintf(output_file, " %s ", design);
+    state->line_length += 3;
 }
 
 static bool console_parentheses_required(const node_t* node, const node_t* parent, bool is_right_child)
@@ -591,15 +583,12 @@ static bool console_parentheses_required(const node_t* node, const node_t* paren
 }
 
 static void console_output(const node_t* node, const variable_t* variables, const node_t* parent,
-                           bool is_right_child, size_t depth, expression_aliases_t* aliases)
+                           bool is_right_child)
 {
     assert(variables);
-    assert(aliases);
 
     if (!node) return;
     assert(node->value);
-
-    if (check_for_alias(node, depth, MAX_CONSOLE_EXPRESSION_DEPTH, aliases, stdout)) return;
 
     switch (node->value->type)
     {
@@ -620,14 +609,14 @@ static void console_output(const node_t* node, const variable_t* variables, cons
             if (operators_array[operation].is_one_arg)
             {
                 printf("%s(", operators_array[operation].design);
-                console_output(node->left, variables, node, false, depth + 1, aliases);
+                console_output(node->left, variables, node, false);
                 printf(")");
             }
             else
             {
-                console_output(node->left, variables, node, false, depth + 1, aliases);
+                console_output(node->left, variables, node, false);
                 printf(" %s ", operators_array[operation].design);
-                console_output(node->right, variables, node, true, depth + 1, aliases);
+                console_output(node->right, variables, node, true);
             }
 
             if (parentheses) printf(")");
@@ -645,22 +634,9 @@ void tree_to_console(const node_t* node, const variable_t* variables)
     assert(node);
     assert(variables);
 
-    expression_aliases_t aliases = {};
-
     printf(MAKE_BOLD("Result:\n"));
-    console_output(node, variables, nullptr, false, 1, &aliases);
+    console_output(node, variables, nullptr, false);
     printf("\n");
-
-    for (size_t i = 0; i < aliases.size; i++)
-    {
-        char name[32] = {};
-        printf("%s = ", alias_name(aliases.data[i].number, name, sizeof(name)));
-
-        console_output(aliases.data[i].node, variables, nullptr, false, 1, &aliases);
-        printf("\n");
-    }
-
-    free(aliases.data);
 }
 
 void program_complete(variable_t** variables_ptr, node_t** node_ptr, FILE* input_file)
