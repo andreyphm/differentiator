@@ -18,6 +18,8 @@ void tree_dump(node_t* const node, const variable_t* const variables)
         printf(MAKE_BOLD_RED("Tree is empty, nothing to dump\n"));
         return;
     }
+    assert(variables);
+
     FILE* txt_file = fopen(TREE_DUMP_TXT, "w");
     assert(txt_file);
 
@@ -47,6 +49,7 @@ void tree_dump(node_t* const node, const variable_t* const variables)
         stack_size--;
         node_t* current = stack[stack_size].node;
         int current_index = stack[stack_size].index;
+        assert(current->value);
 
         fprintf(txt_file, "    n%d [label=\"{ <type> type = %s | ", current_index, enum_to_string(current->value->type));
         switch(current->value->type)

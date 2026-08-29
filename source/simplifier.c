@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <math.h>
 
 #include "differentiator.h"
@@ -7,6 +8,8 @@ static double remove_minus_before_zero(double number_being_checked);
 
 node_t* simplify_tree(node_t* node, bool* simplifications_ptr)
 {
+    assert(simplifications_ptr);
+
     if (!node) return nullptr;
     if (!node->left || !node->right) return node;
 

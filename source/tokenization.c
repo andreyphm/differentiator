@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
@@ -18,6 +19,10 @@ static token_t* create_token(const type_data type, token_union data, list_t* con
 
 error_code tokenization(const char* buffer, variable_t* variables, list_t* const list)
 {
+    assert(buffer);
+    assert(variables);
+    assert(list);
+
     list->head = create_token(SPEC, (token_union){.spec_symbol = '!'}, list);
     list->tail = list->head;
 
@@ -55,12 +60,19 @@ error_code tokenization(const char* buffer, variable_t* variables, list_t* const
 
 static void skip_spaces(const char** string)
 {
+    assert(string);
+    assert(*string);
+
     while (isspace(**string))
         (*string)++;
 }
 
 static bool try_digit(const char** buffer, list_t* const list)
 {
+    assert(buffer);
+    assert(*buffer);
+    assert(list);
+
     bool dot_already = false;
     double value = 0;
 
@@ -87,6 +99,10 @@ static bool try_digit(const char** buffer, list_t* const list)
 
 static bool try_char_op(const char** buffer, list_t* const list)
 {
+    assert(buffer);
+    assert(*buffer);
+    assert(list);
+
     for (size_t i = 0; i <= LAST_CHAR_OP_NUM; i++)
     {
         if (!strncmp(operators_array[i].design, *buffer, 1))
@@ -103,6 +119,10 @@ static bool try_char_op(const char** buffer, list_t* const list)
 
 static bool try_function(const char** buffer, list_t* const list)
 {
+    assert(buffer);
+    assert(*buffer);
+    assert(list);
+
     const char* start_of_buffer = *buffer;
 
     if (isalpha(**buffer))
@@ -130,6 +150,10 @@ static bool try_function(const char** buffer, list_t* const list)
 
 static bool try_bracket(const char** buffer, list_t* const list)
 {
+    assert(buffer);
+    assert(*buffer);
+    assert(list);
+
     if (**buffer == '(' || **buffer == ')')
     {
         list_push_back(SPEC, (token_union){.spec_symbol = **buffer}, list);
@@ -143,6 +167,13 @@ static bool try_bracket(const char** buffer, list_t* const list)
 static bool try_variable(const char** buffer, list_t* const list, variable_t* variables,
                          int* last_variable_num, bool* is_variables)
 {
+    assert(buffer);
+    assert(*buffer);
+    assert(list);
+    assert(variables);
+    assert(last_variable_num);
+    assert(is_variables);
+
     const char* start_of_buffer = *buffer;
 
     if (!isalpha(**buffer))
@@ -234,6 +265,8 @@ static token_t* create_token(const type_data type, token_union data, list_t* con
 
 void list_destroy(list_t* list)
 {
+    assert(list);
+
     token_t* current = list->head;
 
     while (current)
@@ -246,6 +279,9 @@ void list_destroy(list_t* list)
 
 void variables_destroy(variable_t** variables)
 {
+    assert(variables);
+    assert(*variables);
+
     for (size_t i = 0; i < MAX_NUMBER_OF_VARS; i++)
             free((void*)(*variables)[i].name);
 

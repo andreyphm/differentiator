@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
@@ -63,6 +64,10 @@ static void console_output(const node_t* node, const variable_t* variables, cons
 
 static void tree_to_latex(const node_t* node, FILE* output_file, const variable_t* variables)
 {
+    assert(node);
+    assert(output_file);
+    assert(variables);
+
     expression_aliases_t aliases = {};
 
     fprintf(output_file, "\\documentclass{article}\n");
@@ -97,7 +102,13 @@ static void tree_to_latex(const node_t* node, FILE* output_file, const variable_
 static void latex_output(const node_t* node, FILE* output_file, const variable_t* variables,
                          const node_t* parent, size_t depth, expression_aliases_t* aliases)
 {
+    assert(output_file);
+    assert(variables);
+    assert(aliases);
+
     if (!node) return;
+    assert(node->value);
+
     if (check_for_alias(node, depth, MAX_LATEX_EXPRESSION_DEPTH, aliases, output_file)) return;
 
     switch (NODE_TYPE)
@@ -215,6 +226,9 @@ static bool run_pdf_latex(void)
 
 static bool copy_file(const char* source_file_name, const char* destination_file_name)
 {
+    assert(source_file_name);
+    assert(destination_file_name);
+
     FILE* source_file = fopen(source_file_name, "rb");
     if (!source_file) return false;
 
@@ -247,6 +261,10 @@ static bool copy_file(const char* source_file_name, const char* destination_file
 
 bool tree_to_pdf_file(const node_t* node, const variable_t* variables, const char* output_file_name)
 {
+    assert(node);
+    assert(variables);
+    assert(output_file_name);
+
     if (!create_temp_directory())
         return false;
 
@@ -280,6 +298,11 @@ bool tree_to_pdf_file(const node_t* node, const variable_t* variables, const cha
 bool make_dif_tree(program_status_data program_status, variable_t** variables_ptr,
                    FILE* input_file, node_t** node_ptr)
 {
+    assert(program_status == FROM_FILE_TO_TREE || program_status == FROM_CONSOLE_TO_TREE);
+    assert(variables_ptr);
+    assert(node_ptr);
+    assert(program_status != FROM_FILE_TO_TREE || input_file);
+
     if (!expression_to_tree(program_status, variables_ptr, input_file, node_ptr))
         return false;
 
@@ -301,6 +324,11 @@ bool make_dif_tree(program_status_data program_status, variable_t** variables_pt
 static bool expression_to_tree(program_status_data program_status, variable_t** variables_ptr,
                                FILE* input_file, node_t** node_ptr)
 {
+    assert(program_status == FROM_FILE_TO_TREE || program_status == FROM_CONSOLE_TO_TREE);
+    assert(variables_ptr);
+    assert(node_ptr);
+    assert(program_status != FROM_FILE_TO_TREE || input_file);
+
     variable_t* variables = nullptr;
     char* buffer = nullptr;
     char* original_ptr = nullptr;
@@ -345,6 +373,11 @@ static bool expression_to_tree(program_status_data program_status, variable_t** 
 static void from_file_to_tree(variable_t** variables, FILE* input_file,
                               char** buffer_ptr, char** original_ptr)
 {
+    assert(variables);
+    assert(input_file);
+    assert(buffer_ptr);
+    assert(original_ptr);
+
     *variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
     
     rewind(input_file);
@@ -356,6 +389,10 @@ static void from_file_to_tree(variable_t** variables, FILE* input_file,
 
 static bool from_console_to_tree(variable_t** variables, char** buffer_ptr, char** original_ptr)
 {
+    assert(variables);
+    assert(buffer_ptr);
+    assert(original_ptr);
+
     *variables = (variable_t*) calloc(MAX_NUMBER_OF_VARS, sizeof(variable_t));
 
     size_t capacity = FIRST_CONSOLE_CAPACITY;
@@ -413,6 +450,9 @@ static bool from_console_to_tree(variable_t** variables, char** buffer_ptr, char
 
 static char* alias_name(size_t number, char* buffer, size_t buffer_size)
 {
+    assert(buffer);
+    assert(buffer_size > 0);
+
     char reversed_name[32] = {};
     size_t length = 0;
 
@@ -433,6 +473,9 @@ static char* alias_name(size_t number, char* buffer, size_t buffer_size)
 
 static size_t add_alias(expression_aliases_t* aliases, const node_t* node)
 {
+    assert(aliases);
+    assert(node);
+
     if (aliases->size == aliases->capacity)
     {
         size_t new_capacity = aliases->capacity ? aliases->capacity * 2 : 16;
@@ -457,6 +500,10 @@ static bool subtrees_equal(const node_t* first, const node_t* second)
 {
     if (first == second) return true;
     if (!first || !second) return false;
+
+    assert(first->value);
+    assert(second->value);
+
     if (first->value->type != second->value->type) return false;
 
     switch (first->value->type)
@@ -487,6 +534,9 @@ static bool subtrees_equal(const node_t* first, const node_t* second)
 
 static size_t find_alias(const expression_aliases_t* aliases, const node_t* node)
 {
+    assert(aliases);
+    assert(node);
+
     for (size_t i = 0; i < aliases->size; i++)
     {
         if (subtrees_equal(aliases->data[i].node, node))
@@ -499,6 +549,11 @@ static size_t find_alias(const expression_aliases_t* aliases, const node_t* node
 static bool check_for_alias(const node_t* node, size_t depth, size_t max_depth,
                             expression_aliases_t* aliases, FILE* output_file)
 {
+    assert(node);
+    assert(aliases);
+    assert(output_file);
+    assert(max_depth > 0);
+
     if (depth < max_depth || subtree_size(node) < MIN_ALIAS_SUBTREE_SIZE)
         return false;
 
@@ -516,6 +571,10 @@ static bool check_for_alias(const node_t* node, size_t depth, size_t max_depth,
 
 static bool console_parentheses_required(const node_t* node, const node_t* parent, bool is_right_child)
 {
+    assert(node);
+    assert(node->value);
+    if (parent) assert(parent->value);
+
     if (!parent || node->value->type != OP || parent->value->type != OP)
         return false;
 
@@ -534,7 +593,12 @@ static bool console_parentheses_required(const node_t* node, const node_t* paren
 static void console_output(const node_t* node, const variable_t* variables, const node_t* parent,
                            bool is_right_child, size_t depth, expression_aliases_t* aliases)
 {
+    assert(variables);
+    assert(aliases);
+
     if (!node) return;
+    assert(node->value);
+
     if (check_for_alias(node, depth, MAX_CONSOLE_EXPRESSION_DEPTH, aliases, stdout)) return;
 
     switch (node->value->type)
@@ -578,6 +642,9 @@ static void console_output(const node_t* node, const variable_t* variables, cons
 
 void tree_to_console(const node_t* node, const variable_t* variables)
 {
+    assert(node);
+    assert(variables);
+
     expression_aliases_t aliases = {};
 
     printf(MAKE_BOLD("Result:\n"));
@@ -598,6 +665,9 @@ void tree_to_console(const node_t* node, const variable_t* variables)
 
 void program_complete(variable_t** variables_ptr, node_t** node_ptr, FILE* input_file)
 {
+    assert(variables_ptr);
+    assert(node_ptr);
+
     if (*variables_ptr) variables_destroy(variables_ptr);
     destroy_node(*node_ptr);
     if (input_file) fclose(input_file);

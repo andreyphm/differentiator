@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <string.h>
 #include <math.h>
 #include <stdbool.h>
@@ -24,6 +25,9 @@ static node_t* GetV(token_t** token);
 
 node_t* GetG(token_t** token)
 {
+    assert(token);
+    assert(*token);
+
     node_t* value = GetE(token);
     if (!(TOKEN_IS_SPEC && TOKEN_SPEC_SYMBOL == '$'))
     {
@@ -35,6 +39,9 @@ node_t* GetG(token_t** token)
 
 static node_t* GetE(token_t** token)
 {
+    assert(token);
+    assert(*token);
+
     node_t* value = GetT(token);
     if (!value) return nullptr;
 
@@ -61,6 +68,9 @@ static node_t* GetE(token_t** token)
 
 static node_t* GetT(token_t** token)
 {
+    assert(token);
+    assert(*token);
+
     node_t* value = GetS(token);
     if (!value) return nullptr;
 
@@ -87,6 +97,9 @@ static node_t* GetT(token_t** token)
 
 static node_t* GetS(token_t** token)
 {
+    assert(token);
+    assert(*token);
+
     node_t* value = GetP(token);
     if (!value) return nullptr;
 
@@ -109,6 +122,9 @@ static node_t* GetS(token_t** token)
 
 static node_t* GetP(token_t** token)
 {
+    assert(token);
+    assert(*token);
+
     if (TOKEN_IS_SPEC && TOKEN_SPEC_SYMBOL == '(')
     {
         *token = (*token)->next;
@@ -136,6 +152,9 @@ static node_t* GetP(token_t** token)
 
 static node_t* GetN(token_t** token)
 {
+    assert(token);
+    assert(*token);
+
     node_t* value = NUM_(TOKEN_NUM_VALUE);
     *token = (*token)->next;
 
@@ -144,6 +163,9 @@ static node_t* GetN(token_t** token)
 
 static node_t* GetV(token_t** token)
 {
+    assert(token);
+    assert(*token);
+
     node_t* value = VAR_(TOKEN_VAR_NUMBER);
     *token = (*token)->next;
 
@@ -152,6 +174,9 @@ static node_t* GetV(token_t** token)
 
 static node_t* GetF(token_t** token)
 {
+    assert(token);
+    assert(*token);
+
     operator_code code = TOKEN_OP_CODE;
     *token = (*token)->next;
 

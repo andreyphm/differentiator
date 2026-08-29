@@ -17,6 +17,7 @@ static void print_html_escaped(FILE* file, const char* text);
 void list_dump(list_t* const list, const variable_t* const variables)
 {
     assert(list);
+    assert(variables);
 
     FILE* txt_file = fopen(LIST_DUMP_TXT, "w");
     assert(txt_file);

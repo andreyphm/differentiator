@@ -28,6 +28,8 @@ char* read_file_to_buffer(FILE* const tree_txt_file)
 
 static void bad_arguments_message(const char* program_name)
 {
+    assert(program_name);
+
     printf(MAKE_BOLD_RED("Incorrect command line arguments.\n")
            MAKE_BOLD("Usage: %s [-i input_file] [-o output.pdf]\n"), program_name);
 }
@@ -36,6 +38,8 @@ bool parse_arguments(program_options_t* options, int argc, const char* const arg
 {
     assert(options);
     assert(argv);
+    assert(argc > 0);
+    assert(argv[0]);
 
     *options = {};
     for (int i = 1; i < argc; i++)
@@ -82,6 +86,8 @@ bool open_input_file(FILE** input_file, const char* input_file_name)
 
 static bool has_pdf_extension(const char* file_name)
 {
+    assert(file_name);
+
     size_t length = strlen(file_name);
     if (length < 4)
         return false;
