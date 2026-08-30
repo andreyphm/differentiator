@@ -25,7 +25,7 @@
   - [Вывод в консоль](#вывод-в-консоль)
   - [Вывод в PDF](#вывод-в-pdf)
 - [Возможности](#возможности)
-- [Как это работает](#как-это-работает)
+- [Этапы перевода](#этапы-перевода)
   - [Токенизация](#токенизация)
   - [Рекурсивный спуск](#рекурсивный-спуск)
   - [Дифференцирование](#дифференцирование)
@@ -54,27 +54,11 @@
 - генерация PDF файла с результатом с помощью LaTeX;
 - автоматический перенос длинных выражений в PDF.
 
-## Как это работает
+## Этапы перевода
 
-```mermaid
-flowchart LR
-    INPUT[Выражение] --> TOKENS[Список токенов]
-    TOKENS --> TREE[Бинарное дерево]
-    TREE --> DERIVATIVE[Дерево производной]
-    DERIVATIVE --> SIMPLIFIED[Упрощённое дерево]
-    SIMPLIFIED --> CONSOLE[Вывод в терминале]
-    SIMPLIFIED --> LATEX[LaTeX]
-    LATEX --> PDF[PDF]
-
-    classDef source fill:#9575ff,stroke:#3f3d73,color:black;
-    classDef frontend fill:#36ff6f,stroke:#247a3b,color:black;
-    classDef transform fill:#ecff1a,stroke:#d9b811,color:black;
-    classDef output fill:#b7e5f3,stroke:#3f6969,color:black;
-    class INPUT source;
-    class TOKENS,TREE frontend;
-    class DERIVATIVE,SIMPLIFIED transform;
-    class CONSOLE,LATEX,PDF output;
-```
+<p align="center">
+  <img src="assets/stages_of_translation.drawio.svg" alt="Этапы перевода'" width="92%">
+</p>
 
 ### Токенизация
 
