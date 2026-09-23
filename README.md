@@ -277,8 +277,8 @@ V ::= letter { letter }
 <details open>
   <summary><b>Открыть дамп дерева производной</b></summary>
   <br>
-  <a href="source/tree_dump/tree_dump.svg">
-    <img src="source/tree_dump/tree_dump.svg?v=374e59b" alt="Дамп дерева производной" width="100%">
+  <a href="assets/derivative_tree_example.svg">
+    <img src="assets/derivative_tree_example.svg" alt="Дамп дерева производной" width="100%">
   </a>
 </details>
 
